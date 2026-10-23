@@ -1,0 +1,15 @@
+[
+ {"key":"don-w","sinner":"don","persona":"w","reference":"10302","name":"W 公司 · 清理人员"},
+ {"key":"don-n","sinner":"don","persona":"n","reference":"10304","name":"N 公司 · 中锤"},
+ {"key":"don-blade","sinner":"don","persona":"blade","reference":"10308","name":"剑契 · 杀手"},
+ {"key":"don-cinq","sinner":"don","persona":"cinq","reference":"10305","name":"Cinq 协会 · 南部五科科长"},
+ {"key":"don-t","sinner":"don","persona":"t","reference":"10309","name":"T 公司 · 三级征收员工"},
+ {"key":"don-queen","sinner":"don","persona":"queen","reference":"10312","name":"脑叶本部 · 憎恶女王"},
+ {"key":"heath-seven","sinner":"heath","persona":"seven","reference":"10706","name":"七协会 · 南部四科"},
+ {"key":"heath-sunshower","sinner":"heath","persona":"sunshower","reference":"10705","name":"脑叶 E.G.O. · 伞夫"},
+ {"key":"heath-fullstop","sinner":"heath","persona":"fullstop","reference":"10711","name":"句点事务所 · 收尾人"},
+ {"key":"heath-kurokumo","sinner":"heath","persona":"kurokumo","reference":"10712","name":"黑云会 · 若众"},
+ {"key":"heath-middle","sinner":"heath","persona":"middle","reference":"10715","name":"中指 · 大哥"},
+ {"key":"heath-wild","sinner":"heath","persona":"wild","reference":"10710","name":"荒猎 · 希斯克利夫"},
+ {"key":"heath-r","sinner":"heath","persona":"r","reference":"10703","name":"R 公司 · 兔子队"}
+]

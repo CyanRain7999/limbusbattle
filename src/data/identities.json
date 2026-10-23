@@ -1,0 +1,28 @@
+[
+  {
+    "id":"don-lcb","sinner":"don","number":"03","name":"堂吉诃德","english":"DON QUIXOTE","title":"LCB 罪人","rarity":"0","description":"以不息的热忱，向不可能发起冲锋。长枪的锋芒，正是正义的方向。","archetype":"突进 · 连击","color":"#edc16c","secondary":"#9d3433","sprite":"lance","hp":1000,"speed":5.3,"jump":14.2,"defense":1,"stats":[5,3,4],
+    "moves": {
+      "light":{"id":"light","name":"向前！","action":"light","level":1,"startup":5,"active":5,"recovery":14,"damage":52,"hitstun":24,"knockback":3,"launch":0,"hitstop":4,"power":5,"cost":0,"cooldown":0,"lunge":1.6,"box":{"x":18,"y":-101,"w":112,"h":72},"cancel":[8,23],"into":["light","heavy","special","ego"]},
+      "light2":{"id":"light2","name":"正义连刺","action":"light","level":1,"startup":4,"active":6,"recovery":14,"damage":55,"hitstun":26,"knockback":3,"launch":0,"hitstop":4,"power":6,"cost":0,"cooldown":0,"lunge":2,"box":{"x":12,"y":-105,"w":122,"h":78},"cancel":[7,23],"into":["light","heavy","special","ego"]},
+      "light3":{"id":"light3","name":"破晓一枪","action":"light","level":2,"startup":6,"active":6,"recovery":20,"damage":75,"hitstun":28,"knockback":6,"launch":7,"hitstop":6,"power":7,"cost":0,"cooldown":0,"lunge":2,"box":{"x":12,"y":-115,"w":132,"h":98},"cancel":[9,26],"into":["heavy","special","ego"]},
+      "heavy":{"id":"heavy","name":"跃升之枪","action":"heavy","level":2,"startup":11,"active":7,"recovery":23,"damage":115,"hitstun":35,"knockback":3,"launch":13,"hitstop":7,"power":9,"cost":0,"cooldown":32,"lunge":1,"box":{"x":4,"y":-163,"w":120,"h":147},"cancel":[14,31],"into":["special","ego"]},
+      "special":{"id":"special","name":"为了正义！","action":"special","level":3,"startup":13,"active":13,"recovery":23,"damage":145,"hitstun":34,"knockback":9,"launch":6,"hitstop":8,"power":12,"cost":18,"cooldown":100,"lunge":6,"box":{"x":5,"y":-112,"w":160,"h":104},"cancel":[19,38],"into":["ego"],"status":"rupture"},
+      "air":{"id":"air","name":"星坠突刺","action":"light","level":2,"startup":5,"active":11,"recovery":15,"damage":80,"hitstun":28,"knockback":3,"launch":6,"hitstop":5,"power":7,"cost":0,"cooldown":0,"lunge":2,"box":{"x":0,"y":-116,"w":129,"h":135},"cancel":[9,26],"into":["heavy","special","ego"]},
+      "dashAttack":{"id":"dashAttack","name":"骑士冲锋","action":"light","level":2,"startup":5,"active":9,"recovery":19,"damage":85,"hitstun":27,"knockback":6,"launch":3,"hitstop":6,"power":8,"cost":0,"cooldown":0,"lunge":7,"box":{"x":6,"y":-101,"w":147,"h":82},"cancel":[8,27],"into":["heavy","special","ego"]},
+      "ego":{"id":"ego","name":"La Sangre de Sancho","action":"ego","level":4,"startup":24,"active":16,"recovery":34,"damage":320,"hitstun":52,"knockback":13,"launch":14,"hitstop":13,"power":18,"cost":80,"cooldown":240,"lunge":5,"box":{"x":-15,"y":-230,"w":440,"h":225},"cancel":[0,0],"into":[],"status":"rupture","knockdown":true}
+    }
+  },
+  {
+    "id":"heath-lcb","sinner":"heath","number":"07","name":"希斯克利夫","english":"HEATHCLIFF","title":"LCB 罪人","rarity":"0","description":"无需多言。挥动球棒，将所有愤怒一并奉还。每一击都刻下沉重的回响。","archetype":"重击 · 击飞","color":"#ba94d4","secondary":"#8e463a","sprite":"bat","hp":1150,"speed":4,"jump":13,"defense":0.93,"stats":[3,5,3],
+    "moves": {
+      "light":{"id":"light","name":"敲打","action":"light","level":1,"startup":7,"active":6,"recovery":17,"damage":66,"hitstun":27,"knockback":3,"launch":0,"hitstop":5,"power":6,"cost":0,"cooldown":0,"lunge":1.1,"box":{"x":10,"y":-108,"w":103,"h":86},"cancel":[10,26],"into":["light","heavy","special","ego"]},
+      "light2":{"id":"light2","name":"反手挥击","action":"light","level":1,"startup":6,"active":7,"recovery":19,"damage":77,"hitstun":29,"knockback":4,"launch":0,"hitstop":6,"power":7,"cost":0,"cooldown":0,"lunge":1.5,"box":{"x":8,"y":-117,"w":116,"h":95},"cancel":[10,29],"into":["light","heavy","special","ego"]},
+      "light3":{"id":"light3","name":"砸碎","action":"light","level":2,"startup":10,"active":7,"recovery":24,"damage":105,"hitstun":31,"knockback":7,"launch":9,"hitstop":8,"power":9,"cost":0,"cooldown":0,"lunge":1.8,"box":{"x":8,"y":-130,"w":126,"h":115},"cancel":[14,32],"into":["special","ego"]},
+      "heavy":{"id":"heavy","name":"暴怒上勾","action":"heavy","level":2,"startup":15,"active":8,"recovery":27,"damage":155,"hitstun":40,"knockback":5,"launch":15,"hitstop":9,"power":12,"cost":0,"cooldown":42,"lunge":1,"box":{"x":-3,"y":-172,"w":132,"h":158},"cancel":[19,38],"into":["special","ego"]},
+      "special":{"id":"special","name":"把一切砸烂","action":"special","level":3,"startup":20,"active":10,"recovery":28,"damage":185,"hitstun":40,"knockback":11,"launch":8,"hitstop":10,"power":14,"cost":20,"cooldown":115,"lunge":3.2,"box":{"x":0,"y":-150,"w":175,"h":145},"cancel":[24,43],"into":["ego"],"status":"burn","knockdown":true},
+      "air":{"id":"air","name":"空中重锤","action":"light","level":2,"startup":8,"active":10,"recovery":19,"damage":102,"hitstun":32,"knockback":4,"launch":4,"hitstop":7,"power":9,"cost":0,"cooldown":0,"lunge":1.3,"box":{"x":0,"y":-123,"w":131,"h":143},"cancel":[12,29],"into":["special","ego"]},
+      "dashAttack":{"id":"dashAttack","name":"蛮横冲撞","action":"light","level":2,"startup":7,"active":8,"recovery":22,"damage":110,"hitstun":31,"knockback":8,"launch":5,"hitstop":7,"power":10,"cost":0,"cooldown":0,"lunge":5,"box":{"x":5,"y":-116,"w":125,"h":107},"cancel":[11,30],"into":["heavy","special","ego"]},
+      "ego":{"id":"ego","name":"Bodysack","action":"ego","level":4,"startup":29,"active":15,"recovery":36,"damage":370,"hitstun":55,"knockback":15,"launch":16,"hitstop":16,"power":20,"cost":80,"cooldown":250,"lunge":5,"box":{"x":-10,"y":-235,"w":390,"h":230},"cancel":[0,0],"into":[],"status":"burn","knockdown":true}
+    }
+  }
+]

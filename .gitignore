@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.cache/
+test-results/
+playwright-report/
+*.log
+.playwright-mcp/
+.codex-sync-manifest.json
+release/

@@ -1,0 +1,796 @@
+[
+  {
+    "sinner": "don",
+    "slot": "qcf",
+    "id": "don-rip-space",
+    "name": "空间撕裂",
+    "source": "W 公司 · 清理人员",
+    "appearance": "w",
+    "visualRow": 0,
+    "effect": "rift",
+    "action": "special",
+    "level": 3,
+    "startup": 10,
+    "active": 19,
+    "recovery": 23,
+    "damage": 68,
+    "hitstun": 27,
+    "knockback": 2,
+    "launch": 2,
+    "hitstop": 3,
+    "power": 12,
+    "cost": 22,
+    "cooldown": 130,
+    "lunge": 7,
+    "box": {
+      "x": 0,
+      "y": -122,
+      "w": 166,
+      "h": 112
+    },
+    "cancel": [
+      21,
+      36
+    ],
+    "into": [
+      "ego"
+    ],
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 7,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 14,
+        "duration": 5,
+        "scale": 1.25
+      }
+    ],
+    "status": "rupture",
+    "visualKey": "don-w",
+    "color": "#78e1fa",
+    "description": "前冲三段空间斩，可命中取消 E.G.O."
+  },
+  {
+    "sinner": "don",
+    "slot": "qcb",
+    "id": "don-n-purge",
+    "name": "钉锤净化",
+    "source": "N 公司 · 中锤",
+    "appearance": "n",
+    "visualRow": 0,
+    "effect": "hammer",
+    "action": "special",
+    "level": 3,
+    "startup": 18,
+    "active": 10,
+    "recovery": 27,
+    "damage": 175,
+    "hitstun": 38,
+    "knockback": 9,
+    "launch": 6,
+    "hitstop": 8,
+    "power": 14,
+    "cost": 20,
+    "cooldown": 110,
+    "lunge": 1.5,
+    "box": {
+      "x": -5,
+      "y": -145,
+      "w": 145,
+      "h": 137
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "don-n",
+    "guardDamage": 2.2,
+    "color": "#d79678",
+    "knockdown": true,
+    "description": "重锤砸击，造成双倍架势伤害。"
+  },
+  {
+    "sinner": "don",
+    "slot": "dp",
+    "id": "don-cinq-duel",
+    "name": "决斗突刺",
+    "source": "Cinq 协会 · 南部五科科长",
+    "appearance": "cinq",
+    "visualRow": 0,
+    "effect": "thrust",
+    "action": "special",
+    "level": 3,
+    "startup": 6,
+    "active": 11,
+    "recovery": 23,
+    "damage": 130,
+    "hitstun": 31,
+    "knockback": 4,
+    "launch": 3,
+    "hitstop": 8,
+    "power": 11,
+    "cost": 16,
+    "cooldown": 85,
+    "lunge": 8.5,
+    "box": {
+      "x": 10,
+      "y": -112,
+      "w": 198,
+      "h": 75
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "don-cinq",
+    "color": "#92b9ed",
+    "description": "快前摇细剑突进，适合差合与追击。"
+  },
+  {
+    "sinner": "don",
+    "slot": "ddj",
+    "id": "don-t-collect",
+    "name": "时间征收",
+    "source": "T 公司 · 三级征收员工",
+    "appearance": "t",
+    "visualRow": 0,
+    "effect": "time",
+    "action": "special",
+    "level": 3,
+    "startup": 24,
+    "active": 17,
+    "recovery": 28,
+    "damage": 155,
+    "hitstun": 60,
+    "knockback": 1,
+    "launch": 0,
+    "hitstop": 8,
+    "power": 12,
+    "cost": 24,
+    "cooldown": 160,
+    "lunge": 0,
+    "box": {
+      "x": -35,
+      "y": -143,
+      "w": 220,
+      "h": 138
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "don-t",
+    "color": "#d8b56c",
+    "description": "齿轮武器压制，命中造成长时间停滞。"
+  },
+  {
+    "sinner": "don",
+    "slot": "qcfk",
+    "id": "don-blade-draw",
+    "name": "剑契 · 拔刀",
+    "source": "剑契 · 杀手",
+    "appearance": "blade",
+    "visualRow": 0,
+    "effect": "iaido",
+    "action": "special",
+    "level": 3,
+    "startup": 14,
+    "active": 8,
+    "recovery": 24,
+    "damage": 170,
+    "hitstun": 37,
+    "knockback": 6,
+    "launch": 5,
+    "hitstop": 8,
+    "power": 12,
+    "cost": 19,
+    "cooldown": 100,
+    "lunge": 2,
+    "box": {
+      "x": -35,
+      "y": -138,
+      "w": 210,
+      "h": 128
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "don-blade",
+    "teleport": 78,
+    "status": "rupture",
+    "color": "#e0d6b9",
+    "description": "短距踏步拔刀，附加破裂。"
+  },
+  {
+    "sinner": "don",
+    "slot": "qcbl",
+    "id": "don-queen-beam",
+    "name": "以爱与憎之名",
+    "source": "脑叶本部 · 憎恶女王",
+    "appearance": "queen",
+    "visualRow": 0,
+    "effect": "beam",
+    "action": "special",
+    "level": 3,
+    "startup": 28,
+    "active": 19,
+    "recovery": 35,
+    "damage": 62,
+    "hitstun": 24,
+    "knockback": 3,
+    "launch": 0,
+    "hitstop": 8,
+    "power": 13,
+    "cost": 30,
+    "cooldown": 180,
+    "lunge": 0,
+    "box": {
+      "x": 15,
+      "y": -120,
+      "w": 650,
+      "h": 80
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "don-queen",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 7,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 14,
+        "duration": 5,
+        "scale": 1.2
+      }
+    ],
+    "color": "#f4a1d9",
+    "description": "蓄力后射出三段爱心光束，射程长、收招长。"
+  },
+  {
+    "sinner": "don",
+    "slot": "dpj",
+    "id": "don-justice-rise",
+    "name": "正义升枪",
+    "source": "LCB 罪人",
+    "appearance": "lcb",
+    "visualRow": 5,
+    "effect": "uppercut",
+    "action": "special",
+    "level": 3,
+    "startup": 7,
+    "active": 12,
+    "recovery": 29,
+    "damage": 150,
+    "hitstun": 42,
+    "knockback": 2,
+    "launch": 17,
+    "hitstop": 8,
+    "power": 13,
+    "cost": 18,
+    "cooldown": 100,
+    "lunge": 1.5,
+    "box": {
+      "x": -12,
+      "y": -205,
+      "w": 130,
+      "h": 185
+    },
+    "cancel": [
+      14,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "knockdown": true,
+    "description": "LCB 长枪对空击飞，可跳跃取消追击。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcf",
+    "id": "heath-fullstop-shot",
+    "name": "句点 · 集中射击",
+    "source": "句点事务所 · 收尾人",
+    "appearance": "fullstop",
+    "visualRow": 0,
+    "effect": "bullets",
+    "action": "special",
+    "level": 3,
+    "startup": 23,
+    "active": 3,
+    "recovery": 32,
+    "damage": 190,
+    "hitstun": 37,
+    "knockback": 12,
+    "launch": 4,
+    "hitstop": 9,
+    "power": 12,
+    "cost": 24,
+    "cooldown": 135,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -100,
+      "w": 0,
+      "h": 0
+    },
+    "cancel": [
+      17,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "heath-fullstop",
+    "projectile": {
+      "frames": [
+        0
+      ],
+      "speed": 28,
+      "width": 42,
+      "height": 18,
+      "life": 45
+    },
+    "color": "#a3c3b6",
+    "description": "远距离蓄力狙击，单发高伤害。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcb",
+    "id": "heath-wild-burial",
+    "name": "荒猎葬送",
+    "source": "荒猎 · 希斯克利夫",
+    "appearance": "wild",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 24,
+    "active": 11,
+    "recovery": 31,
+    "damage": 230,
+    "hitstun": 47,
+    "knockback": 12,
+    "launch": 10,
+    "hitstop": 11,
+    "power": 16,
+    "cost": 26,
+    "cooldown": 155,
+    "lunge": 2.5,
+    "box": {
+      "x": -15,
+      "y": -168,
+      "w": 260,
+      "h": 160
+    },
+    "cancel": [
+      31,
+      47
+    ],
+    "into": [
+      "ego"
+    ],
+    "status": "rupture",
+    "knockdown": true,
+    "visualKey": "heath-wild",
+    "color": "#bb5063",
+    "description": "红色荆棘刀大范围横斩、强击退。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "dp",
+    "id": "heath-seven-parry",
+    "name": "七协 · 弱点识破",
+    "source": "七协会 · 南部四科",
+    "appearance": "seven",
+    "visualRow": 0,
+    "effect": "thrust",
+    "action": "special",
+    "level": 3,
+    "startup": 15,
+    "active": 9,
+    "recovery": 23,
+    "damage": 145,
+    "hitstun": 34,
+    "knockback": 5,
+    "launch": 7,
+    "hitstop": 9,
+    "power": 12,
+    "cost": 17,
+    "cooldown": 95,
+    "lunge": 3,
+    "box": {
+      "x": 0,
+      "y": -134,
+      "w": 158,
+      "h": 112
+    },
+    "cancel": [
+      17,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "heath-seven",
+    "counter": [
+      2,
+      13
+    ],
+    "color": "#89bc8e",
+    "description": "起手可格挡反击，随后精确刺击。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "ddj",
+    "id": "heath-middle-revenge",
+    "name": "中指 · 清算之拳",
+    "source": "中指 · 大哥",
+    "appearance": "middle",
+    "visualRow": 0,
+    "effect": "fist",
+    "action": "special",
+    "level": 3,
+    "startup": 25,
+    "active": 9,
+    "recovery": 30,
+    "damage": 220,
+    "hitstun": 44,
+    "knockback": 14,
+    "launch": 10,
+    "hitstop": 9,
+    "power": 16,
+    "cost": 27,
+    "cooldown": 150,
+    "lunge": 4,
+    "box": {
+      "x": 0,
+      "y": -132,
+      "w": 148,
+      "h": 125
+    },
+    "cancel": [
+      17,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "heath-middle",
+    "armorUntil": 24,
+    "knockdown": true,
+    "color": "#d198ec",
+    "description": "蓄力期间霸体，金链拳套强力击飞。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcfk",
+    "id": "heath-kurokumo-draw",
+    "name": "黑云 · 拔刀斩",
+    "source": "黑云会 · 若众",
+    "appearance": "kurokumo",
+    "visualRow": 0,
+    "effect": "iaido",
+    "action": "special",
+    "level": 3,
+    "startup": 12,
+    "active": 13,
+    "recovery": 25,
+    "damage": 78,
+    "hitstun": 31,
+    "knockback": 3,
+    "launch": 3,
+    "hitstop": 9,
+    "power": 12,
+    "cost": 20,
+    "cooldown": 115,
+    "lunge": 3,
+    "box": {
+      "x": -10,
+      "y": -141,
+      "w": 205,
+      "h": 132
+    },
+    "cancel": [
+      17,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "heath-kurokumo",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 5,
+        "scale": 1.25
+      }
+    ],
+    "status": "rupture",
+    "color": "#c6d0d8",
+    "description": "带黑云纹样的曲刀二连斩，附加破裂。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcbl",
+    "id": "heath-sunshower-counter",
+    "name": "骤雨 · 雨中反击",
+    "source": "脑叶 E.G.O. · 伞夫",
+    "appearance": "sunshower",
+    "visualRow": 0,
+    "effect": "umbrella",
+    "action": "special",
+    "level": 3,
+    "startup": 23,
+    "active": 12,
+    "recovery": 27,
+    "damage": 180,
+    "hitstun": 40,
+    "knockback": 8,
+    "launch": 9,
+    "hitstop": 9,
+    "power": 14,
+    "cost": 22,
+    "cooldown": 130,
+    "lunge": 1,
+    "box": {
+      "x": -15,
+      "y": -151,
+      "w": 192,
+      "h": 142
+    },
+    "cancel": [
+      17,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "visualKey": "heath-sunshower",
+    "counter": [
+      2,
+      21
+    ],
+    "color": "#86b2bb",
+    "description": "以破伞抵挡攻击，触发后快速刺出伞尖。"
+  },
+  {
+    "sinner": "heath",
+    "slot": "dpj",
+    "id": "heath-quick-suppression",
+    "name": "快速压制",
+    "source": "R 公司 · 兔子队",
+    "appearance": "r",
+    "visualRow": 0,
+    "effect": "bullets",
+    "action": "special",
+    "level": 2,
+    "startup": 11,
+    "active": 19,
+    "recovery": 23,
+    "damage": 68,
+    "hitstun": 18,
+    "knockback": 3,
+    "launch": 0,
+    "hitstop": 3,
+    "power": 8,
+    "cost": 22,
+    "cooldown": 145,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -98,
+      "w": 0,
+      "h": 0
+    },
+    "cancel": [
+      26,
+      39
+    ],
+    "into": [
+      "ego"
+    ],
+    "projectile": {
+      "frames": [
+        0,
+        7,
+        14
+      ],
+      "speed": 19,
+      "width": 30,
+      "height": 13,
+      "life": 48
+    },
+    "visualKey": "heath-r",
+    "description": "兔子队三连射，与句点的单发狙击独立。",
+    "color": "#eba05a"
+  },
+  {
+    "sinner": "don",
+    "slot": "qcf",
+    "id": "don-justice-charge",
+    "name": "骑士贯穿",
+    "source": "LCB 罪人",
+    "appearance": "lcb",
+    "visualRow": 2,
+    "effect": "thrust",
+    "action": "special",
+    "level": 2,
+    "startup": 8,
+    "active": 15,
+    "recovery": 19,
+    "damage": 145,
+    "hitstun": 34,
+    "knockback": 9,
+    "launch": 5,
+    "hitstop": 7,
+    "power": 10,
+    "cost": 14,
+    "cooldown": 85,
+    "lunge": 10,
+    "box": {
+      "x": 15,
+      "y": -106,
+      "w": 186,
+      "h": 87
+    },
+    "cancel": [
+      13,
+      31
+    ],
+    "into": [
+      "ego"
+    ]
+  },
+  {
+    "sinner": "don",
+    "slot": "qcb",
+    "id": "don-spear-sweep",
+    "name": "回身扫枪",
+    "source": "LCB 罪人",
+    "appearance": "lcb",
+    "visualRow": 2,
+    "effect": "thrust",
+    "action": "special",
+    "level": 2,
+    "startup": 12,
+    "active": 9,
+    "recovery": 22,
+    "damage": 130,
+    "hitstun": 32,
+    "knockback": 8,
+    "launch": 0,
+    "hitstop": 7,
+    "power": 11,
+    "cost": 12,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": -45,
+      "y": -79,
+      "w": 205,
+      "h": 75
+    },
+    "cancel": [
+      16,
+      31
+    ],
+    "into": [
+      "ego"
+    ],
+    "knockdown": true
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcf",
+    "id": "heath-bat-rush",
+    "name": "蛮横突袭",
+    "source": "LCB 罪人",
+    "appearance": "lcb",
+    "visualRow": 2,
+    "effect": "thrust",
+    "action": "special",
+    "level": 2,
+    "startup": 12,
+    "active": 12,
+    "recovery": 24,
+    "damage": 155,
+    "hitstun": 34,
+    "knockback": 9,
+    "launch": 5,
+    "hitstop": 8,
+    "power": 11,
+    "cost": 14,
+    "cooldown": 95,
+    "lunge": 6,
+    "box": {
+      "x": 4,
+      "y": -122,
+      "w": 134,
+      "h": 111
+    },
+    "cancel": [
+      17,
+      35
+    ],
+    "into": [
+      "ego"
+    ]
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcb",
+    "id": "heath-ground-smash",
+    "name": "全力砸击",
+    "source": "LCB 罪人",
+    "appearance": "lcb",
+    "visualRow": 2,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 18,
+    "active": 9,
+    "recovery": 28,
+    "damage": 180,
+    "hitstun": 40,
+    "knockback": 10,
+    "launch": 6,
+    "hitstop": 9,
+    "power": 13,
+    "cost": 17,
+    "cooldown": 105,
+    "lunge": 1.2,
+    "box": {
+      "x": -8,
+      "y": -145,
+      "w": 165,
+      "h": 138
+    },
+    "cancel": [
+      23,
+      39
+    ],
+    "into": [
+      "ego"
+    ],
+    "status": "burn",
+    "knockdown": true
+  }
+]
