@@ -1,0 +1,11 @@
+.skill[hidden],.touch-key[hidden]{display:none!important}
+.touch-attacks{width:294px;height:180px}
+.normal-grid{position:absolute;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,58px);gap:9px}
+.touch-attacks .normal-grid .normal-button{position:static;width:58px;height:58px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;color:#eddaac}
+.normal-button b{font:16px var(--mono)}.normal-button small{font-size:8px;color:#b4c1ad}.normal-button:nth-child(n+4){border-color:#9fbfc999;color:#cae2e2}
+.touch-utilities{position:absolute;left:0;bottom:0;display:grid;grid-template-columns:repeat(2,39px);gap:6px}
+.touch-attacks .touch-utilities .touch-key{position:static;width:39px;height:39px;border-radius:10px;font-size:10px;padding:0}
+.touch-attacks .touch-command-grid{display:none;position:absolute;left:auto;right:0;top:auto;bottom:140px;grid-template-columns:repeat(4,48px);gap:6px;padding:8px;background:#102229e8;border:1px solid #b3ccad55;border-radius:8px}
+.touch-attacks.personas-open .touch-command-grid{display:grid}.touch-attacks .touch-command-grid .touch-command{position:static;width:48px;height:39px;border-radius:6px;padding:0}
+#persona-toggle[aria-expanded=true]{border-color:#f1d393;background:#77603c99}
+@media(pointer:coarse){.touch-attacks{height:133px;width:294px}.touch-attacks .normal-grid .normal-button{background:#183037b8}.touch-attacks .touch-command-grid{bottom:140px}}

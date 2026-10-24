@@ -18,14 +18,14 @@ export class AIController {
     this.held = {}; this.sequence++;
     const delta = (observed.x || enemy.x) - self.x, distance = Math.abs(delta), forward = delta > 0 ? 'right' : 'left', backward = delta > 0 ? 'left' : 'right';
     if (self.stun || self.state === 'down') return frame;
-    if (observed.attacking && distance < 210 && this.random() < p.guard && !self.attack) this.held.guard = true;
+    if (observed.attacking && distance < 210 && this.random() < p.guard && !self.attack) this.held[backward] = true;
     else if (distance > 112) { this.held[forward] = true; if (distance > 340 && this.random() < .4) frame.pressed.dash = true; }
     else if (distance < 58 && !self.attack && this.random() < .23) this.held[backward] = true;
-    if (this.random() > p.mistake && !this.held.guard) {
-      if (self.attack && self.connected && this.random() < p.chain) { const next = self.attack.action === 'light' ? (this.sequence%3 ? 'light':'heavy') : 'special'; if(next==='special')frame.command=this.sequence%2?'qcf':'qcb';else frame.pressed[next]=true; }
+    if (this.random() > p.mistake && !this.held[backward]) {
+      if (self.attack && self.connected && this.random() < p.chain) { const strength=self.attack.normal?.strength??3;if(strength<3)frame.pressed[strength===1?'heavy':'special']=true;else frame.command=self.grounded?(this.sequence%2?'qcf':'qcb'):'qcf'; }
       else if (distance < 380 && self.ego >= 80 && this.random() < .3) frame.pressed.ego = true;
       else if (self.ego >= 23 && this.random() < .27 && distance < (self.identity.sinner==='heath'?580:185)) frame.command=distance>210?'qcf':observed.y<self.y-40?'dp':this.sequence%2?'qcf':'qcb';
-      else if (distance < 129) frame.pressed[this.random() < .3 ? 'heavy' : 'light'] = true;
+      else if(distance<65&&self.grounded&&this.random()<.15)frame.pressed.throw=true;else if(distance<140)frame.pressed[observed.y<self.y-35?'special':this.random()<.3?'mediumAlt':distance<90?'light':'heavy']=true;
         if ((observed.y < self.y - 45 || (distance > 200 && this.random() < .12)) && self.grounded) frame.pressed.jump = true;
     }
     frame.held = { ...this.held }; return frame;

@@ -42,12 +42,12 @@ test('a keyboard player defeats the easy CPU over a complete best-of-three and r
     if(a.attack||a.stun||state.phase!=='fight')direction='';
     if(direction!==held){if(held)await page.keyboard.up(held);held=direction;if(held)await page.keyboard.down(held);}
     if(state.phase==='fight'&&!a.stun){
-      if(!a.attack&&Math.abs(delta)<150)await page.keyboard.press(a.ego>=80?'u':'j');
+      if(!a.attack&&Math.abs(delta)<150)await page.keyboard.press(a.ego>=80?'h':'j');
       else if(a.connected&&a.attack&&a.age>=a.attack.cancel[0]&&a.age<=a.attack.cancel[1]){
-        if(a.attack.id==='light')await page.keyboard.press('j');
-        else if(a.attack.id==='light2')await page.keyboard.press('k');
-        else if(a.attack.action==='heavy'&&a.y>=570&&b.y<560)await page.keyboard.press('w');
-        else await page.keyboard.press(a.ego>=80?'u':'l');
+        if(a.attack.id==='light')await page.keyboard.press('k');
+        else if(a.attack.id==='heavy')await page.keyboard.press('l');
+        else if(a.attack.id==='special'&&a.y>=570&&b.y<560)await page.keyboard.press('w');
+        else await page.keyboard.press(a.ego>=80?'h':'l');
       }
     }
     await page.waitForTimeout(35);
@@ -64,7 +64,7 @@ test('mobile landscape handles two concurrent real touch contacts',async({browse
   const x=await page.evaluate(()=>(window as any).__LIMBUS__.scene.match.fighters[0].x);
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(move!,1)]});await page.waitForTimeout(180);
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(move!,1),point(attack!,2)]});await page.waitForTimeout(100);
-  const during=await page.evaluate(()=>{const f=(window as any).__LIMBUS__.scene.match.fighters[0];return {x:f.x,attack:f.attack?.id};});expect(during.x).toBeGreaterThan(x);expect(during.attack).toBe('dashAttack');
+  const during=await page.evaluate(()=>{const f=(window as any).__LIMBUS__.scene.match.fighters[0];return {x:f.x,attack:f.attack?.id};});expect(during.x).toBeGreaterThan(x);expect(during.attack).toBe('light');
   await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(500);expect(await page.locator('.touch-key.pressed').count()).toBe(0);
   await page.screenshot({path:'docs/screenshots/mobile.png'});await context.close();
 });

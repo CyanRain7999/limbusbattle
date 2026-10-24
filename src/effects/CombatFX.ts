@@ -49,6 +49,7 @@ export class CombatFX {
       this.scatter(e.x,e.y,p,heavy?23:13,direction,heavy?10:7);
       if(heavy)this.burst(e.x,e.y+63,p,'ground',95,420);
     }
+    if(e.type==='throwtech'){this.burst(e.x,e.y,p,'parry',70,260);this.scatter(e.x,e.y,p,10,0,5);}
     if(e.type==='clash'){this.burst(e.x,e.y,{...p,edge:0xffd078,core:0xfff5d9},'clash',122,400);this.scatter(e.x,e.y,p,27,0,11);}
     if(e.type==='block'){this.burst(e.x,e.y,p,e.text?'parry':'block',e.text?89:53,290);this.scatter(e.x,e.y,{...p,edge:0x9de9f0},9,-direction,5);}
     if(e.type==='guardbreak'){this.burst(e.x,e.y,p,'break',118,440);this.scatter(e.x,e.y,p,27,0,9);}
@@ -82,7 +83,7 @@ export class CombatFX {
     this.ghosts=this.ghosts.filter(g=>{g.age+=dt;if(g.age>=g.life){g.image.destroy();return false;}g.image.setAlpha((1-g.age/g.life)*.27);return true;});
     for(const f of match.fighters){
       const p=this.palette(f),move=f.attack;
-      if(move&&this.observed[f.index]!==f.attackSerial){this.observed[f.index]=f.attackSerial;this.burst(f.x,f.y-65,p,'summon',62,250);}
+      if(move&&this.observed[f.index]!==f.attackSerial){this.observed[f.index]=f.attackSerial;if(!move.normal&&!move.throwRange)this.burst(f.x,f.y-65,p,'summon',62,250);}
       if(dt>0&&!reduceMotion&&(f.state==='dash'||move&&(move.effect==='rift'||move.effect==='iaido'||move.lunge>=6))&&this.clock-this.ghostStamp[f.index]>55){
         this.ghostStamp[f.index]=this.clock;const s=sprites[f.index];const image=this.scene.add.image(s.x,s.y,s.texture.key,s.frame.name).setOrigin(s.originX,s.originY).setScale(s.scaleX,s.scaleY).setFlipX(s.flipX).setTint(p.edge).setAlpha(.25).setDepth(4);this.ghosts.push({image,age:0,life:155});if(this.ghosts.length>(this.mobile?8:14))this.ghosts.shift()!.image.destroy();
       }
@@ -90,7 +91,8 @@ export class CombatFX {
       if(f.state==='guard'||f.state==='block'){const x=f.x+f.facing*25,y=f.y-64;this.front.lineStyle(2,0x9ce1e4,.6);this.front.beginPath();this.front.arc(x,y,63,f.facing===1?-1.15:1.99,f.facing===1?1.15:4.29);this.front.strokePath();}
     }
     this.drawBursts(dt);this.drawParticles(dt);
-    for(const projectile of match.projectiles){const f=match.fighters[projectile.source],p=palettes[projectile.move.appearance??'r']??this.palette(f),d=Math.sign(projectile.vx);this.thrust(projectile.x-d*27,projectile.y,76,3,p,.95,d);this.star(this.light,projectile.x,projectile.y,9,p.core,.9,0,4);}
+    for(const projectile of match.projectiles){const f=match.fighters[projectile.source],p=palettes[projectile.move.appearance??'r']??this.palette(f);const len=Math.hypot(projectile.vx,projectile.vy),dx=projectile.vx/len,dy=projectile.vy/len;for(const [w,c,a] of [[9,p.edge,.15],[3,p.edge,.85],[1,p.core,1]]){this.light.lineStyle(w,c,a);this.light.lineBetween(projectile.x-dx*60,projectile.y-dy*60,projectile.x,projectile.y);}this.star(this.light,projectile.x,projectile.y,9,p.core,.9,Math.atan2(dy,dx),4);}
+
     if(this.egoLife>450&&!reduceMotion){const alpha=(this.egoLife-450)/400;for(let i=0;i<10;i++){const y=105+i*55,x=(this.clock*.9+i*219)%1760;this.front.lineStyle(i%3?1:3,0xc8a8bc,alpha*.2);this.front.lineBetween(x,y,x+160+i%3*80,y-18);}}
   }
   private thrust(x:number,y:number,length:number,width:number,p:Palette,alpha:number,direction:number){
@@ -100,12 +102,13 @@ export class CombatFX {
     this.light.lineStyle(1.5,p.core,alpha);this.light.lineBetween(x,y,x+direction*length,y);
   }
   private drawMove(f:Fighter,p:Palette){
+    if(f.attack!.throwRange)return;
     const m=f.attack!,d=f.facing,x=f.x+d*24,y=f.y-70,age=f.attackAge;
     const charging=age<m.startup,active=age>=m.startup&&age<m.startup+m.active;
     const charge=Math.min(1,age/m.startup),a=charging?Math.sin(charge*Math.PI)*.65:active?1:Math.max(0,1-(age-m.startup-m.active)/Math.min(m.recovery,15));
     const t=active?(age-m.startup)/m.active:charging?0:1;
     const theme=f.appearance,effect=m.effect;
-    if(charging&&m.action==='special'){
+    if(charging&&m.action==='special'&&!m.normal){
       const radius=53-charge*18;this.ring(this.rear,x-d*14,y,radius,p.edge,.15+charge*.3,1);
       for(let i=0;i<5;i++){const angle=i*Math.PI*.4+this.clock*.004,xx=x-d*14+Math.cos(angle)*radius,yy=y+Math.sin(angle)*radius;this.star(this.light,xx,yy,3+charge*2,p.edge,.35+charge*.4,angle);}
     }

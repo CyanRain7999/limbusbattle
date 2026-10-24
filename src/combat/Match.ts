@@ -1,6 +1,6 @@
 import { Fighter } from './Fighter';
 import { clamp, intersects, neutral, type CombatEvent, type InputFrame, type MatchOptions, type Move } from '../core/types';
-export interface Projectile {id:number;source:number;x:number;y:number;vx:number;width:number;height:number;life:number;move:Move}
+export interface Projectile {id:number;source:number;x:number;y:number;vx:number;vy:number;width:number;height:number;life:number;move:Move}
 
 export class Match {
   fighters: [Fighter, Fighter]; frame = 0; hitstop = 0; timer = 99 * 60; round = 1;
@@ -9,6 +9,7 @@ export class Match {
   totals = [{damage:0,hits:0,maxCombo:0},{damage:0,hits:0,maxCombo:0}];
   projectiles:Projectile[]=[];private projectileSerial=0;
   private clashPairs = new Set<string>(); private rng: number;
+  private grab:{source:number;target:number;age:number;direction:1|-1;move:Move}|null=null;
   constructor(public options: MatchOptions) { this.fighters = [new Fighter(0, options.p1), new Fighter(1, options.p2)]; this.rng = options.seed ?? 1023; }
   random() { this.rng = (Math.imul(1664525, this.rng) + 1013904223) >>> 0; return this.rng / 4294967296; }
   emit(event: CombatEvent) { this.events.push(event); }
@@ -39,13 +40,13 @@ export class Match {
     }
     this.pushboxes();
     this.stepProjectiles();
-    if (!this.resolveClash()) this.resolveHits();
+    if (!this.resolveThrows()&&!this.resolveClash()) this.resolveHits();
     if (this.options.mode === 'training') for (const f of this.fighters) { f.ego = 100; if (f.hp < 200 && !f.stun) f.hp = f.identity.hp; }
     if (this.fighters.some(f => f.hp <= 0) || this.timer <= 0) this.endRound();
   }
   private pushboxes() {
     const [a,b] = this.fighters;
-    if (Math.abs(a.y - b.y) > 90 || a.state === 'down' || b.state === 'down') return;
+    if (this.grab||Math.abs(a.y - b.y) > 90 || a.state === 'down' || b.state === 'down') return;
     const d = b.x - a.x, overlap = 49 - Math.abs(d);
     if (overlap > 0) {
       const s = d >= 0 ? 1 : -1;
@@ -83,8 +84,12 @@ export class Match {
       a.interrupt(20);a.vx=-a.facing*2;b.attackAge=defending.startup-1;b.invuln=7;b.sp=clamp(b.sp+4,-45,45);this.hitstop=5;
       this.emit({type:'block',x:b.x,y:b.y-85,source:b.index,target:a.index,text:'识破反击'});return;
     }
-    const blocking = (b.state === 'guard' || b.state === 'block') && b.grounded && (a.x-b.x)*b.facing > 0;
+    const back=a.x>b.x?'left':'right';
+    const defendingBack=!!b.held[back]&&!b.held[back==='left'?'right':'left'];
+    const guardLevel=move.hitLevel??'mid';
+    const blocking = !move.throwRange&&!b.attack&&b.grounded&&defendingBack&&(!b.stun||b.state==='block')&&!['down','rise','thrown'].includes(b.state)&&(guardLevel==='low'?b.lowGuard:guardLevel==='overhead'?!b.lowGuard:true);
     if (blocking) {
+      a.combo=0;a.comboDamage=0;b.facing=a.x>b.x?1:-1;
       b.guardMeter -= move.damage * .34*(move.guardDamage??1);
       b.hp = Math.max(1, b.hp - Math.round(move.damage*.06));
       b.vx = a.facing * move.knockback * .45; b.stun = 12; b.setState('block'); a.ego = clamp(a.ego+4,0,100);
@@ -93,6 +98,7 @@ export class Match {
       else this.emit({type:'block',x:b.x-b.facing*25,y:b.y-80,source:a.index,target:b.index});
       return;
     }
+    if(!b.stun&&!b.knockdown||move.throwRange){a.combo=0;a.comboDamage=0;}
     const scaling = Math.max(.35, 1 - a.combo*.1);
     const rupture = b.statuses.rupture > 0 ? 16 : 0;
     const damage = Math.round((move.damage * scaling + rupture) * b.identity.defense);
@@ -102,13 +108,13 @@ export class Match {
     a.sp = clamp(a.sp+3,-45,45); b.sp = clamp(b.sp-2,-45,45);
     a.ego = clamp(a.ego+8+damage*.035,0,100); b.ego = clamp(b.ego+5+damage*.025,0,100);
     const armored=defending?.armorUntil&&b.attackAge<=defending.armorUntil;
-    if(!armored){b.interrupt(move.hitstun);b.vx=a.facing*move.knockback;if(move.launch>0)b.vy=-move.launch;b.knockdown=!!move.knockdown||move.launch>=13;}
+    if(!armored){b.interrupt(move.hitstun);b.vx=a.facing*move.knockback;b.airVelocity=b.vx;if(move.launch>0)b.vy=-move.launch;b.knockdown=!!move.knockdown||move.launch>=13;}
     if (move.status) b.statuses[move.status] = move.status === 'burn' ? 240 : 300;
     this.hitstop = Math.max(this.hitstop,move.hitstop);
     this.emit({type:'hit',x:b.x,y:b.y-70,source:a.index,target:b.index,value:damage,color:move.color??a.identity.color,text:move.name});
   }
   private endRound() {
-    this.projectiles=[];
+    this.projectiles=[];this.grab=null;
     const [a,b] = this.fighters;
     const score = a.hp/a.identity.hp-b.hp/b.identity.hp;
     this.roundWinner = score === 0 ? -1 : score > 0 ? 0 : 1;
@@ -118,12 +124,33 @@ export class Match {
   }
   private stepProjectiles(){
     for(const f of this.fighters){const move=f.attack,p=move?.projectile;
-      if(move&&p&&p.frames.includes(f.attackAge-move.startup))this.projectiles.push({id:++this.projectileSerial,source:f.index,x:f.x+f.facing*54,y:f.y-80,vx:f.facing*p.speed,width:p.width,height:p.height,life:p.life,move:{...move,projectile:undefined}});
+      if(move&&p&&p.frames.includes(f.attackAge-move.startup))this.projectiles.push({id:++this.projectileSerial,source:f.index,x:f.x+f.facing*(move.airOnly?24:54),y:f.y-(move.airOnly?50:80),vx:f.facing*p.speed,vy:p.vy??0,width:p.width,height:p.height,life:p.life,move:{...move,projectile:undefined}});
     }
-    for(const p of this.projectiles){p.x+=p.vx;p.life--;const a=this.fighters[p.source],b=this.fighters[1-p.source];
+    for(const p of this.projectiles){p.x+=p.vx;p.y+=p.vy;p.life--;const a=this.fighters[p.source],b=this.fighters[1-p.source];
       if(b.hp>0&&!b.invuln&&b.state!=='down'&&intersects({x:p.x-p.width/2,y:p.y-p.height/2,w:p.width,h:p.height},b.hurtbox)){this.hit(a,b,p.move);p.life=0;}
-      if(p.x<30||p.x>1730)p.life=0;
+      if(p.x<30||p.x>1730||p.y>600)p.life=0;
     }
     this.projectiles=this.projectiles.filter(p=>p.life>0);
+  }
+  private techThrow(a:Fighter,b:Fighter){
+    this.grab=null;for(const f of [a,b]){f.throwLock=0;f.invuln=5;f.throwInvuln=35;f.y=570;f.interrupt(12);f.vx=-f.facing*4;}
+    this.hitstop=5;this.emit({type:'throwtech',x:(a.x+b.x)/2,y:495,source:a.index,target:b.index,text:'拆投'});
+  }
+  private resolveThrows():boolean {
+    if(this.grab){
+      const g=this.grab,a=this.fighters[g.source],b=this.fighters[g.target];g.age++;b.x=clamp(a.x+g.direction*35,85,1675);b.y=564;
+      if(g.age<=7&&b.throwTechTimer>0){this.techThrow(a,b);return true;}
+      if(g.age>=13){this.grab=null;a.throwLock=b.throwLock=0;a.invuln=b.invuln=0;b.y=570;a.facing=g.direction;b.x=clamp(a.x+g.direction*67,85,1675);a.attackAge=g.move.startup+g.move.active;a.setState('attack');b.throwInvuln=35;this.hit(a,b,g.move);}
+      return true;
+    }
+    for(const a of this.fighters){const b=this.fighters[1-a.index],move=a.attack;
+      if(!move?.throwRange||!a.active||a.hitTargets.has(b.index)||!a.grounded||!b.grounded||b.stun||b.invuln||b.throwInvuln||['down','rise','thrown','ko'].includes(b.state)||Math.abs(a.x-b.x)>move.throwRange)continue;
+      a.hitTargets.add(b.index);
+      if(b.throwTechTimer>0){this.techThrow(a,b);return true;}
+      this.grab={source:a.index,target:b.index,age:0,direction:a.backHeld?(a.facing===1?-1:1):a.facing,move};
+      for(const f of [a,b]){f.throwLock=20;f.invuln=20;f.vx=f.vy=0;f.buffer=null;}
+      a.setState('throw');b.attack=null;b.setState('thrown');
+      this.emit({type:'throw',x:(a.x+b.x)/2,y:500,source:a.index,target:b.index,text:move.name});return true;
+    }return false;
   }
 }

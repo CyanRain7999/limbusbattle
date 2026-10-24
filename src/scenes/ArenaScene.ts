@@ -16,7 +16,7 @@ export class ArenaScene extends Phaser.Scene {
   private background!:Phaser.GameObjects.Image;private fx!:Phaser.GameObjects.Graphics;private shadows!:Phaser.GameObjects.Graphics;
   private combatFX!:CombatFX;private demo=0;private labels:Phaser.GameObjects.Text[]=[];private egoUntil=0;private stepSerial=0;private hitFlashUntil=[0,0];
   constructor(private controls:InputController,private audio:Synth){super('Arena');}
-  preload(){for(const sinner of ['don','heath'])this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:224,frameHeight:128});}
+  preload(){for(const sinner of ['don','heath']){this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});this.load.spritesheet(`${sinner}-normals`,`./characters/${sinner}/normals/pixel.png`,{frameWidth:224,frameHeight:128});}for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:224,frameHeight:128});}
   create(){
     AssetManager.generate(this);this.background=this.add.image(0,0,'depot').setOrigin(0).setScale(2).setDepth(0);
     this.shadows=this.add.graphics().setDepth(2);
@@ -26,7 +26,7 @@ export class ArenaScene extends Phaser.Scene {
     this.ready=true;
   }
   startMatch(options:MatchOptions){this.combatFX.clear();this.labels.forEach(l=>l.destroy());this.labels=[];this.match=new Match(options);this.ai=new AIController(options.difficulty);this.accumulator=0;this.stepSerial=0;this.background.setTexture(options.stage);this.egoUntil=0;this.cameras.main.setZoom(1);}
-  showDemo(){this.combatFX?.clear();this.match=null;this.background?.setTexture('depot');this.controls.active=false;this.cameras.main.setZoom(1);this.cameras.main.scrollX=260;this.sprites.forEach(s=>s.clearTint());}
+  showDemo(){this.combatFX?.clear();this.match=null;this.background?.setTexture('depot');this.controls.active=false;this.cameras.main.setZoom(1);this.cameras.main.scrollX=260;this.sprites.forEach(s=>s.clearTint().setAngle(0));}
   update(time:number,delta:number){
     if(!this.ready)return;
     const m=this.match;
@@ -56,16 +56,24 @@ export class ArenaScene extends Phaser.Scene {
     m.fighters.forEach((f,i)=>{
       const sprite=this.sprites[i];
       sprite.setPosition(Math.round(f.x/2)*2,Math.round(f.y/2)*2).setScale(2).setFlipX(f.facing===-1).setAlpha(f.invuln&&Math.floor(time/70)%2?.55:1);
-      sprite.setDepth(f.state==='attack'?6:5);sprite.clearTint();
+      sprite.setDepth(f.state==='attack'||f.state==='throw'?6:5);sprite.clearTint();sprite.setAngle(f.state==='thrown'?-f.facing*24:0);
       if(f.identity.asset){const a=f.identity.asset,key=`${a.key}:${f.state}`;sprite.setOrigin(.5,a.originY).setScale(a.scale);if(this.anims.exists(key)){if(sprite.anims.currentAnim?.key!==key)sprite.play(key);}else{sprite.stop();sprite.setTexture(a.key,sceneFirstFrame(this,a.key));}}
-      else{sprite.stop();const map:Partial<Record<typeof f.state,number>>={jump:18,fall:19,hit:20,guard:21,block:21,crouch:21,down:22,ko:22,win:23,rise:18};
+      else{sprite.stop();const map:Partial<Record<typeof f.state,number>>={jump:18,fall:19,hit:20,guard:21,block:21,crouch:21,down:22,ko:22,win:23,rise:18,throw:14,thrown:20};
         let frame=map[f.state]??0;
         if(f.state==='idle')frame=0;
         if(f.state==='run'||f.state==='dash')frame=6+Math.floor(f.age/4)%6;
         if(f.attack){const move=f.attack;frame=(move.visualRow??2)*6+(f.attackAge<move.startup?Math.min(1,Math.floor(f.attackAge/move.startup*2)):f.active?2+Math.min(1,Math.floor((f.attackAge-move.startup)/move.active*2)):4+Math.min(1,Math.floor((f.attackAge-move.startup-move.active)/move.recovery*2)));}
         const personaKey=f.attack?.visualKey;
-        const texture=personaKey&&this.textures.exists(personaKey)?personaKey:`${f.identity.sinner}-premium`;
+        let texture=personaKey&&this.textures.exists(personaKey)?personaKey:`${f.identity.sinner}-premium`;
         if(texture===personaKey)frame%=6;
+        const normal=f.attack?.normal;
+        if(normal){
+          const m=f.attack!;
+          const contact=f.attackAge>=Math.max(1,m.startup-2)&&f.attackAge<m.startup+m.active+5;
+          if(contact){texture=`${f.identity.sinner}-normals`;frame=normal.pose;}
+          else{texture=`${f.identity.sinner}-premium`;frame=normal.stance==='crouch'?21:normal.stance==='air'?19:0;}
+        }
+        if(f.state==='throw'){texture=`${f.identity.sinner}-normals`;frame=3;}
         sprite.setOrigin(.5,116/128).setScale(2).setTexture(texture,frame);
       }
       if(time<this.hitFlashUntil[i])sprite.setTintFill(0xffeed9);
@@ -83,6 +91,8 @@ export class ArenaScene extends Phaser.Scene {
     if(e.type==='ego'){this.egoUntil=this.time.now+900;this.floatLabel(e.x,e.y-100,`E.G.O.\n${e.text}`,e.color??'#edc16c',28,1100);}
     if(e.type==='skill')this.floatLabel(e.x,e.y-35,e.text??'',e.color??'#cbdac1',14,650);
     if(e.type==='clash')this.floatLabel(e.x,e.y-45,`拼 点\n${e.text}`,'#ffe2a0',24,600);
+    if(e.type==='throwtech')this.floatLabel(e.x,e.y-40,'拆投','#a8e4dd',20,450);
+    if(e.type==='throw')this.floatLabel(e.x,e.y-40,e.text??'武器擒投','#daca9a',18,400);
     if(e.type==='guardbreak')this.floatLabel(e.x,e.y-65,'防御崩解','#ef8b72',24,650);
     if(e.type==='hit')this.floatLabel(e.x+Math.random()*25,e.y-45,`${e.value}`,e.color??'#fff',24,550);
     if(e.type==='status')this.floatLabel(e.x,e.y-20,e.text??'','#f4a674',15,500);

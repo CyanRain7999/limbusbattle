@@ -1,6 +1,7 @@
 import raw from '../data/identities.json';
 import type { Identity } from '../core/types';
 import { equipSkills } from '../skills/catalog';
+import { addNormals } from './normals';
 
 const base = raw as unknown as Identity[];
 const alternate = (source: Identity, id: string, title: string, color: string, hp: number, speed: number): Identity => ({
@@ -18,7 +19,7 @@ const alternate = (source: Identity, id: string, title: string, color: string, h
 export const identities: Identity[] = [...base,
   alternate(base[0], 'don-w', 'W 公司 · 清理人员', '#7eced6', 950, 5.8),
   alternate(base[1], 'heath-wild', '荒野 · 流浪者', '#d29d82', 1250, 3.6)
-].map(id=>equipSkills(id));
+].map(id=>equipSkills(addNormals(id)));
 export const sinners = [
   ['01','yi','李箱'], ['02','faust','浮士德'], ['03','don','堂吉诃德'], ['04','ryoshu','良秀'],
   ['05','meur','默尔索'], ['06','hong','鸿璐'], ['07','heath','希斯克利夫'], ['08','ish','以实玛利'],

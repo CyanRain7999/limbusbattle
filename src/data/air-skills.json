@@ -1,0 +1,198 @@
+[
+  {
+    "sinner": "don",
+    "slot": "qcf",
+    "id": "don-rip-space-air",
+    "name": "空中折跃斩",
+    "source": "W 公司 · 清理人员",
+    "appearance": "w",
+    "visualRow": 0,
+    "effect": "rift",
+    "action": "special",
+    "level": 3,
+    "startup": 8,
+    "active": 14,
+    "recovery": 16,
+    "damage": 74,
+    "hitstun": 34,
+    "knockback": 1.6,
+    "launch": 2,
+    "hitstop": 4,
+    "power": 12,
+    "cost": 18,
+    "cooldown": 100,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -55,
+      "w": 170,
+      "h": 115
+    },
+    "cancel": [
+      0,
+      0
+    ],
+    "into": [],
+    "visualKey": "don-w",
+    "color": "#78e1fa",
+    "description": "空中专用，保持起跳水平速度。",
+    "airOnly": true,
+    "hitLevel": "overhead",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 5,
+        "scale": 1
+      }
+    ]
+  },
+  {
+    "sinner": "don",
+    "slot": "qcb",
+    "id": "don-queen-beam-air",
+    "name": "星心落雨",
+    "source": "脑叶本部 · 憎恶女王",
+    "appearance": "queen",
+    "visualRow": 0,
+    "effect": "bullets",
+    "action": "special",
+    "level": 3,
+    "startup": 14,
+    "active": 8,
+    "recovery": 20,
+    "damage": 55,
+    "hitstun": 34,
+    "knockback": 1.6,
+    "launch": 2,
+    "hitstop": 4,
+    "power": 13,
+    "cost": 20,
+    "cooldown": 100,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -50,
+      "w": 0,
+      "h": 0
+    },
+    "cancel": [
+      0,
+      0
+    ],
+    "into": [],
+    "visualKey": "don-queen",
+    "color": "#f4a1d9",
+    "description": "空中专用，保持起跳水平速度。",
+    "airOnly": true,
+    "hitLevel": "overhead",
+    "projectile": {
+      "frames": [
+        0,
+        5
+      ],
+      "speed": 10,
+      "vy": 9,
+      "width": 27,
+      "height": 22,
+      "life": 46
+    }
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcf",
+    "id": "heath-quick-suppression-air",
+    "name": "空降压制",
+    "source": "R 公司 · 兔子队",
+    "appearance": "r",
+    "visualRow": 0,
+    "effect": "bullets",
+    "action": "special",
+    "level": 2,
+    "startup": 9,
+    "active": 13,
+    "recovery": 19,
+    "damage": 35,
+    "hitstun": 34,
+    "knockback": 1.6,
+    "launch": 2,
+    "hitstop": 4,
+    "power": 8,
+    "cost": 20,
+    "cooldown": 100,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -50,
+      "w": 0,
+      "h": 0
+    },
+    "cancel": [
+      0,
+      0
+    ],
+    "into": [],
+    "visualKey": "heath-r",
+    "description": "空中专用，保持起跳水平速度。",
+    "color": "#eba05a",
+    "airOnly": true,
+    "hitLevel": "overhead",
+    "projectile": {
+      "frames": [
+        0,
+        5,
+        10
+      ],
+      "speed": 12,
+      "vy": 14,
+      "width": 27,
+      "height": 22,
+      "life": 46
+    }
+  },
+  {
+    "sinner": "heath",
+    "slot": "qcb",
+    "id": "heath-wild-burial-air",
+    "name": "鸦羽落刃",
+    "source": "荒猎 · 希斯克利夫",
+    "appearance": "wild",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 13,
+    "active": 10,
+    "recovery": 21,
+    "damage": 115,
+    "hitstun": 34,
+    "knockback": 1.6,
+    "launch": 0,
+    "hitstop": 4,
+    "power": 16,
+    "cost": 22,
+    "cooldown": 100,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -60,
+      "w": 178,
+      "h": 130
+    },
+    "cancel": [
+      0,
+      0
+    ],
+    "into": [],
+    "visualKey": "heath-wild",
+    "color": "#bb5063",
+    "description": "空中专用，保持起跳水平速度。",
+    "airOnly": true,
+    "hitLevel": "overhead",
+    "knockdown": true
+  }
+]

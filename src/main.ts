@@ -2,6 +2,7 @@ import { App } from './ui/App';
 import './style.css';
 import './ui/skills.css';
 import './ui/mobile.css';
+import './ui/combat.css';
 import { PWA } from './platform/PWA';
 const pwa=new PWA();
 new App(document.querySelector<HTMLElement>('#app')!,pwa);
