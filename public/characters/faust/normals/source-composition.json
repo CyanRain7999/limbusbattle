@@ -1,0 +1,6 @@
+{
+  "base": "base15.png",
+  "extra": "extra18.png",
+  "map": "base 0..8, extra crouch secondary 9..11, base 9..14",
+  "processing": "alpha mask, translate, uniform whole-figure nearest-neighbour resize; no repainting"
+}

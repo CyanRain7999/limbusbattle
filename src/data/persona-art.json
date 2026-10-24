@@ -258,5 +258,293 @@
     "persona": "thumb",
     "reference": "10916",
     "name": "蜘蛛巢 · 拇指教父"
+  },
+  {
+    "key": "yi-spicebush",
+    "sinner": "yi",
+    "persona": "spicebush",
+    "reference": "10104",
+    "name": "东柏 · 香辛料",
+    "sourceColumns": 3
+  },
+  {
+    "key": "yi-solemn",
+    "sinner": "yi",
+    "persona": "solemn",
+    "reference": "10110",
+    "name": "脑叶 E.G.O. · 庄严哀悼",
+    "sourceColumns": 3
+  },
+  {
+    "key": "yi-ring",
+    "sinner": "yi",
+    "persona": "ring",
+    "reference": "10109",
+    "name": "环指 · 点彩派学生",
+    "sourceColumns": 3
+  },
+  {
+    "key": "yi-w",
+    "sinner": "yi",
+    "persona": "w",
+    "reference": "10106",
+    "name": "W 公司 · 三级清理人员",
+    "sourceColumns": 3
+  },
+  {
+    "key": "yi-wu",
+    "sinner": "yi",
+    "persona": "wu",
+    "reference": "10114",
+    "name": "黑兽 · 午支部精锐",
+    "sourceColumns": 2
+  },
+  {
+    "key": "yi-dimension",
+    "sinner": "yi",
+    "persona": "dimension",
+    "reference": "10116",
+    "name": "LCE E.G.O. · 裂维者",
+    "sourceColumns": 3
+  },
+  {
+    "key": "outis-magic",
+    "sinner": "outis",
+    "persona": "magic",
+    "reference": "11107",
+    "name": "脑叶 E.G.O. · 魔弹",
+    "sourceColumns": 2
+  },
+  {
+    "key": "outis-w",
+    "sinner": "outis",
+    "persona": "w",
+    "reference": "11110",
+    "name": "W 公司 · 三级清理组长",
+    "sourceColumns": 3
+  },
+  {
+    "key": "outis-seven",
+    "sinner": "outis",
+    "persona": "seven",
+    "reference": "11104",
+    "name": "七协会 · 南部六科科长",
+    "sourceColumns": 3
+  },
+  {
+    "key": "outis-middle",
+    "sinner": "outis",
+    "persona": "middle",
+    "reference": "11115",
+    "name": "蜘蛛巢 · 中指养父",
+    "sourceColumns": 2
+  },
+  {
+    "key": "outis-barber",
+    "sinner": "outis",
+    "persona": "barber",
+    "reference": "11111",
+    "name": "拉曼却领 · 理发师",
+    "sourceColumns": 2
+  },
+  {
+    "key": "outis-t",
+    "sinner": "outis",
+    "persona": "t",
+    "reference": "11113",
+    "name": "T 公司 · 三级 VDCU 职员",
+    "sourceColumns": 3
+  },
+  {
+    "key": "greg-g",
+    "sinner": "greg",
+    "persona": "g",
+    "reference": "11203",
+    "name": "G 公司 · 经理级代理",
+    "sourceColumns": 3
+  },
+  {
+    "key": "greg-firefist",
+    "sinner": "greg",
+    "persona": "firefist",
+    "reference": "11211",
+    "name": "炎拳事务所 · 幸存者",
+    "sourceColumns": 3
+  },
+  {
+    "key": "greg-pirate",
+    "sinner": "greg",
+    "persona": "pirate",
+    "reference": "11207",
+    "name": "双钩海盗团 · 大副",
+    "sourceColumns": 3
+  },
+  {
+    "key": "greg-edgar",
+    "sinner": "greg",
+    "persona": "edgar",
+    "reference": "11209",
+    "name": "埃德加家族 · 继承人",
+    "sourceColumns": 2
+  },
+  {
+    "key": "greg-priest",
+    "sinner": "greg",
+    "persona": "priest",
+    "reference": "11210",
+    "name": "拉曼却领 · 神父",
+    "sourceColumns": 2
+  },
+  {
+    "key": "greg-aedd",
+    "sinner": "greg",
+    "persona": "aedd",
+    "reference": "11215",
+    "name": "LCE E.G.O. · AEDD",
+    "sourceColumns": 2
+  },
+  {
+    "key": "faust-remnant",
+    "sinner": "faust",
+    "persona": "remnant",
+    "reference": "10203",
+    "name": "脑叶公司支部 · 残余",
+    "sourceColumns": 3
+  },
+  {
+    "key": "faust-butler",
+    "sinner": "faust",
+    "persona": "butler",
+    "reference": "10209",
+    "name": "呼啸山庄 · 管家",
+    "sourceColumns": 3
+  },
+  {
+    "key": "faust-n",
+    "sinner": "faust",
+    "persona": "n",
+    "reference": "10204",
+    "name": "N 公司 · 执握者",
+    "sourceColumns": 3
+  },
+  {
+    "key": "faust-multicrack",
+    "sinner": "faust",
+    "persona": "multicrack",
+    "reference": "10210",
+    "name": "多裂纹事务所 · 代表",
+    "sourceColumns": 2
+  },
+  {
+    "key": "faust-heishou",
+    "sinner": "faust",
+    "persona": "heishou",
+    "reference": "10212",
+    "name": "黑兽 · 卯支部熟练者",
+    "sourceColumns": 3
+  },
+  {
+    "key": "faust-ring",
+    "sinner": "faust",
+    "persona": "ring",
+    "reference": "10215",
+    "name": "蜘蛛之屋 · 环指学徒",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-liu",
+    "sinner": "hong",
+    "persona": "liu",
+    "reference": "10604",
+    "name": "六协会 · 南部五科",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-k",
+    "sinner": "hong",
+    "persona": "k",
+    "reference": "10605",
+    "name": "K 公司 · 三级摘除员工",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-fullstop",
+    "sinner": "hong",
+    "persona": "fullstop",
+    "reference": "10611",
+    "name": "句点事务所 · 代表",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-h",
+    "sinner": "hong",
+    "persona": "h",
+    "reference": "10613",
+    "name": "鸿园之主",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-s",
+    "sinner": "hong",
+    "persona": "s",
+    "reference": "10615",
+    "name": "S 公司 · 推奴",
+    "sourceColumns": 3
+  },
+  {
+    "key": "hong-cinq",
+    "sinner": "hong",
+    "persona": "cinq",
+    "reference": "10616",
+    "name": "Cinq 协会 · 东部三科",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-mariachi",
+    "sinner": "sin",
+    "persona": "mariachi",
+    "reference": "11004",
+    "name": "流浪乐队 · 首领",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-redsheet",
+    "sinner": "sin",
+    "persona": "redsheet",
+    "reference": "11006",
+    "name": "脑叶 E.G.O. · 朱符",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-cinq",
+    "sinner": "sin",
+    "persona": "cinq",
+    "reference": "11008",
+    "name": "Cinq 协会 · 南部四科科长",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-devyat",
+    "sinner": "sin",
+    "persona": "devyat",
+    "reference": "11011",
+    "name": "九协会 · 北部三科",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-pinky",
+    "sinner": "sin",
+    "persona": "pinky",
+    "reference": "11015",
+    "name": "蜘蛛之屋 · 小指学徒",
+    "sourceColumns": 3
+  },
+  {
+    "key": "sin-crimson",
+    "sinner": "sin",
+    "persona": "crimson",
+    "reference": "11016",
+    "name": "西西弗 · 赤红之神",
+    "sourceColumns": 2
   }
 ]

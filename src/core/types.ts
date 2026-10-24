@@ -16,9 +16,11 @@ export interface Move {
   normal?:{button:NormalAction;strength:number;stance:'stand'|'crouch'|'air';pose:number;launcher?:boolean};
   hitLevel?:'mid'|'low'|'overhead';airOnly?:boolean;throwRange?:number;
   appearance?: string; visualRow?: number; visualKey?:string; color?:string; source?:string; description?:string; label?:string;
-  effect?: 'thrust' | 'rift' | 'retreat' | 'uppercut' | 'bullets' | 'slug' | 'cleave' | 'hammer' | 'time' | 'beam' | 'iaido' | 'fist' | 'umbrella' | 'fan' | 'parasol' | 'extend';
+  effect?: 'thrust' | 'rift' | 'retreat' | 'uppercut' | 'bullets' | 'slug' | 'cleave' | 'hammer' | 'time' | 'beam' | 'iaido' | 'fist' | 'umbrella' | 'fan' | 'parasol' | 'extend' | 'petal' | 'butterfly' | 'brush' | 'claw' | 'electric' | 'flame' | 'scissors' | 'palm' | 'maraca' | 'talisman';
   /** Near/full blade reach; extends over active frames and retracts in recovery. */
   extend?:[number,number];
+  setup?:boolean;ammoCost?:number;reload?:boolean;
+  limb?:{charge:number;reach:number};
   counter?:[number,number];armorUntil?:number;teleport?:number;guardDamage?:number;
   hits?: {frame:number;duration:number;scale:number}[];
   projectile?: {frames:number[];speed:number;vy?:number;width:number;height:number;life:number};
@@ -26,7 +28,7 @@ export interface Move {
 export interface Identity {
   id: string; sinner: string; number: string; name: string; english: string;
   title: string; rarity: string; description: string; archetype: string;
-  color: string; secondary: string; sprite: 'lance' | 'bat' | 'sheathed' | 'gauntlet' | 'mace' | 'axe';
+  color: string; secondary: string; sprite: 'lance' | 'bat' | 'sheathed' | 'gauntlet' | 'mace' | 'axe' | 'dagger' | 'kopis' | 'insect' | 'greatsword' | 'guandao' | 'halberd';
   hp: number; speed: number; jump: number; defense: number;
   stats: [number, number, number]; moves: Record<string, Move>;
   asset?: { key: string; scale: number; originY: number };

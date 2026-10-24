@@ -4,6 +4,8 @@ dist/
 test-results/
 playwright-report/
 *.log
+__pycache__/
+*.pyc
 .playwright-mcp/
 .codex-sync-manifest.json
 release/

@@ -21,7 +21,7 @@ export const identities: Identity[] = [...base,
   alternate(base[0], 'don-w', 'W 公司 · 清理人员', '#7eced6', 950, 5.8),
   alternate(base[1], 'heath-wild', '荒野 · 流浪者', '#d29d82', 1250, 3.6)
 ].map(id=>equipSkills(addNormals(id)));
-export const playableIdentities=identities.filter(i=>i.id.endsWith('-lcb'));
+export const playableIdentities=identities.filter(i=>i.id.endsWith('-lcb')).sort((a,b)=>Number(a.number)-Number(b.number));
 export const playableSinners=playableIdentities.map(i=>i.sinner);
 export const sinners = [
   ['01','yi','李箱'], ['02','faust','浮士德'], ['03','don','堂吉诃德'], ['04','ryoshu','良秀'],

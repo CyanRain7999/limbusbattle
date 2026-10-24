@@ -6,7 +6,7 @@ export const normalNotation=['A1','A2','A3','B1','B2','B3'];
 /** Six weapon normals in each stance. A/B describe attack families, not fists/feet. */
 export function addNormals(identity:Identity):Identity {
   const profile=profiles[identity.sinner as keyof typeof profiles]??profiles.don;
-  const {names,damage,reach}=profile,start=profile.start,active=[4,5,6,4,5,6],recover=[10,14,19,11,17,23];
+  const {names,damage,reach}=profile,start=profile.start,active=profile.active,recover=profile.recovery;
   const moves:Record<string,Move>={ego:identity.moves.ego};
   for(const stance of ['stand','crouch','air'] as const)normalButtons.forEach((button,i)=>{
     const strength=i%3+1,air=stance==='air',low=stance==='crouch'&&i>=3,launcher=!air&&i===2;
@@ -18,9 +18,10 @@ export function addNormals(identity:Identity):Identity {
       box:{x:5,y:air?-70:launcher?-175:low?-49:-105,w:reach[i],h:air?113:launcher?160:low?47:80},
       cancel:[Math.max(3,start[i]-2),start[i]+active[i]+10],into:[...normalButtons,'special','ego'],
       normal:{button,strength,stance,pose:(stance==='stand'?0:stance==='crouch'?6:12)+i,launcher},airOnly:air,hitLevel:air?'overhead':low?'low':'mid',
-      effect:i<3&&i!==2?'thrust':i===2?'uppercut':'cleave',knockdown:i===5
+      effect:i===0||i===1&&!['greatsword','guandao','halberd'].includes(identity.sprite)?'thrust':i===2?'uppercut':'cleave',knockdown:i===5
     };
     if(launcher)moves[key].into=[...normalButtons,'special','ego'];
+    if(identity.sinner==='greg'&&strength===3&&!air)moves[key].limb={charge:18,reach:65};
   });
   moves.dashAttack={...moves.heavy,id:'dashAttack',name:'疾行·'+names[1],startup:6,active:7,recovery:19,lunge:5,damage:Math.round(damage[1]*1.25),normal:{button:'light',strength:2,stance:'stand',pose:1},box:{x:5,y:-110,w:reach[1]+30,h:90}};
   moves.throw={id:'throw',name:profile.throw,action:'throw',level:3,startup:6,active:3,recovery:30,damage:profile.throwDamage,hitstun:35,knockback:9,launch:7,hitstop:8,power:0,cost:0,cooldown:0,lunge:0,box:{x:0,y:-110,w:70,h:110},throwRange:profile.throwRange,cancel:[0,0],into:[],knockdown:true};

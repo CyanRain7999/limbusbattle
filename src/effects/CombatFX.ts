@@ -45,9 +45,16 @@ export class CombatFX {
     const f=match.fighters[Math.max(0,e.source)],p=this.palette(f),direction=f?.facing??1;
     if(e.type==='ego'){this.egoLife=850;this.burst(e.x,e.y,p,'ego',155,600);this.scatter(e.x,e.y,p,30,direction,12);}
     if(e.type==='hit'){
-      const heavy=(e.value??0)>110;this.burst(e.x,e.y,p,'hit',heavy?83:53,heavy?300:230);
-      this.scatter(e.x,e.y,p,heavy?23:13,direction,heavy?10:7);
-      if(heavy)this.burst(e.x,e.y+63,p,'ground',95,420);
+      const tier=f.attack?.normal?.strength;
+      if(tier){
+        this.burst(e.x,e.y,p,`weapon${tier}`,[0,29,46,69][tier],[0,145,215,295][tier]);
+        this.scatter(e.x,e.y,p,[0,4,9,16][tier],direction,[0,4,6,8][tier]);
+        if(tier===3&&f.grounded)this.burst(e.x,e.y+63,p,'ground',66,300);
+      }else{
+        const heavy=(e.value??0)>110;this.burst(e.x,e.y,p,'hit',heavy?83:53,heavy?300:230);
+        this.scatter(e.x,e.y,p,heavy?23:13,direction,heavy?10:7);
+        if(heavy)this.burst(e.x,e.y+63,p,'ground',95,420);
+      }
     }
     if(e.type==='throwtech'){this.burst(e.x,e.y,p,'parry',70,260);this.scatter(e.x,e.y,p,10,0,5);}
     if(e.type==='clash'){this.burst(e.x,e.y,{...p,edge:0xffd078,core:0xfff5d9},'clash',122,400);this.scatter(e.x,e.y,p,27,0,11);}
@@ -84,13 +91,15 @@ export class CombatFX {
     this.ghosts=this.ghosts.filter(g=>{g.age+=dt;if(g.age>=g.life){g.image.destroy();return false;}g.image.setAlpha((1-g.age/g.life)*.27);return true;});
     for(const f of match.fighters){
       const p=this.palette(f),move=f.attack;
-      if(move&&this.observed[f.index]!==f.attackSerial){this.observed[f.index]=f.attackSerial;if(!move.normal&&!move.throwRange)this.burst(f.x,f.y-65,p,'summon',62,250);}
+      if(move&&this.observed[f.index]!==f.attackSerial){this.observed[f.index]=f.attackSerial;if(!move.normal&&!move.throwRange&&!move.reload)this.burst(f.x,f.y-65,p,'summon',62,250);}
       if(dt>0&&!reduceMotion&&(f.state==='dash'||move&&(move.effect==='rift'||move.effect==='iaido'||move.lunge>=6))&&this.clock-this.ghostStamp[f.index]>55){
         this.ghostStamp[f.index]=this.clock;const s=sprites[f.index];const image=this.scene.add.image(s.x,s.y,s.texture.key,s.frame.name).setOrigin(s.originX,s.originY).setScale(s.scaleX,s.scaleY).setFlipX(s.flipX).setTint(p.edge).setAlpha(.25).setDepth(4);this.ghosts.push({image,age:0,life:155});if(this.ghosts.length>(this.mobile?8:14))this.ghosts.shift()!.image.destroy();
       }
       if(move)this.drawMove(f,p);
+      if(f.mirror)this.mirror(f.mirror.x,f.mirror.y-60,Math.min(1,f.mirror.life/30),false);
       if(f.state==='guard'||f.state==='block'){const x=f.x+f.facing*25,y=f.y-64;this.front.lineStyle(2,0x9ce1e4,.6);this.front.beginPath();this.front.arc(x,y,63,f.facing===1?-1.15:1.99,f.facing===1?1.15:4.29);this.front.strokePath();}
     }
+    for(const strike of match.delayedStrikes)this.mirror(strike.x,strike.y-60,1-strike.delay/20,strike.delay===0);
     this.drawBursts(dt);this.drawParticles(dt);
     for(const projectile of match.projectiles){
       const f=match.fighters[projectile.source],color=projectile.move.color,p=palettes[projectile.move.appearance??'r']??(color?{...palettes.lcb,edge:parseInt(color.slice(1),16)}:this.palette(f));
@@ -105,19 +114,72 @@ export class CombatFX {
 
     if(this.egoLife>450&&!reduceMotion){const alpha=(this.egoLife-450)/400;for(let i=0;i<10;i++){const y=105+i*55,x=(this.clock*.9+i*219)%1760;this.front.lineStyle(i%3?1:3,0xc8a8bc,alpha*.2);this.front.lineBetween(x,y,x+160+i%3*80,y-18);}}
   }
+  private mirror(x:number,y:number,alpha:number,active:boolean){
+    const r=active?53:34,p={edge:0xbad9e4,accent:0x9a82b9,core:0xf1fcff,ink:0x22353d};
+    this.polygon(this.rear,[{x,y:y-55},{x:x+r,y},{x,y:y+55},{x:x-r,y}],p.ink,alpha*.45);
+    this.rear.lineStyle(1,p.edge,alpha*.7);this.rear.strokePoints([{x,y:y-55},{x:x+r,y},{x,y:y+55},{x:x-r,y}],true);
+    for(let i=0;i<3;i++){const xx=x-14+i*14;this.rear.lineStyle(1,p.accent,alpha*.45);this.rear.lineBetween(xx,y-40+i*8,xx-9,y+35-i*8);}
+    this.rear.lineStyle(2,p.edge,alpha*.55);this.rear.strokeEllipse(x,y+58,86,12);
+    if(active){this.slash(x,y,56,65,-1.5,1.4,5,p,alpha,1);this.slash(x,y,56,65,1.5,-1.4,4,p,alpha,-1);}
+  }
   private thrust(x:number,y:number,length:number,width:number,p:Palette,alpha:number,direction:number){
     this.polygon(this.light,[{x:x-direction*20,y:y-width*3},{x:x+direction*length,y},{x:x-direction*20,y:y+width*3},{x:x+direction*17,y}],p.edge,alpha*.17);
     this.polygon(this.front,[{x,y:y-width},{x:x+direction*length,y},{x,y:y+width},{x:x+direction*22,y}],p.ink,alpha);
     this.polygon(this.light,[{x,y:y-width*.6},{x:x+direction*length,y},{x,y:y+width*.6},{x:x+direction*22,y}],p.edge,alpha);
     this.light.lineStyle(1.5,p.core,alpha);this.light.lineBetween(x,y,x+direction*length,y);
   }
+  private weaponNormal(f:Fighter,base:Palette){
+    const m=f.attack!,normal=m.normal!,tier=normal.strength,elapsed=f.attackAge-m.startup;
+    const tail=[0,2,5,9][tier],duration=m.active+tail;
+    if(elapsed<0||elapsed>=duration)return;
+    const d=f.facing,x=f.x+d*24,air=normal.stance==='air',low=normal.stance==='crouch'&&!normal.launcher;
+    const y=f.y-(air?38:low?30:75),t=Math.min(1,(elapsed+1)/m.active),alpha=elapsed<m.active?1:Math.max(0,1-(elapsed-m.active)/tail);
+    const insect=f.identity.sprite==='insect',p={...base,edge:insect?0xbb916a:0xc5d5d6,core:insect?0xe4c69a:0xf3f0dc,ink:insect?0x33251f:0x1c282f};
+    const reach=Math.max(35,f.attackReach-24),width=[0,2,4,7][tier];
+    const straight=m.effect==='thrust'&&!['bat','axe','mace','kopis'].includes(f.identity.sprite);
+    if(straight){
+      const yy=y+(air?13:0),len=reach*(.72+t*.28);
+      this.polygon(this.front,[{x:x-d*10,y:yy-width},{x:x+d*len,y:yy},{x:x-d*10,y:yy+width}],p.edge,alpha*.75);
+      this.front.lineStyle(1,p.core,alpha);this.front.lineBetween(x+d*12,yy,x+d*len,yy);
+      if(tier>=2)for(const side of [-1,1]){this.rear.lineStyle(1,p.edge,alpha*.35);this.rear.lineBetween(x-d*20,yy+side*(width+5),x+d*len*.7,yy+side*width);}
+      if(tier===3){this.thrust(x,yy,len,3,{...p,edge:base.accent},alpha*.4,d);this.ring(this.rear,x+d*len*.72,yy,12+t*12,base.edge,alpha*.3,1,12);}
+    }else{
+      const rise=!!normal.launcher,start=rise?1.35:-1.3,end=start+(rise?-1:1)*(tier===1?1.1:2.5)*ease(t);
+      this.slash(x-d*8,y-(rise?25:0),reach*(tier===1?.7:1),rise?110:air?69:low?48:84,start,end,width,p,alpha*.7,d);
+      if(tier>=2)this.slash(x-d*16,y+5,reach*.88,rise?98:air?59:low?42:74,start-.12,end-.15,1.5,p,alpha*.38,d);
+      if(tier===3){
+        this.slash(x-d*23,y+10,reach*.78,rise?88:air?52:low?35:64,start-.22,end-.28,2,{...p,edge:base.accent},alpha*.48,d);
+        for(let i=0;i<5;i++){const a=start+(end-start)*(i+.5)/5,xx=x+d*Math.cos(a)*reach,yy=y+Math.sin(a)*(rise?110:70);this.front.lineStyle(1,p.core,alpha*.65);this.front.lineBetween(xx,yy,xx+d*7,yy-5);}
+      }
+    }
+    // Mid/heavy attacks have individually cut edge fragments, rather than one enlarged glow.
+    if(tier>=2)for(let i=0;i<(tier===2?3:7);i++){
+      const u=(i+.5)/(tier===2?3:7),xx=x+d*(reach*(.35+u*.6)),yy=y+(air?u*32:Math.sin(u*5+t*3)*18);
+      this.polygon(this.front,[{x:xx,y:yy},{x:xx-d*(tier===3?8:4),y:yy-2},{x:xx-d*3,y:yy+2}],i%2?p.edge:base.accent,alpha*(tier===3?.7:.4));
+    }
+    if(tier===3&&!air&&!normal.launcher&&t>.7){this.rear.lineStyle(1,base.edge,alpha*.35);this.rear.strokeEllipse(x+d*reach*.55,f.y-3,70+t*50,10);}
+  }
   private drawMove(f:Fighter,p:Palette){
-    if(f.attack!.throwRange)return;
+    if(f.attack!.throwRange||f.attack!.reload)return;
     const m=f.attack!,d=f.facing,x=f.x+d*24,y=f.y-70,age=f.attackAge;
     const charging=age<m.startup,active=age>=m.startup&&age<m.startup+m.active;
     const charge=Math.min(1,age/m.startup),a=charging?Math.sin(charge*Math.PI)*.65:active?1:Math.max(0,1-(age-m.startup-m.active)/Math.min(m.recovery,15));
     const t=active?(age-m.startup)/m.active:charging?0:1;
     const theme=f.appearance,effect=m.effect;
+    if(m.setup){this.mirror(f.x+d*165,f.y-60,charging?charge:.9,false);return;}
+    if(m.limb){
+      if(charging&&f.limbCharge){this.ring(this.rear,x,y,18+f.limbCharge*.6,0xb28d55,.55,1,6);}
+      if(age>=m.startup&&age<m.startup+m.active+6){
+        // The extra reach is attached insect exoskeleton; its hurtbox uses this same length.
+        const end=f.x+d*(m.box.x+f.attackReach),begin=f.x+d*60,yy=f.y-70;
+        this.front.lineStyle(11,0x211e1d,a);this.front.lineBetween(begin,yy,end-d*18,yy);
+        this.front.lineStyle(7,0x72523a,a);this.front.lineBetween(begin,yy-1,end-d*20,yy-1);
+        for(let n=0;n<8;n++){const xx=begin+(end-begin)*n/8;this.front.lineStyle(2,0x29221d,a);this.front.lineBetween(xx,yy-6,xx-d*4,yy+5);}
+        this.polygon(this.front,[{x:end-d*27,y:yy-7},{x:end+d*4,y:yy-3},{x:end-d*7,y:yy+8},{x:end-d*23,y:yy+12}],0x29211e,a);
+        this.front.lineStyle(2,0xba9470,a);this.front.lineBetween(end-d*27,yy-7,end+d*4,yy-3);
+      }
+    }
+    if(m.normal){this.weaponNormal(f,p);return;}
     if(charging&&m.action==='special'&&!m.normal){
       const radius=53-charge*18;this.ring(this.rear,x-d*14,y,radius,p.edge,.15+charge*.3,1);
       for(let i=0;i<5;i++){const angle=i*Math.PI*.4+this.clock*.004,xx=x-d*14+Math.cos(angle)*radius,yy=y+Math.sin(angle)*radius;this.star(this.light,xx,yy,3+charge*2,p.edge,.35+charge*.4,angle);}
@@ -133,7 +195,47 @@ export class CombatFX {
     if(!active&&a<.02)return;
     if(active||!charging){
       const phase=active?ease(Math.min(1,(t+.1)*1.3)):1;
-      if(effect==='beam')this.beam(x+d*22,y-9,m.box.w-20,p,a,d);
+      if(effect==='palm'){
+        const end=x+d*Math.min(m.box.w,140),yy=y+(m.airOnly?27:0);
+        this.slash(x,yy,85,36,-.8,-.8+1.5*phase,5,p,a*.65,d);
+        this.front.lineStyle(2,p.ink,a*.8);this.front.strokeEllipse(end,yy,15+phase*18,50+phase*15);
+        this.light.lineStyle(1,p.edge,a*.8);this.light.strokeEllipse(end,yy,13+phase*17,48+phase*15);
+        for(let i=0;i<4;i++){this.light.lineStyle(1,p.core,a*.45);this.light.lineBetween(x+d*(15+i*10),yy-18+i*11,end-d*12,yy-12+i*8);}
+      }else if(effect==='maraca'){
+        for(let i=0;i<2;i++){const xx=x+d*(35+i*38),yy=y+(i?15:-12);this.ring(this.rear,xx,yy,10+((t+i*.45)%1)*26,p.edge,a*.65,2,12);this.star(this.light,xx,yy,8,p.core,a*.7,Math.PI/4);}
+        this.slash(x,y,85,58,-1.2,-1.2+2.6*phase,4,p,a*.5,d);
+      }else if(effect==='talisman'){
+        this.slash(x,y,Math.min(180,m.box.w),85,-1.2,-1.2+2.7*phase,5,p,a*.65,d);
+        for(let i=0;i<7;i++){const u=(i/7+t*.6)%1,xx=x+d*(20+u*m.box.w*.85),yy=y-25+Math.sin(u*9+i)*32;
+          this.polygon(this.front,[{x:xx-4,y:yy-8},{x:xx+6,y:yy-6},{x:xx+4,y:yy+11},{x:xx-6,y:yy+8}],p.edge,a*.85);
+          this.front.lineStyle(1,p.ink,a);this.front.lineBetween(xx-2,yy-3,xx+2,yy);this.front.lineBetween(xx+2,yy,xx-2,yy+5);
+        }
+      }else if(effect==='petal'){
+        this.slash(x,y,134,82,-1.3,-1.3+2.7*phase,6,p,a,d);
+        for(let i=0;i<13;i++){const u=(i/13+t*.6)%1,xx=x+d*(25+u*145),yy=y-32+Math.sin(u*7+i)*42;this.polygon(this.front,[{x:xx-4,y:yy-1},{x:xx,y:yy-5},{x:xx+5,y:yy},{x:xx+1,y:yy+3}],i%3===0?0xa87c29:0xe3c552,a*.85);}
+      }else if(effect==='butterfly'){
+        for(let i=0;i<7;i++){const xx=x+d*(i*23+12+t*30),yy=y-35+Math.sin(i*1.4+t*8)*22,r=3+Math.abs(Math.sin(this.clock*.013+i))*4;this.polygon(this.front,[{x:xx,y:yy},{x:xx-r,y:yy-5},{x:xx-r-2,y:yy+3},{x:xx,y:yy+2},{x:xx+r+2,y:yy+3},{x:xx+r,y:yy-5}],i%2?0xe4e6d6:0x24272f,a*.8);}
+        if(m.projectile?.frames.some(frame=>Math.abs(age-m.startup-frame)<2))this.star(this.light,x+d*53,y-9,15,p.core,a,0,4);
+      }else if(effect==='brush'){
+        this.slash(x,y-26,150,126,1.2,1.2-2.4*phase,5,{...p,edge:0xb24a4a,ink:0x34222b},a,d);
+        for(let i=0;i<12;i++){const u=i/12,xx=x+d*(65+Math.cos(u*2.1-1.1)*105),yy=y-30+Math.sin(u*2.1-1.1)*95;this.front.fillStyle([0xa23f46,0xc56b45,0x758b69][i%3],a*.9);this.front.fillRect(xx,yy,3+i%3,3+i%2);}
+      }else if(effect==='claw'){
+        for(let i=0;i<3;i++)this.slash(x,y-24+i*22,Math.min(195,m.box.w),88,-1.1,-1.1+2.2*phase,4,p,a*(1-i*.12),d);
+      }else if(effect==='electric'){
+        const cx=x+d*(m.box.w-40),cy=y-8;this.thrust(x,cy,m.box.w-40,6,p,a*.8,d);this.ring(this.light,cx,cy,27+Math.sin(t*Math.PI)*22,p.edge,a*.65,1,12);
+        for(let i=0;i<5;i++){const angle=i*Math.PI*.4+this.clock*.006;this.light.lineStyle(i%2?1:2,i%2?p.core:p.edge,a);this.light.beginPath();this.light.moveTo(cx,cy);for(let j=1;j<=4;j++){const rr=j*17,aa=angle+(j%2?.13:-.13);this.light.lineTo(cx+Math.cos(aa)*rr,cy+Math.sin(aa)*rr);}this.light.strokePath();}
+      }else if(effect==='flame'){
+        if(theme==='middle')this.slash(x,y,185,125,-1.6,-1.6+2.8*phase,10,p,a,d);
+        for(let i=0;i<15;i++){const u=i/15,xx=x+d*(20+u*(m.box.w-25)),yy=y+10+Math.sin(u*12-this.clock*.025)*(8+u*15),r=(1-u)*20+4;this.polygon(this.light,[{x:xx-d*r,y:yy+r*.6},{x:xx+d*r*1.8,y:yy-r*.7},{x:xx+d*r*.6,y:yy-r*1.6},{x:xx,y:yy-r*.5}],i%3?0xe77538:0xffd67d,a*(1-u*.6));}
+      }else if(effect==='scissors'){
+        const spread=(1-phase)*.65+.08;
+        for(const side of [-1,1]){
+          const outer=[],inner=[];for(let i=0;i<=12;i++){const u=i/12,xx=x+d*u*(m.box.w-25),yy=y+side*(Math.sin(spread)*100*u+Math.sin(u*Math.PI)*18),w=Math.sin(u*Math.PI)*(side===1?5:8);outer.push({x:xx,y:yy-w});inner.unshift({x:xx,y:yy+w});}
+          this.polygon(this.front,[...outer,...inner],side===1?0xc4c9c8:0x9c283b,a*.8);
+          this.front.lineStyle(1,side===1?0xf2e8d9:0xf25453,a*.8);this.front.strokePoints(outer);
+        }
+        if(phase>.65){this.slash(x+d*75,y,72,42,-.6,1.1,3,{...p,edge:0xb83749},a*.65,d);for(let i=0;i<4;i++)this.polygon(this.front,[{x:x+d*(75+i*20),y:y-6-i*3},{x:x+d*(86+i*21),y:y-12-i*3},{x:x+d*(81+i*20),y:y+3-i*3}],0xc64a54,a*.75);}
+      }else if(effect==='beam')this.beam(x+d*22,y-9,m.box.w-20,p,a,d);
       else if(effect==='time'){
         this.clockFace(x+d*65,y+5,100+Math.sin(t*Math.PI)*19,this.clock*.009,p,a);this.thrust(x,y+35,180,13,p,a*.7,d);
       }else if(effect==='rift'){
@@ -149,7 +251,7 @@ export class CombatFX {
       else if(effect==='hammer'||effect==='fist'){
         this.slash(x-d*12,y,95,116,-1.8,-1.8+2.8*phase,effect==='fist'?21:13,p,a,d);
         if(t>.25||!active){const yy=f.y-3,xx=x+d*80;this.front.lineStyle(3,p.ink,a);this.front.strokeEllipse(xx,yy,150+80*t,24);this.light.lineStyle(2,p.edge,a*.8);this.light.strokeEllipse(xx,yy,120+100*t,18);for(let i=0;i<5;i++){const dx=d*(i*29-15);this.thrust(xx+dx,yy-7,18,2,p,a*.5,d);}}
-        if(effect==='fist')this.chain(x+d*90,y+5,35+20*t,this.clock*.009,p,a);
+        if(effect==='fist'&&theme==='middle')this.chain(x+d*90,y+5,35+20*t,this.clock*.009,p,a);
         if(theme==='n'){for(let i=0;i<3;i++){const xx=x+d*(44+i*39),yy=y-80+phase*105;this.light.lineStyle(2,p.edge,a*.7);this.light.lineBetween(xx,yy-22,xx,yy+17);this.light.lineBetween(xx-7,yy-11,xx+7,yy-11);}}
       }else if(effect==='extend'){
         // Read the same changing reach used by collision. Steel sections, no gunfire.
@@ -196,6 +298,14 @@ export class CombatFX {
     this.bursts=this.bursts.filter(b=>{b.age+=dt;if(b.age>=b.life)return false;const t=b.age/b.life,alpha=(1-t)**1.5,p=b.palette,r=b.size*ease(t),g=this.light;
       if(b.kind==='summon'){this.ring(this.rear,b.x,b.y,20+r*.6,p.edge,alpha*.4,1);return true;}
       if(b.kind==='ground'){this.front.lineStyle(2,p.ink,alpha*.6);this.front.strokeEllipse(b.x,b.y,r*2,r*.24);g.lineStyle(2,p.edge,alpha*.55);g.strokeEllipse(b.x,b.y,r*1.7,r*.16);return true;}
+      if(b.kind.startsWith('weapon')){
+        const tier=Number(b.kind.slice(-1));
+        this.star(this.front,b.x,b.y,b.size*(1-t),p.ink,alpha,b.angle,4,.12);
+        this.star(g,b.x,b.y,b.size*(1-t)**2,p.core,alpha,b.angle,4,.08);
+        if(tier>=2){this.star(g,b.x,b.y,b.size*.65*(1-t),p.edge,alpha*.7,b.angle+Math.PI/4,4,.1);this.ring(this.rear,b.x,b.y,r*.8,p.edge,alpha*.35,1,16);}
+        if(tier===3)for(let i=0;i<6;i++){const angle=i*Math.PI/3+b.angle,rr=r*.9;g.lineStyle(i%2?1:2,p.edge,alpha*.7);g.lineBetween(b.x+Math.cos(angle)*rr,b.y+Math.sin(angle)*rr,b.x+Math.cos(angle)*(rr+12),b.y+Math.sin(angle)*(rr+12));}
+        return true;
+      }
       if(['block','parry','break'].includes(b.kind)){this.ring(g,b.x,b.y,18+r*.6,b.kind==='break'?p.edge:0x9ee0dc,alpha,2,6,b.angle+t*.7);if(b.kind==='parry')this.star(g,b.x,b.y,43*(1-t),p.core,alpha,Math.PI/4);return true;}
       this.ring(g,b.x,b.y,r,p.edge,alpha*.55,Math.max(1,4*(1-t)));
       this.star(this.front,b.x,b.y,b.size*.7*(1-t),p.ink,alpha*.9,b.angle,4,.24);

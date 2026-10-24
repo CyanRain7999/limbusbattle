@@ -39,6 +39,8 @@ export function traitContact(a:Fighter,b:Fighter,move:Move,blocked:boolean):Move
 }
 
 export function traitHit(a:Fighter,move:Move){
+  if((a.identity.sinner==='hong'||a.identity.sinner==='sin')&&a.combo===1)a.traitUsed.clear();
+  if(a.identity.sinner==='hong'&&move.normal&&!a.traitUsed.has('flow'))a.traitTimer=24;
   if(a.identity.sinner==='rod'&&move.normal){
     if(a.combo===1)a.traitUsed.clear();
     if(!a.traitUsed.has(move.normal.button)){a.traitUsed.add(move.normal.button);a.traitCount=Math.min(3,a.traitCount+1);}

@@ -1,0 +1,286 @@
+{
+  "frameWidth": 800,
+  "frameHeight": 640,
+  "columns": 6,
+  "count": 36,
+  "anchor": [
+    340,
+    610
+  ],
+  "anchorMode": "body-column-v1",
+  "scaleTo64": 0.256,
+  "sourceFrameMap": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    1,
+    12,
+    13,
+    14,
+    15,
+    16,
+    16,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    16,
+    12,
+    13,
+    14,
+    15,
+    16,
+    16
+  ],
+  "anchors": [
+    {
+      "frame": 0,
+      "source_bounds": [
+        24,
+        110,
+        184,
+        364
+      ],
+      "source_anchor": [
+        129,
+        362
+      ]
+    },
+    {
+      "frame": 1,
+      "source_bounds": [
+        247,
+        130,
+        470,
+        364
+      ],
+      "source_anchor": [
+        404,
+        362
+      ]
+    },
+    {
+      "frame": 2,
+      "source_bounds": [
+        500,
+        140,
+        726,
+        366
+      ],
+      "source_anchor": [
+        657,
+        364
+      ]
+    },
+    {
+      "frame": 3,
+      "source_bounds": [
+        750,
+        141,
+        979,
+        366
+      ],
+      "source_anchor": [
+        908,
+        364
+      ]
+    },
+    {
+      "frame": 4,
+      "source_bounds": [
+        986,
+        149,
+        1253,
+        366
+      ],
+      "source_anchor": [
+        1170,
+        364
+      ]
+    },
+    {
+      "frame": 5,
+      "source_bounds": [
+        1283,
+        140,
+        1514,
+        366
+      ],
+      "source_anchor": [
+        1432,
+        364
+      ]
+    },
+    {
+      "frame": 6,
+      "source_bounds": [
+        22,
+        419,
+        219,
+        653
+      ],
+      "source_anchor": [
+        156,
+        651
+      ]
+    },
+    {
+      "frame": 7,
+      "source_bounds": [
+        254,
+        486,
+        508,
+        667
+      ],
+      "source_anchor": [
+        422,
+        665
+      ]
+    },
+    {
+      "frame": 8,
+      "source_bounds": [
+        526,
+        439,
+        716,
+        668
+      ],
+      "source_anchor": [
+        591,
+        666
+      ]
+    },
+    {
+      "frame": 9,
+      "source_bounds": [
+        747,
+        488,
+        956,
+        667
+      ],
+      "source_anchor": [
+        912,
+        665
+      ]
+    },
+    {
+      "frame": 10,
+      "source_bounds": [
+        983,
+        563,
+        1372,
+        689
+      ],
+      "source_anchor": [
+        1177,
+        687
+      ]
+    },
+    {
+      "frame": 11,
+      "source_bounds": [
+        1350,
+        419,
+        1509,
+        665
+      ],
+      "source_anchor": [
+        1456,
+        663
+      ]
+    },
+    {
+      "frame": 12,
+      "source_bounds": [
+        15,
+        711,
+        227,
+        962
+      ],
+      "source_anchor": [
+        95,
+        960
+      ]
+    },
+    {
+      "frame": 13,
+      "source_bounds": [
+        245,
+        692,
+        458,
+        961
+      ],
+      "source_anchor": [
+        321,
+        959
+      ]
+    },
+    {
+      "frame": 14,
+      "source_bounds": [
+        451,
+        764,
+        834,
+        961
+      ],
+      "source_anchor": [
+        620,
+        959
+      ]
+    },
+    {
+      "frame": 15,
+      "source_bounds": [
+        787,
+        759,
+        1083,
+        962
+      ],
+      "source_anchor": [
+        966,
+        960
+      ]
+    },
+    {
+      "frame": 16,
+      "source_bounds": [
+        1059,
+        747,
+        1244,
+        968
+      ],
+      "source_anchor": [
+        1152,
+        966
+      ]
+    },
+    {
+      "frame": 17,
+      "source_bounds": [
+        1258,
+        767,
+        1516,
+        968
+      ],
+      "source_anchor": [
+        1445,
+        966
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ if (Test-Path -LiteralPath $manifestPath) {
   $parsed = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
   foreach ($property in $parsed.files.PSObject.Properties) { $previous[$property.Name] = $property.Value }
 }
-$excluded = @('.git','node_modules','.cache','dist','test-results','playwright-report','.playwright-mcp','.openai','release')
+$excluded = @('.git','node_modules','.cache','dist','test-results','playwright-report','.playwright-mcp','.openai','release','__pycache__')
 $files = [Collections.Generic.List[IO.FileInfo]]::new()
 function Read-ProjectFiles([string]$folder) {
   foreach ($item in Get-ChildItem -LiteralPath $folder -Force) {

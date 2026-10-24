@@ -65,7 +65,15 @@ export class ArenaScene extends Phaser.Scene {
         if(f.attack){const move=f.attack;frame=(move.visualRow??2)*6+(f.attackAge<move.startup?Math.min(1,Math.floor(f.attackAge/move.startup*2)):f.active?2+Math.min(1,Math.floor((f.attackAge-move.startup)/move.active*2)):4+Math.min(1,Math.floor((f.attackAge-move.startup-move.active)/move.recovery*2)));}
         const personaKey=f.attack?.visualKey;
         let texture=personaKey&&this.textures.exists(personaKey)?personaKey:`${f.identity.sinner}-premium`;
-        if(texture===personaKey)frame%=6;
+        if(texture===personaKey){
+          frame%=6;
+          // New six-pose sheets have ready / two windups / two contacts / recovery.
+          if(['faust','hong','sin'].includes(f.identity.sinner)){
+            const a=f.attack!;
+            frame=f.attackAge<a.startup?Math.min(2,Math.floor(f.attackAge/a.startup*3)):f.active?3+Math.min(1,Math.floor((f.attackAge-a.startup)/a.active*2)):5;
+          }
+        }
+        if(f.attack?.reload)frame=f.attackAge<f.attack.startup?(f.attackAge<f.attack.startup/2?0:1):(f.attackAge<f.attack.startup+7?4:5);
         // Keep the horizontal sword pose while its extra sections retract.
         if(f.attack?.extend&&f.attackAge>=f.attack.startup+f.attack.active&&f.attackAge<f.attack.startup+f.attack.active+8)frame=3;
         const normal=f.attack?.normal;
@@ -110,6 +118,6 @@ export class ArenaScene extends Phaser.Scene {
     this.combatFX.update(delta,this.match,this.sprites,!this.effectsEnabled);
     this.fx.clear();this.fx.lineStyle(1,0xb3c4b6,.08);
     for(let i=0;i<25;i++){const x=(i*83+time*.09)%1760,y=(i*47+time*.25)%650;this.fx.lineBetween(x,y,x-5,y+15);}
-    if(this.debug&&this.match)for(const f of this.match.fighters){const h=f.hurtbox;this.fx.lineStyle(2,0x71d7bd,.9);this.fx.strokeRect(h.x,h.y,h.w,h.h);if(f.hitbox){const b=f.hitbox;this.fx.fillStyle(0xe9544e,.25);this.fx.fillRect(b.x,b.y,b.w,b.h);this.fx.lineStyle(2,0xff6859,.9);this.fx.strokeRect(b.x,b.y,b.w,b.h);}}
+    if(this.debug&&this.match)for(const f of this.match.fighters){const h=f.hurtbox;this.fx.lineStyle(2,0x71d7bd,.9);this.fx.strokeRect(h.x,h.y,h.w,h.h);if(f.limbHurtbox){const b=f.limbHurtbox;this.fx.lineStyle(2,0x71d7bd,.9);this.fx.strokeRect(b.x,b.y,b.w,b.h);}if(f.hitbox){const b=f.hitbox;this.fx.fillStyle(0xe9544e,.25);this.fx.fillRect(b.x,b.y,b.w,b.h);this.fx.lineStyle(2,0xff6859,.9);this.fx.strokeRect(b.x,b.y,b.w,b.h);}}
   }
 }

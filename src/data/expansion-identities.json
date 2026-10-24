@@ -230,5 +230,350 @@
         "color": "#d293a9"
       }
     }
+  },
+  {
+    "id": "yi-lcb",
+    "sinner": "yi",
+    "number": "01",
+    "name": "李箱",
+    "english": "YI SANG",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "以短匕首与镜痕延迟追击控制位置。镜痕追击固定在布置处，需要先读对手的路线。",
+    "archetype": "镜痕 · 布置控场",
+    "color": "#c4d4d3",
+    "secondary": "#87a7a5",
+    "sprite": "dagger",
+    "hp": 960,
+    "speed": 5.6,
+    "jump": 14,
+    "defense": 0.98,
+    "stats": [
+      4,
+      3,
+      5
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Crow’s Eye View",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 315,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "rupture",
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#c4d4d3"
+      }
+    }
+  },
+  {
+    "id": "outis-lcb",
+    "sinner": "outis",
+    "number": "12",
+    "name": "奥提斯",
+    "english": "OUTIS",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "LCB 曲刀截击，魔弹限制远处路线。三发弹药与可打断的装填形成火力空档。",
+    "archetype": "火力 · 有限魔弹",
+    "color": "#c4b374",
+    "secondary": "#7e8060",
+    "sprite": "kopis",
+    "hp": 1010,
+    "speed": 4.8,
+    "jump": 13,
+    "defense": 0.97,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "To Pathos Mathos",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 315,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "rupture",
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#c4b374"
+      }
+    }
+  },
+  {
+    "id": "greg-lcb",
+    "sinner": "greg",
+    "number": "13",
+    "name": "格里高尔",
+    "english": "GREGOR",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "附着虫臂是基础武器。按住地面重攻击延长虫臂距离，但伸出的手臂也能被打中。",
+    "archetype": "展臂 · 距离与破绽",
+    "color": "#ba8b5f",
+    "secondary": "#776749",
+    "sprite": "insect",
+    "hp": 1130,
+    "speed": 4.3,
+    "jump": 13,
+    "defense": 0.94,
+    "stats": [
+      5,
+      3,
+      3
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Suddenly, One Day",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 325,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "rupture",
+        "knockdown": true,
+        "effect": "claw",
+        "color": "#ba8b5f"
+      }
+    }
+  },
+  {
+    "id": "faust-lcb",
+    "sinner": "faust",
+    "number": "02",
+    "name": "浮士德",
+    "english": "FAUST",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "用大剑覆盖中距离，重普通技前摇可后冲取消为假动作；不能在有效帧后撤回。",
+    "archetype": "虚实 · 重剑诈势",
+    "color": "#b9d4cf",
+    "secondary": "#6a9f9a",
+    "sprite": "greatsword",
+    "hp": 1070,
+    "speed": 4.0,
+    "jump": 13,
+    "defense": 0.96,
+    "stats": [
+      3,
+      4,
+      5
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Representation Emitter",
+        "action": "ego",
+        "level": 4,
+        "startup": 25,
+        "active": 16,
+        "recovery": 36,
+        "damage": 330,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 4,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#b9d4cf"
+      }
+    }
+  },
+  {
+    "id": "hong-lcb",
+    "sinner": "hong",
+    "number": "06",
+    "name": "鸿璐",
+    "english": "HONG LU",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "以长柄刀确认命中，再用消耗罪孽的短前滑调整距离；空挥或被防住不能启动。",
+    "archetype": "游龙 · 命中滑步",
+    "color": "#8fd6cc",
+    "secondary": "#547ca4",
+    "sprite": "guandao",
+    "hp": 970,
+    "speed": 5.5,
+    "jump": 14.4,
+    "defense": 1.02,
+    "stats": [
+      4,
+      5,
+      3
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Land of Illusion",
+        "action": "ego",
+        "level": 4,
+        "startup": 25,
+        "active": 16,
+        "recovery": 36,
+        "damage": 330,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 4,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#8fd6cc"
+      }
+    }
+  },
+  {
+    "id": "sin-lcb",
+    "sinner": "sin",
+    "number": "11",
+    "name": "辛克莱",
+    "english": "SINCLAIR",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "地面人格命中后可支付体力接另一种人格技能；每条连段一次，低生命不能破限。",
+    "archetype": "破限 · 以血续势",
+    "color": "#d4bd75",
+    "secondary": "#a7674d",
+    "sprite": "halberd",
+    "hp": 920,
+    "speed": 5.2,
+    "jump": 14,
+    "defense": 1.03,
+    "stats": [
+      5,
+      3,
+      3
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Branch of Knowledge",
+        "action": "ego",
+        "level": 4,
+        "startup": 25,
+        "active": 16,
+        "recovery": 36,
+        "damage": 330,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 4,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#d4bd75"
+      }
+    }
   }
 ]

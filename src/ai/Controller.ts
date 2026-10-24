@@ -18,6 +18,15 @@ export class AIController {
     this.held = {}; this.sequence++;
     const delta = (observed.x || enemy.x) - self.x, distance = Math.abs(delta), forward = delta > 0 ? 'right' : 'left', backward = delta > 0 ? 'left' : 'right';
     if (self.stun || self.state === 'down') return frame;
+    // Optional trait decisions use confirmed contacts / previous observations only.
+    if(self.grounded&&self.attack&&this.random()<p.chain){
+      if(self.identity.sinner==='faust'&&self.attack.normal?.strength===3&&self.attackAge<self.attack.startup-1&&observed.attacking&&self.ego>=12&&!self.traitTimer){this.held[backward]=true;return {held:{...this.held},pressed:{dash:true}};}
+      if(self.identity.sinner==='hong'&&self.attack.normal&&self.hitConfirmed&&self.traitTimer>0&&!self.traitUsed.has('flow')&&self.ego>=8){this.held[forward]=true;return {held:{...this.held},pressed:{dash:true}};}
+      if(self.identity.sinner==='sin'&&self.attack.source&&self.hitConfirmed&&!self.traitUsed.has('blood-link')&&self.hp>self.identity.hp*.35&&self.ego>=22)return {held:{},pressed:{},command:self.attack.appearance==='redsheet'?'dp':'qcb'};
+      if(self.attack.limb&&distance>120&&!observed.attacking&&self.limbCharge<12&&self.attack.normal){this.held[self.attack.normal.button]=true;return {held:{...this.held},pressed:{}};}
+    }
+    if(!self.attack&&self.grounded&&self.identity.sinner==='yi'&&!self.mirror&&distance>220&&self.ego>=30&&this.random()<p.chain)return {held:{},pressed:{},command:'dpj'};
+    if(!self.attack&&self.grounded&&self.identity.sinner==='outis'&&distance>240&&self.ego>=20&&this.random()<p.chain)return {held:{},pressed:{},command:'qcf'};
     if (observed.attacking && distance < 210 && this.random() < p.guard && !self.attack) this.held[backward] = true;
     else if (distance > 112) { this.held[forward] = true; if (distance > 340 && this.random() < .4) frame.pressed.dash = true; }
     else if (distance < 58 && !self.attack && this.random() < .23) this.held[backward] = true;

@@ -1,4 +1,4 @@
-"""Pack four sinners' two 18-pose sheets; source pixels are never repainted.
+"""Pack expanded sinners' two 18-pose sheets; source pixels are never repainted.
 
 The LCB half becomes the existing 36-frame runtime layout. The second half
 stays eighteen stand/crouch/air weapon contact poses. Alpha-component masks
@@ -8,19 +8,23 @@ from collections import Counter
 from pathlib import Path
 from PIL import Image, ImageFilter, ImageChops
 import json
+import sys
+from sprite_anchor import body_column
 
 ROOT = Path(__file__).resolve().parent.parent
 FW, FH, AX, AY = 800, 640, 340, 610
 
 
-def slice_sheet(path):
+def slice_sheet(path, kind='lcb'):
     source = Image.open(path).convert('RGBA')
     width, height = source.size
-    cols = 3 if height > width else 6
+    grid_path=path.parent/'source-grid.json'
+    cols = json.loads(grid_path.read_text(encoding='utf-8'))['columns'] if grid_path.exists() else 3 if height > width else 6
     rows = 18 // cols
     alpha = source.getchannel('A').tobytes()
     seen = bytearray(width * height)
     groups = {i: [] for i in range(18)}
+    components=[]
     for start, value in enumerate(alpha):
         if value < 100 or seen[start]:
             continue
@@ -36,15 +40,26 @@ def slice_sheet(path):
                     seen[other] = 1
                     queue.append(other)
         if len(pixels) > 500:
+            components.append(pixels)
             cell = Counter(min(rows-1, int((p//width)/height*rows))*cols
                            + min(cols-1, int((p%width)/width*cols)) for p in pixels).most_common(1)[0][0]
             groups[cell].extend(pixels)
+    # Generated rows can have unequal gutters. Order complete isolated figures
+    # by feet baseline, then body column, instead of moving a raised weapon's
+    # entire figure into the neighbouring nominal cell.
+    if len(components)==18:
+        by_baseline=sorted(components,key=lambda ps:max(p//width for p in ps))
+        ordered=[]
+        for offset in range(0,18,cols):
+            ordered.extend(sorted(by_baseline[offset:offset+cols],key=lambda ps:body_column(ps,width)))
+        groups=dict(enumerate(ordered))
     frames, anchors = [], []
     for cell, pixels in groups.items():
         assert pixels, f'{path}: missing pose {cell}'
         xs = sorted(p % width for p in pixels)
         ys = [p // width for p in pixels]
-        anchor, baseline = xs[len(xs)//2], max(ys)+1
+        anchor = xs[len(xs)//2] if kind=='lcb' and cell==10 else body_column(pixels,width)
+        baseline = max(ys)+1
         bounds = (max(0, min(xs)-2), max(0, min(ys)-2),
                   min(width, max(xs)+3), min(height, max(ys)+3))
         mask_bytes = bytearray(width*height)
@@ -61,12 +76,12 @@ def slice_sheet(path):
     return frames, anchors, scale
 
 
-for sinner in ['ryoshu', 'meur', 'ish', 'rod']:
+for sinner in sys.argv[1:] or ['don','heath','ryoshu', 'meur', 'ish', 'rod', 'yi', 'outis', 'greg', 'faust', 'hong', 'sin']:
     for kind in ['lcb', 'normals']:
         folder = ROOT/'public/characters'/sinner/kind
         if not (folder/'source-sheet.png').exists():
             continue
-        frames, anchors, scale = slice_sheet(folder/'source-sheet.png')
+        frames, anchors, scale = slice_sheet(folder/'source-sheet.png',kind)
         order = list(range(18)) if kind == 'normals' else (
             [0]*6 + [1, 2, 3, 4, 5, 1] + [12, 13, 14, 15, 16, 16]
             + [6, 7, 8, 9, 10, 11] + [12, 13, 14, 15, 16, 16]*2)
@@ -75,7 +90,7 @@ for sinner in ['ryoshu', 'meur', 'ish', 'rod']:
             sheet.alpha_composite(frames[index], (i%6*FW, i//6*FH))
         sheet.save(folder/'fighter.png', optimize=True)
         meta = {'frameWidth': FW, 'frameHeight': FH, 'columns': 6, 'count': len(order),
-                'anchor': [AX, AY], 'scaleTo64': scale, 'sourceFrameMap': order, 'anchors': anchors}
+                'anchor': [AX, AY], 'anchorMode':'body-column-v1','scaleTo64': scale, 'sourceFrameMap': order, 'anchors': anchors}
         (folder/'frames.json').write_text(json.dumps(meta, indent=2), encoding='utf-8')
         if kind == 'lcb':
             height = max(245, anchors[0]['source_bounds'][3]-anchors[0]['source_bounds'][1]+10)

@@ -1,13 +1,14 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 
-test('four new sinners load every ground/air persona, render all phases, and keep running',async({page})=>{
+test('all twelve sinners load every ground/air persona, render all phases, and keep running',async({page})=>{
+  test.setTimeout(150000);
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('response',r=>{if(r.status()>=400&&r.url().includes('/characters/'))errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('/');await page.waitForFunction(()=>(window as any).__LIMBUS__?.scene.ready);
   fs.mkdirSync('docs/screenshots',{recursive:true});
-  for(const sinner of ['ryoshu','meur','ish','rod']){
-    await page.locator('#choose').click();await expect(page.locator('[data-sinner]')).toHaveCount(6);
+  for(const sinner of ['yi','faust','don','ryoshu','meur','hong','heath','ish','rod','sin','outis','greg']){
+    await page.locator('#choose').click();await expect(page.locator('[data-sinner]')).toHaveCount(12);
     await page.locator(`[data-sinner="${sinner}"]`).click();await expect(page.locator('.trait-guide')).toBeVisible();
     await page.locator('#mode-select').selectOption('training');await page.locator('#deploy').click();
     const result=await page.evaluate(()=>{
@@ -31,7 +32,7 @@ test('four new sinners load every ground/air persona, render all phases, and kee
     await expect(page.locator('#trait0')).not.toBeEmpty();
     const frame=await page.evaluate(()=>(window as any).__LIMBUS__.match.frame);await page.waitForTimeout(180);
     expect(await page.evaluate(()=>(window as any).__LIMBUS__.match.frame)).toBeGreaterThan(frame+3);
-    for(const command of sinner==='meur'?['qcbl']:sinner==='ish'?['qcfk']:sinner==='rod'?['dp','qcbl']:['dp']){
+    for(const command of sinner==='meur'?['qcbl']:sinner==='ish'?['qcfk']:sinner==='rod'?['dp','qcbl']:sinner==='outis'?['qcfk']:sinner==='yi'||sinner==='greg'?['qcbl']:['dp']){
       await page.evaluate(command=>{const a=(window as any).__LIMBUS__,m=a.match,f=m.fighters[0];m.paused=true;f.attack=null;f.cooldowns={};f.ego=100;f.x=700;f.y=570;f.stun=f.landingLag=0;f.beginAttack('special',{held:{},pressed:{}},command);f.attackAge=f.attack.startup+f.attack.active-1;a.scene.game.step(performance.now(),0);},command);
       await page.screenshot({path:`docs/screenshots/roster-${sinner}-${command}.png`});
     }

@@ -1,0 +1,91 @@
+{
+  "frameWidth": 800,
+  "frameHeight": 640,
+  "columns": 2,
+  "count": 6,
+  "anchor": [
+    340,
+    610
+  ],
+  "scaleTo64": 0.2077922077922078,
+  "anchors": [
+    {
+      "frame": 0,
+      "source_bounds": [
+        39,
+        44,
+        746,
+        356
+      ],
+      "source_anchor": [
+        258,
+        354
+      ]
+    },
+    {
+      "frame": 1,
+      "source_bounds": [
+        856,
+        25,
+        1514,
+        358
+      ],
+      "source_anchor": [
+        1088,
+        356
+      ]
+    },
+    {
+      "frame": 2,
+      "source_bounds": [
+        57,
+        370,
+        715,
+        694
+      ],
+      "source_anchor": [
+        314,
+        692
+      ]
+    },
+    {
+      "frame": 3,
+      "source_bounds": [
+        782,
+        454,
+        1521,
+        683
+      ],
+      "source_anchor": [
+        1028,
+        681
+      ]
+    },
+    {
+      "frame": 4,
+      "source_bounds": [
+        26,
+        758,
+        814,
+        985
+      ],
+      "source_anchor": [
+        287,
+        983
+      ]
+    },
+    {
+      "frame": 5,
+      "source_bounds": [
+        814,
+        700,
+        1513,
+        985
+      ],
+      "source_anchor": [
+        1034,
+        983
+      ]
+    }
+  ]
+}

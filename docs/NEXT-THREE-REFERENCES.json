@@ -1,0 +1,191 @@
+[
+  {
+    "sinner": "yi",
+    "name": "盛绽 E.G.O. · 东柏",
+    "url": "https://www.limbuscompany.tools/identities/effloresced-ego-spicebush-yi-sang",
+    "slug": "effloresced-ego-spicebush-yi-sang",
+    "reference": "10104",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10104~1010401",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "脑叶 E.G.O. · 庄严哀悼",
+    "url": "https://www.limbuscompany.tools/identities/lobotomy-ego-solemn-lament-yi-sang",
+    "slug": "lobotomy-ego-solemn-lament-yi-sang",
+    "reference": "10110",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10110~1011001",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "环指 · 点彩派学徒",
+    "url": "https://www.limbuscompany.tools/identities/the-ring-pointillist-student-yi-sang",
+    "slug": "the-ring-pointillist-student-yi-sang",
+    "reference": "10109",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10109~1010901",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "W 公司 · 三级清理员工",
+    "url": "https://www.limbuscompany.tools/identities/w-corp-l3-cleanup-agent-yi-sang",
+    "slug": "w-corp-l3-cleanup-agent-yi-sang",
+    "reference": "10106",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10106~1010601",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "黑兽 · 午",
+    "url": "https://www.limbuscompany.tools/identities/heishou-pack-wu-branch-adept-yi-sang",
+    "slug": "heishou-pack-wu-branch-adept-yi-sang",
+    "reference": "10114",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10114~1011401",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "LCE E.G.O. · 裂维者",
+    "url": "https://www.limbuscompany.tools/identities/lce-ego-dimension-shredder-yi-sang",
+    "slug": "lce-ego-dimension-shredder-yi-sang",
+    "reference": "10116",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10116~1011601",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "脑叶 E.G.O. · 魔弹",
+    "url": "https://www.limbuscompany.tools/identities/lobotomy-ego-magic-bullet-outis",
+    "slug": "lobotomy-ego-magic-bullet-outis",
+    "reference": "11107",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11107~1110701",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "W 公司 · 三级清理队长",
+    "url": "https://www.limbuscompany.tools/identities/w-corp-l3-cleanup-captain-outis",
+    "slug": "w-corp-l3-cleanup-captain-outis",
+    "reference": "11110",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11110~1111001",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "七协会 · 南部六科科长",
+    "url": "https://www.limbuscompany.tools/identities/seven-assoc-south-section-6-director-outis",
+    "slug": "seven-assoc-south-section-6-director-outis",
+    "reference": "11104",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11104~1110401",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "蜘蛛巢 · 中指",
+    "url": "https://www.limbuscompany.tools/identities/the-house-of-spiders-the-middle-nursefather-outis",
+    "slug": "the-house-of-spiders-the-middle-nursefather-outis",
+    "reference": "11115",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11115~1111501",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "拉曼却领 · 理发师",
+    "url": "https://www.limbuscompany.tools/identities/the-barber-of-la-manchaland-outis",
+    "slug": "the-barber-of-la-manchaland-outis",
+    "reference": "11111",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11111~1111101",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "T 公司 · 三级 VDCU 员工",
+    "url": "https://www.limbuscompany.tools/identities/t-corp-class-3-vdcu-staff-outis",
+    "slug": "t-corp-class-3-vdcu-staff-outis",
+    "reference": "11113",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11113~1111301",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "G 公司 · 经理代理",
+    "url": "https://www.limbuscompany.tools/identities/g-corp-manager-corporal-gregor",
+    "slug": "g-corp-manager-corporal-gregor",
+    "reference": "11203",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11203~1120301",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "炎拳事务所",
+    "url": "https://www.limbuscompany.tools/identities/firefist-office-survivor-gregor",
+    "slug": "firefist-office-survivor-gregor",
+    "reference": "11211",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11211~1121101",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "双钩海盗团 · 大副",
+    "url": "https://www.limbuscompany.tools/identities/twinhook-pirates-first-mate-gregor",
+    "slug": "twinhook-pirates-first-mate-gregor",
+    "reference": "11207",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11207~1120701",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "埃德加家族 · 继承者",
+    "url": "https://www.limbuscompany.tools/identities/edgar-family-heir-gregor",
+    "slug": "edgar-family-heir-gregor",
+    "reference": "11209",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11209~1120901",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "拉曼却领 · 神父",
+    "url": "https://www.limbuscompany.tools/identities/the-priest-of-la-manchaland-gregor",
+    "slug": "the-priest-of-la-manchaland-gregor",
+    "reference": "11210",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11210~1121001",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "LCE E.G.O. · AEDD",
+    "url": "https://www.limbuscompany.tools/identities/lce-ego-aedd-gregor",
+    "slug": "lce-ego-aedd-gregor",
+    "reference": "11215",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11215~1121501",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "yi",
+    "name": "李箱 LCB",
+    "url": "https://www.limbuscompany.tools/identities/lcb-sinner-yi-sang",
+    "slug": "lcb-sinner-yi-sang",
+    "reference": "10101",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id10101~1010101",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "outis",
+    "name": "奥提斯 LCB",
+    "url": "https://www.limbuscompany.tools/identities/lcb-sinner-outis",
+    "slug": "lcb-sinner-outis",
+    "reference": "11101",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11101~1110101",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  },
+  {
+    "sinner": "greg",
+    "name": "格里高尔 LCB",
+    "url": "https://www.limbuscompany.tools/identities/lcb-sinner-gregor",
+    "slug": "lcb-sinner-gregor",
+    "reference": "11201",
+    "skillViewer": "https://saigo-no-dante.com/en/motion/skills?skill=id11201~1120101",
+    "localReferencePolicy": "Reference screenshots in ignored .cache; only generated fan sprites are shipped."
+  }
+]

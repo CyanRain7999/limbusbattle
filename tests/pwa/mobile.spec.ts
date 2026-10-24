@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+const personaArt=JSON.parse(readFileSync(new URL('../../src/data/persona-art.json',import.meta.url),'utf8')) as {key:string}[];
 
 test('project-path PWA precaches, launches offline and retains all persona textures',async({page,context})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
@@ -9,7 +11,10 @@ test('project-path PWA precaches, launches offline and retains all persona textu
   try{
     await page.reload();await page.waitForFunction(()=>(window as any).__LIMBUS__?.scene.ready);
     expect(await page.locator('[data-pwa-status]').textContent()).toContain('离线');
-    expect(await page.evaluate(()=>['don-w','don-n','don-blade','don-cinq','don-t','don-queen','heath-seven','heath-sunshower','heath-fullstop','heath-kurokumo','heath-middle','heath-wild','heath-r'].every(key=>(window as any).__LIMBUS__.scene.textures.exists(key)))).toBe(true);
+    const sinners=['yi','faust','don','ryoshu','meur','hong','heath','ish','rod','sin','outis','greg'];
+    const keys=[...personaArt.map(p=>p.key),...sinners.flatMap(s=>[s+'-premium',s+'-normals'])];
+    expect(keys).toHaveLength(97);
+    expect(await page.evaluate(keys=>keys.every(key=>(window as any).__LIMBUS__.scene.textures.exists(key)),keys)).toBe(true);
     await page.locator('#choose').click();await page.locator('#mode-select').selectOption('training');await page.locator('#deploy').click();await page.waitForFunction(()=>(window as any).__LIMBUS__.match.phase==='fight');
     await expect(page.locator('#touch-controls')).toBeVisible();await page.waitForTimeout(250);await page.screenshot({path:'docs/screenshots/pwa-offline-mobile.png'});
   }finally{await context.setOffline(false);}

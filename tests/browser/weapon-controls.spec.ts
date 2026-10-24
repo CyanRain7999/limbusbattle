@@ -1,8 +1,8 @@
 import {test,expect} from '@playwright/test';
 
-test('six keyboard weapon normals render dedicated lance/bat poses and Space starts a throw',async({page})=>{
-  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await page.waitForFunction(()=>(window as any).__LIMBUS__?.scene.ready);
-  for(const sinner of ['don','heath']){
+test('six keyboard weapon normals render dedicated weapon poses and Space starts a throw',async({page})=>{
+  test.setTimeout(80000);const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');await page.waitForFunction(()=>(window as any).__LIMBUS__?.scene.ready);
+  for(const sinner of ['don','heath','faust','hong','sin']){
     await page.locator('#choose').click();await page.locator(`[data-sinner="${sinner}"]`).click();await page.locator('#mode-select').selectOption('training');await page.locator('#deploy').click();await page.waitForFunction(()=>(window as any).__LIMBUS__.match.phase==='fight');
     for(const [pose,key] of ['j','k','l','u','i','o'].entries()){
       await page.evaluate(()=>{const a=(window as any).__LIMBUS__,f=a.match.fighters[0];a.app.controls.clear();f.attack=null;f.motion.clear();f.x=500;f.y=570;f.vx=f.vy=f.stun=0;f.buffer=null;a.match.fighters[1].x=1450;});

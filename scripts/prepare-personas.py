@@ -65,7 +65,7 @@ for entry in metadata:
         sheet.alpha_composite(frame,(i%cols*800,i//cols*640))
     sheet.save(folder/'fighter.png',optimize=True)
     first = anchors[0]
-    scale = (82 if entry['key']=='ryoshu-couture' else 78 if entry['key']=='ish-r' else 64)/(275 if entry['key']=='don-t' else first['source_bounds'][3]-first['source_bounds'][1]-4)
+    scale = (86 if entry['key']=='sin-crimson' else 82 if entry['key']=='ryoshu-couture' else 78 if entry['key']=='ish-r' else 64)/(275 if entry['key']=='don-t' else first['source_bounds'][3]-first['source_bounds'][1]-4)
     (folder/'frames.json').write_text(json.dumps({'frameWidth':800,'frameHeight':640,'columns':cols,'count':6,'anchor':[340,610],'scaleTo64':scale,'anchors':anchors},indent=2),encoding='utf-8')
     print(entry['key'], '6 RGBA poses', 'scale',round(scale,3))
 
