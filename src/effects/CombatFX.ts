@@ -54,7 +54,8 @@ export class CombatFX {
     if(e.type==='block'){this.burst(e.x,e.y,p,e.text?'parry':'block',e.text?89:53,290);this.scatter(e.x,e.y,{...p,edge:0x9de9f0},9,-direction,5);}
     if(e.type==='guardbreak'){this.burst(e.x,e.y,p,'break',118,440);this.scatter(e.x,e.y,p,27,0,9);}
   }
-  private palette(f:Fighter){return f.attack?.action==='ego'?{...palettes[f.appearance]??palettes.lcb,edge:f.identity.sinner==='don'?0xe75d73:0xc696ff,accent:0xc65b78}:palettes[f.appearance]??palettes.lcb;}
+  private palette(f:Fighter){const base=palettes[f.appearance]??(f.attack?.color?{edge:parseInt(f.attack.color.slice(1),16),accent:parseInt(f.identity.color.slice(1),16),core:0xfff2d5,ink:0x1c2330}:palettes.lcb);return f.attack?.action==='ego'?{...base,edge:parseInt(f.identity.color.slice(1),16),accent:0xc65b78}:base;}
+
   private burst(x:number,y:number,palette:Palette,kind:string,size:number,life:number){this.bursts.push({x,y,palette,kind,size,life,age:0,angle:Math.random()*.9-.45});if(this.bursts.length>28)this.bursts.shift();}
   private scatter(x:number,y:number,p:Palette,count:number,direction:number,speed:number){
     for(let i=0;i<count;i++){const a=direction?((direction===1?0:Math.PI)+(Math.random()-.5)*2.6):Math.random()*Math.PI*2,v=speed*(.3+Math.random());this.particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,age:0,life:180+Math.random()*300,size:2+Math.random()*4,color:i%4===0?p.core:i%3===0?p.accent:p.edge,kind:i%5===0?'dust':'shard',angle:a});}
@@ -91,7 +92,16 @@ export class CombatFX {
       if(f.state==='guard'||f.state==='block'){const x=f.x+f.facing*25,y=f.y-64;this.front.lineStyle(2,0x9ce1e4,.6);this.front.beginPath();this.front.arc(x,y,63,f.facing===1?-1.15:1.99,f.facing===1?1.15:4.29);this.front.strokePath();}
     }
     this.drawBursts(dt);this.drawParticles(dt);
-    for(const projectile of match.projectiles){const f=match.fighters[projectile.source],p=palettes[projectile.move.appearance??'r']??this.palette(f);const len=Math.hypot(projectile.vx,projectile.vy),dx=projectile.vx/len,dy=projectile.vy/len;for(const [w,c,a] of [[9,p.edge,.15],[3,p.edge,.85],[1,p.core,1]]){this.light.lineStyle(w,c,a);this.light.lineBetween(projectile.x-dx*60,projectile.y-dy*60,projectile.x,projectile.y);}this.star(this.light,projectile.x,projectile.y,9,p.core,.9,Math.atan2(dy,dx),4);}
+    for(const projectile of match.projectiles){
+      const f=match.fighters[projectile.source],color=projectile.move.color,p=palettes[projectile.move.appearance??'r']??(color?{...palettes.lcb,edge:parseInt(color.slice(1),16)}:this.palette(f));
+      const len=Math.hypot(projectile.vx,projectile.vy),dx=projectile.vx/len,dy=projectile.vy/len;
+      if(projectile.move.effect==='slug'){
+        // One solid slug and its short air wake, rather than an energy orb.
+        this.front.lineStyle(4,0x26262c,1);this.front.lineBetween(projectile.x-dx*12,projectile.y-dy*12,projectile.x,projectile.y);
+        this.front.lineStyle(2,0xc6b58c,1);this.front.lineBetween(projectile.x-dx*10,projectile.y-dy*10,projectile.x,projectile.y);
+        this.light.lineStyle(1,p.edge,.45);this.light.lineBetween(projectile.x-dx*38,projectile.y-dy*38,projectile.x-dx*15,projectile.y-dy*15);
+      }else{for(const [w,c,a] of [[9,p.edge,.15],[3,p.edge,.85],[1,p.core,1]]){this.light.lineStyle(w,c,a);this.light.lineBetween(projectile.x-dx*60,projectile.y-dy*60,projectile.x,projectile.y);}this.star(this.light,projectile.x,projectile.y,9,p.core,.9,Math.atan2(dy,dx),4);}
+    }
 
     if(this.egoLife>450&&!reduceMotion){const alpha=(this.egoLife-450)/400;for(let i=0;i<10;i++){const y=105+i*55,x=(this.clock*.9+i*219)%1760;this.front.lineStyle(i%3?1:3,0xc8a8bc,alpha*.2);this.front.lineBetween(x,y,x+160+i%3*80,y-18);}}
   }
@@ -141,6 +151,25 @@ export class CombatFX {
         if(t>.25||!active){const yy=f.y-3,xx=x+d*80;this.front.lineStyle(3,p.ink,a);this.front.strokeEllipse(xx,yy,150+80*t,24);this.light.lineStyle(2,p.edge,a*.8);this.light.strokeEllipse(xx,yy,120+100*t,18);for(let i=0;i<5;i++){const dx=d*(i*29-15);this.thrust(xx+dx,yy-7,18,2,p,a*.5,d);}}
         if(effect==='fist')this.chain(x+d*90,y+5,35+20*t,this.clock*.009,p,a);
         if(theme==='n'){for(let i=0;i<3;i++){const xx=x+d*(44+i*39),yy=y-80+phase*105;this.light.lineStyle(2,p.edge,a*.7);this.light.lineBetween(xx,yy-22,xx,yy+17);this.light.lineBetween(xx-7,yy-11,xx+7,yy-11);}}
+      }else if(effect==='extend'){
+        // Read the same changing reach used by collision. Steel sections, no gunfire.
+        const extendedPose=age-m.startup>=Math.ceil(m.active/2),start=f.x+d*(extendedPose?126:103),end=f.x+d*(m.box.x+f.attackReach),yy=f.y-(extendedPose?78:68);
+        if(age>=m.startup+m.active+8)return;
+        this.polygon(this.front,[{x:start,y:yy-5},{x:end-d*16,y:yy-4},{x:end,y:yy},{x:end-d*16,y:yy+4},{x:start,y:yy+5}],0x20232e,a);
+        this.front.lineStyle(3,0xbfc5d0,a);this.front.lineBetween(start,yy-1,end-d*14,yy-1);
+        this.front.lineStyle(1,0xf2ecda,a);this.front.lineBetween(start,yy-4,end-d*16,yy-3);
+        for(let n=1;n<f.attackReach/44;n++){const xx=start+d*n*44;this.front.lineStyle(1,0x5f5764,a);this.front.lineBetween(xx,yy-4,xx-d*4,yy+3);}
+        if(active){this.light.lineStyle(1,p.edge,a*.45);this.light.lineBetween(start,yy+9,end-d*20,yy+9);}
+      }else if(effect==='fan'||effect==='parasol'){
+        const parasol=effect==='parasol',radius=parasol?115:78,cx=x+d*30,cy=y+(parasol?0:14),turn=-1.4+phase*2.6;
+        this.slash(cx,cy,radius,parasol?95:64,turn-1.1,turn+.8,parasol?7:5,p,a*.8,d);
+        // Thin rib-shaped wake follows the opening fan or the rotating canopy.
+        for(let i=0;i<7;i++){const angle=turn-1.1+i*.3,xx=cx+d*Math.cos(angle)*radius,yy=cy+Math.sin(angle)*(parasol?95:64);this.rear.lineStyle(1,p.edge,a*.25);this.rear.lineBetween(cx,cy,xx,yy);if(parasol)this.star(this.light,xx,yy,3,p.accent,a*.6,angle);}
+      }else if(effect==='slug'){
+        if(m.projectile?.frames.some(frame=>age-m.startup-frame>=0&&age-m.startup-frame<3)){
+          const xx=f.x+d*90,yy=y-10;this.star(this.light,xx,yy,17,p.edge,.8,d<0?Math.PI:0,5,.16);this.star(this.light,xx,yy,8,p.core,1);
+          this.light.lineStyle(1,0xd2c6a6,.55);this.light.lineBetween(xx-d*16,yy+6,xx-d*35,yy+11);
+        }
       }else if(effect==='bullets'){
         const burst=m.projectile?.frames.some(frame=>Math.abs(age-m.startup-frame)<3);if(burst){const xx=x+d*73;this.star(this.light,xx,y-8,42,p.edge,.65,d<0?Math.PI:0,5,.18);this.star(this.light,xx,y-8,23,p.core,.95,0,4);this.thrust(xx,y-8,80,8,p,.8,d);}
       }else if(effect==='thrust'||effect==='umbrella'||f.identity.sprite==='lance'&&effect!=='cleave'){

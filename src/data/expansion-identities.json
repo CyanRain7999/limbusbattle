@@ -1,0 +1,234 @@
+[
+  {
+    "id": "ryoshu-lcb",
+    "sinner": "ryoshu",
+    "number": "04",
+    "name": "良秀",
+    "english": "RYŌSHŪ",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "刀鞘为刃，捕捉空挥后的破绽。普通技保持 LCB 的带鞘长刀。",
+    "archetype": "见切 · 抓破绽",
+    "color": "#d36c67",
+    "secondary": "#9a493d",
+    "sprite": "sheathed",
+    "hp": 940,
+    "speed": 5.4,
+    "jump": 14,
+    "defense": 0.98,
+    "stats": [
+      4,
+      4,
+      3
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Forest for the Flames",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 315,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "rupture",
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#d36c67"
+      }
+    }
+  },
+  {
+    "id": "meur-lcb",
+    "sinner": "meur",
+    "number": "05",
+    "name": "默尔索",
+    "english": "MEURSAULT",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "以金属拳套和前臂守住近身，格挡积蓄稳固，擒投兑现伤害。",
+    "archetype": "稳固 · 近身擒投",
+    "color": "#9bb8d3",
+    "secondary": "#9a493d",
+    "sprite": "gauntlet",
+    "hp": 1250,
+    "speed": 3.4,
+    "jump": 12,
+    "defense": 0.9,
+    "stats": [
+      2,
+      5,
+      5
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Chains of Others",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 345,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "burn",
+        "knockdown": true,
+        "effect": "fist",
+        "color": "#9bb8d3"
+      }
+    }
+  },
+  {
+    "id": "ish-lcb",
+    "sinner": "ish",
+    "number": "08",
+    "name": "以实玛利",
+    "english": "ISHMAEL",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "盾与钉头锤兼备。格挡后争取短暂的快速反击机会。",
+    "archetype": "盾反 · 防守反击",
+    "color": "#e7a65d",
+    "secondary": "#9a493d",
+    "sprite": "mace",
+    "hp": 1120,
+    "speed": 4.1,
+    "jump": 13,
+    "defense": 0.92,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "Snagharpoon",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 310,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "rupture",
+        "knockdown": true,
+        "effect": "thrust",
+        "color": "#e7a65d"
+      }
+    }
+  },
+  {
+    "id": "rod-lcb",
+    "sinner": "rod",
+    "number": "09",
+    "name": "罗佳",
+    "english": "RODION",
+    "title": "LCB 罪人",
+    "rarity": "0",
+    "description": "用不同武器普通技积累赌势，再以强化人格技能破阵。",
+    "archetype": "豪赌 · 重斧破阵",
+    "color": "#d293a9",
+    "secondary": "#9a493d",
+    "sprite": "axe",
+    "hp": 1180,
+    "speed": 4.2,
+    "jump": 13,
+    "defense": 0.97,
+    "stats": [
+      3,
+      5,
+      4
+    ],
+    "moves": {
+      "ego": {
+        "id": "ego",
+        "name": "What is Cast",
+        "action": "ego",
+        "level": 4,
+        "startup": 24,
+        "active": 16,
+        "recovery": 34,
+        "damage": 360,
+        "hitstun": 52,
+        "knockback": 13,
+        "launch": 14,
+        "hitstop": 13,
+        "power": 18,
+        "cost": 80,
+        "cooldown": 240,
+        "lunge": 5,
+        "box": {
+          "x": -5,
+          "y": -215,
+          "w": 340,
+          "h": 215
+        },
+        "cancel": [
+          0,
+          0
+        ],
+        "into": [],
+        "status": "burn",
+        "knockdown": true,
+        "effect": "cleave",
+        "color": "#d293a9"
+      }
+    }
+  }
+]

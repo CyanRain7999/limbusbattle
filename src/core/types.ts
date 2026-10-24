@@ -15,8 +15,10 @@ export interface Move {
   status?: 'burn' | 'rupture'; knockdown?: boolean;
   normal?:{button:NormalAction;strength:number;stance:'stand'|'crouch'|'air';pose:number;launcher?:boolean};
   hitLevel?:'mid'|'low'|'overhead';airOnly?:boolean;throwRange?:number;
-  appearance?: string; visualRow?: number; visualKey?:string; color?:string; source?:string; description?:string;
-  effect?: 'thrust' | 'rift' | 'retreat' | 'uppercut' | 'bullets' | 'cleave' | 'hammer' | 'time' | 'beam' | 'iaido' | 'fist' | 'umbrella';
+  appearance?: string; visualRow?: number; visualKey?:string; color?:string; source?:string; description?:string; label?:string;
+  effect?: 'thrust' | 'rift' | 'retreat' | 'uppercut' | 'bullets' | 'slug' | 'cleave' | 'hammer' | 'time' | 'beam' | 'iaido' | 'fist' | 'umbrella' | 'fan' | 'parasol' | 'extend';
+  /** Near/full blade reach; extends over active frames and retracts in recovery. */
+  extend?:[number,number];
   counter?:[number,number];armorUntil?:number;teleport?:number;guardDamage?:number;
   hits?: {frame:number;duration:number;scale:number}[];
   projectile?: {frames:number[];speed:number;vy?:number;width:number;height:number;life:number};
@@ -24,7 +26,7 @@ export interface Move {
 export interface Identity {
   id: string; sinner: string; number: string; name: string; english: string;
   title: string; rarity: string; description: string; archetype: string;
-  color: string; secondary: string; sprite: 'lance' | 'bat';
+  color: string; secondary: string; sprite: 'lance' | 'bat' | 'sheathed' | 'gauntlet' | 'mace' | 'axe';
   hp: number; speed: number; jump: number; defense: number;
   stats: [number, number, number]; moves: Record<string, Move>;
   asset?: { key: string; scale: number; originY: number };
@@ -33,7 +35,7 @@ export interface Identity {
 }
 export type Difficulty = 'easy' | 'normal' | 'hard';
 export interface MatchOptions { p1: Identity; p2: Identity; mode: 'cpu' | 'local' | 'training'; difficulty: Difficulty; clash: boolean; stage: 'depot' | 'bridge'; seed?: number }
-export interface CombatEvent { type: 'hit' | 'block' | 'clash' | 'dash' | 'jump' | 'ego' | 'ko' | 'round' | 'guardbreak' | 'status' | 'skill' | 'throw' | 'throwtech'; x: number; y: number; source: number; target?: number; value?: number; text?: string; color?: string }
+export interface CombatEvent { type: 'hit' | 'block' | 'clash' | 'dash' | 'jump' | 'ego' | 'ko' | 'round' | 'guardbreak' | 'status' | 'skill' | 'throw' | 'throwtech' | 'trait'; x: number; y: number; source: number; target?: number; value?: number; text?: string; color?: string }
 export const WORLD = { width: 1760, height: 720, floor: 570, left: 85, right: 1675 };
 export const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 export const intersects = (a: Box, b: Box) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;

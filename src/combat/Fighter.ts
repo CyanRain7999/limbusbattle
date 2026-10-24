@@ -1,6 +1,7 @@
 import {clamp,WORLD,type AttackAction,type Box,type FighterState,type Identity,type InputFrame,type Move,type MotionId} from '../core/types';
 import {MotionBuffer} from '../input/MotionBuffer';
 import {normalButtons} from '../characters/normals';
+import {prepareTraitMove} from './Traits';
 
 export class Fighter {
   x:number;y=WORLD.floor;vx=0;vy=0;facing:1|-1;
@@ -12,6 +13,7 @@ export class Fighter {
   buffer:{action:AttackAction;command?:MotionId;ttl:number}|null=null;motion=new MotionBuffer();
   backHeld=false;lowGuard=false;held:InputFrame['held']={};landingLag=0;
   throwLock=0;throwTechTimer=0;throwInvuln=0;airSpecialUsed=false;private airNormals=new Set<string>();
+  traitCount=0;traitTimer=0;traitFlash='';traitUsed=new Set<string>();
   lastMove='';totalDamage=0;totalHits=0;
   constructor(public readonly index:number,public identity:Identity){this.x=index===0?650:1110;this.facing=index===0?1:-1;this.hp=identity.hp;}
   get grounded(){return this.y>=WORLD.floor;}
@@ -20,7 +22,8 @@ export class Fighter {
   get appearance(){return this.attack?.appearance??'lcb';}
   targetKey(index:number){return index+Math.max(0,this.hitIndex)*2;}
   get hurtbox():Box{const crouched=this.attack?.normal?.stance==='crouch'||this.state==='crouch'||this.state==='block'&&this.lowGuard;const h=this.state==='down'?34:crouched?67:114;return {x:this.x-23,y:this.y-h,w:46,h};}
-  get hitbox():Box|null{if(!this.active||!this.attack||this.hitIndex<0||this.attack.projectile||this.attack.throwRange)return null;const b=this.attack.box;return {x:this.facing===1?this.x+b.x:this.x-b.x-b.w,y:this.y+b.y,w:b.w,h:b.h};}
+  get attackReach(){const m=this.attack;if(!m)return 0;if(!m.extend)return m.box.w;const [near,far]=m.extend,frame=this.attackAge-m.startup;const progress=frame<0?0:frame<m.active?frame/Math.max(1,m.active-1):Math.max(0,1-(frame-m.active)/8);return near+(far-near)*progress;}
+  get hitbox():Box|null{if(!this.active||!this.attack||this.hitIndex<0||this.attack.projectile||this.attack.throwRange)return null;const b=this.attack.box,w=this.attackReach;return {x:this.facing===1?this.x+b.x:this.x-b.x-w,y:this.y+b.y,w,h:b.h};}
   setState(state:FighterState){if(this.state!==state){this.state=state;this.age=0;}}
   canCancel(action:AttackAction,command?:MotionId){
     const m=this.attack;if(!m||!this.connected||this.attackAge<m.cancel[0]||this.attackAge>m.cancel[1])return false;
@@ -38,17 +41,18 @@ export class Fighter {
     else if(!this.grounded)key=`air-${action}`;
     else if(input.held.crouch)key=`crouch-${action}`;
     else if(action==='light'&&this.dashTimer>0&&!this.backDash)key='dashAttack';
-    const move=command?(this.grounded?this.identity.commandMoves?.[command]:this.identity.airCommandMoves?.[command]):this.identity.moves[key];
+    let move=command?(this.grounded?this.identity.commandMoves?.[command]:this.identity.airCommandMoves?.[command]):this.identity.moves[key];
     if(!move||this.ego<move.cost||(this.cooldowns[move.id]??0)>0)return false;
     if(!this.grounded&&move.normal&&this.airNormals.has(move.normal.button))return false;
     if(!this.grounded){if(command)this.airSpecialUsed=true;else if(move.normal)this.airNormals.add(move.normal.button);}
+    move=prepareTraitMove(this,move);
     this.ego=clamp(this.ego-move.cost,0,100);this.attack=move;this.attackAge=0;this.attackSerial++;this.hitTargets.clear();this.connected=false;
     this.cooldowns[move.id]=move.cooldown;this.dashTimer=0;this.buffer=null;this.lastMove=move.name;this.setState('attack');return true;
   }
   interrupt(frames:number){this.attack=null;this.dashTimer=0;this.buffer=null;this.stun=frames;this.setState('hit');}
   private takeoff(direction:number){this.airVelocity=direction*this.identity.speed*.95;this.vx=this.airVelocity;this.vy=-this.identity.jump;this.dashTimer=0;this.setState('jump');}
   step(input:InputFrame,enemy:Fighter){
-    this.age++;this.held=input.held;
+    this.age++;this.held=input.held;this.traitFlash='';if(this.traitTimer>0){this.traitTimer--;if(!this.traitTimer&&this.identity.sinner==='heath')this.traitCount=0;}
     if(this.grounded&&!this.attack&&!this.throwLock&&(!this.stun||this.state==='block')&&!this.dashTimer&&Math.abs(enemy.x-this.x)>6)this.facing=enemy.x>this.x?1:-1;
     this.backHeld=!!input.held[this.facing===1?'left':'right']&&!input.held[this.facing===1?'right':'left'];this.lowGuard=!!input.held.crouch;
     const directions=input.directionChanges??[];this.motion.record(directions[0]??input.held,this.facing);for(const held of directions.slice(1))this.motion.record(held,this.facing,false);if(directions.length)this.motion.record(input.held,this.facing,false);

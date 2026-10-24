@@ -7,10 +7,15 @@ from collections import Counter
 from pathlib import Path
 from PIL import Image, ImageFilter, ImageChops
 import json
+import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 metadata = json.loads((ROOT/'src/data/persona-art.json').read_text(encoding='utf-8'))
 for entry in metadata:
+    if len(sys.argv)>1 and entry['key'] not in sys.argv[1:]:
+        continue
+    cols=entry.get('sourceColumns',3)
+    rows=6//cols
     folder = ROOT/'public/characters'/entry['sinner']/entry['persona']
     path = folder/'source-sheet.png'
     if not path.exists():
@@ -34,7 +39,7 @@ for entry in metadata:
                     seen[other] = 1
                     queue.append(other)
         if len(pixels) > 500:
-            cell = Counter(min(1,int((p//width)/height*2))*3+min(2,int((p%width)/width*3)) for p in pixels).most_common(1)[0][0]
+            cell = Counter(min(rows-1,int((p//width)/height*rows))*cols+min(cols-1,int((p%width)/width*cols)) for p in pixels).most_common(1)[0][0]
             groups[cell].extend(pixels)
     frames, anchors = {}, []
     for cell, pixels in groups.items():
@@ -55,12 +60,12 @@ for entry in metadata:
         frame.alpha_composite(isolated.crop(bounds),(340-anchor+bounds[0],610-baseline+bounds[1]))
         frames[cell] = frame
         anchors.append({'frame':cell,'source_bounds':bounds,'source_anchor':[anchor,baseline]})
-    sheet = Image.new('RGBA',(800*3,640*2))
+    sheet = Image.new('RGBA',(800*cols,640*rows))
     for i, frame in frames.items():
-        sheet.alpha_composite(frame,(i%3*800,i//3*640))
+        sheet.alpha_composite(frame,(i%cols*800,i//cols*640))
     sheet.save(folder/'fighter.png',optimize=True)
     first = anchors[0]
-    scale = 64/(275 if entry['key']=='don-t' else first['source_bounds'][3]-first['source_bounds'][1]-4)
-    (folder/'frames.json').write_text(json.dumps({'frameWidth':800,'frameHeight':640,'columns':3,'count':6,'anchor':[340,610],'scaleTo64':scale,'anchors':anchors},indent=2),encoding='utf-8')
+    scale = (82 if entry['key']=='ryoshu-couture' else 78 if entry['key']=='ish-r' else 64)/(275 if entry['key']=='don-t' else first['source_bounds'][3]-first['source_bounds'][1]-4)
+    (folder/'frames.json').write_text(json.dumps({'frameWidth':800,'frameHeight':640,'columns':cols,'count':6,'anchor':[340,610],'scaleTo64':scale,'anchors':anchors},indent=2),encoding='utf-8')
     print(entry['key'], '6 RGBA poses', 'scale',round(scale,3))
 

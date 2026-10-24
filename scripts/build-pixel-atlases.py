@@ -22,7 +22,7 @@ for meta_path in (ROOT/'public/characters').rglob('frames.json'):
     cols=6 if base else meta['columns']
     count=36 if base else meta['count']
     fw,fh=meta['frameWidth'],meta['frameHeight']
-    anchor=[208,264] if base else meta['anchor']
+    anchor=meta.get('anchor',[208,264]) if base else meta['anchor']
     scale=meta['scaleTo64']
     source=Image.open(folder/'fighter.png').convert('RGBA')
     atlas=Image.new('RGBA',(224*6,128*((count+5)//6)))

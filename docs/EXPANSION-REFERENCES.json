@@ -1,0 +1,198 @@
+[
+  {
+    "key": "ryoshu-lccb",
+    "sinner": "ryoshu",
+    "persona": "lccb",
+    "name": "LCCB 助理",
+    "url": "https://www.limbuscompany.tools/identities/lccb-assistant-manager-ryoshu",
+    "reference": "10406"
+  },
+  {
+    "key": "ryoshu-yuro",
+    "sinner": "ryoshu",
+    "persona": "yuro",
+    "name": "二十区 · 圣愚会",
+    "url": "https://www.limbuscompany.tools/identities/district-20-yurodivy-ryoshu",
+    "reference": "10409"
+  },
+  {
+    "key": "ryoshu-edgar",
+    "sinner": "ryoshu",
+    "persona": "edgar",
+    "name": "埃德加家族 · 首席管家",
+    "url": "https://www.limbuscompany.tools/identities/edgar-family-chief-butler-ryoshu",
+    "reference": "10408"
+  },
+  {
+    "key": "ryoshu-n",
+    "sinner": "ryoshu",
+    "persona": "n",
+    "name": "N 公司 E.G.O. · 蔑视，敬畏",
+    "url": "https://www.limbuscompany.tools/identities/n-corp-ego-contempt-awe-ryoshu",
+    "reference": "10412"
+  },
+  {
+    "key": "ryoshu-hongyuan",
+    "sinner": "ryoshu",
+    "persona": "hongyuan",
+    "name": "鸿园 · 流浪武者",
+    "url": "https://www.limbuscompany.tools/identities/drifting-blade-of-hongyuan-ryoshu",
+    "reference": "10413"
+  },
+  {
+    "key": "ryoshu-couture",
+    "sinner": "ryoshu",
+    "persona": "couture",
+    "name": "西西弗百货 · 黑派鞋履馆",
+    "url": "https://www.limbuscompany.tools/identities/haute-couture-le-noir-footwear-hall-ryoshu",
+    "reference": "10416"
+  },
+  {
+    "key": "meur-liu",
+    "sinner": "meur",
+    "persona": "liu",
+    "name": "六协会 · 南部六科",
+    "url": "https://www.limbuscompany.tools/identities/liu-assoc-south-section-6-meursault",
+    "reference": "10502"
+  },
+  {
+    "key": "meur-blade",
+    "sinner": "meur",
+    "persona": "blade",
+    "name": "剑契 · 导师",
+    "url": "https://www.limbuscompany.tools/identities/blade-lineage-mentor-meursault",
+    "reference": "10508"
+  },
+  {
+    "key": "meur-cinq",
+    "sinner": "meur",
+    "persona": "cinq",
+    "name": "Cinq 协会 · 西部三科",
+    "url": "https://www.limbuscompany.tools/identities/cinq-assoc-west-section-3-meursault",
+    "reference": "10511"
+  },
+  {
+    "key": "meur-thumb",
+    "sinner": "meur",
+    "persona": "thumb",
+    "name": "拇指 · 东部四级指挥官",
+    "url": "https://www.limbuscompany.tools/identities/the-thumb-east-capo-iiii-meursault",
+    "reference": "10512"
+  },
+  {
+    "key": "meur-prince",
+    "sinner": "meur",
+    "persona": "prince",
+    "name": "拉曼却领 · 王子",
+    "url": "https://www.limbuscompany.tools/identities/the-prince-of-la-manchaland-meursault",
+    "reference": "10513"
+  },
+  {
+    "key": "meur-hornet",
+    "sinner": "meur",
+    "persona": "hornet",
+    "name": "脑叶 E.G.O. · 黄蜂〔改造〕",
+    "url": "https://www.limbuscompany.tools/identities/lobotomy-ego-hornet-alteration-meursault",
+    "reference": "10514",
+    "userWeaponCorrection": "鸟枪发射独头弹，非蜂巢手炮。"
+  },
+  {
+    "key": "ish-shi",
+    "sinner": "ish",
+    "persona": "shi",
+    "name": "四协会 · 南部五科",
+    "url": "https://www.limbuscompany.tools/identities/shi-assoc-south-section-5-ishmael",
+    "reference": "10803"
+  },
+  {
+    "key": "ish-r",
+    "sinner": "ish",
+    "persona": "r",
+    "name": "R 公司 · 驯鹿队",
+    "url": "https://www.limbuscompany.tools/identities/r-corp-4th-pack-reindeer-ishmael",
+    "reference": "10802"
+  },
+  {
+    "key": "ish-pequod",
+    "sinner": "ish",
+    "persona": "pequod",
+    "name": "裴廓德号 · 船长",
+    "url": "https://www.limbuscompany.tools/identities/the-pequod-captain-ishmael",
+    "reference": "10808"
+  },
+  {
+    "key": "ish-zwei",
+    "sinner": "ish",
+    "persona": "zwei",
+    "name": "二协会 · 西部三科",
+    "url": "https://www.limbuscompany.tools/identities/zwei-assoc-west-section-3-ishmael",
+    "reference": "10810"
+  },
+  {
+    "key": "ish-hierarch",
+    "sinner": "ish",
+    "persona": "hierarch",
+    "name": "H 公司 · 家主候选人",
+    "url": "https://www.limbuscompany.tools/identities/family-hierarch-candidate-ishmael",
+    "reference": "10812",
+    "userWeaponCorrection": "折扇，非长剑。"
+  },
+  {
+    "key": "ish-lcd",
+    "sinner": "ish",
+    "persona": "lcd",
+    "name": "LCD · OSIR 小队",
+    "url": "https://www.limbuscompany.tools/identities/lcd-osir-team-ishmael",
+    "reference": "10815"
+  },
+  {
+    "key": "rod-n",
+    "sinner": "rod",
+    "persona": "n",
+    "name": "N 公司 · 中锤",
+    "url": "https://www.limbuscompany.tools/identities/n-corp-mittelhammer-rodion",
+    "reference": "10904"
+  },
+  {
+    "key": "rod-dieci",
+    "sinner": "rod",
+    "persona": "dieci",
+    "name": "十协会 · 南部四科",
+    "url": "https://www.limbuscompany.tools/identities/dieci-assoc-south-section-4-rodion",
+    "reference": "10907"
+  },
+  {
+    "key": "rod-princess",
+    "sinner": "rod",
+    "persona": "princess",
+    "name": "拉曼却领 · 公主",
+    "url": "https://www.limbuscompany.tools/identities/the-princess-of-la-manchaland-rodion",
+    "reference": "10911",
+    "userWeaponCorrection": "紫伞，非折扇。"
+  },
+  {
+    "key": "rod-heishou",
+    "sinner": "rod",
+    "persona": "heishou",
+    "name": "黑兽 · 巳",
+    "url": "https://www.limbuscompany.tools/identities/heishou-pack-si-branch-rodion",
+    "reference": "10912"
+  },
+  {
+    "key": "rod-ring",
+    "sinner": "rod",
+    "persona": "ring",
+    "name": "环指 · 野兽派讲师",
+    "url": "https://www.limbuscompany.tools/identities/the-ring-fauvist-docent-rodion",
+    "reference": "10915"
+  },
+  {
+    "key": "rod-thumb",
+    "sinner": "rod",
+    "persona": "thumb",
+    "name": "蜘蛛巢 · 拇指教父",
+    "url": "https://www.limbuscompany.tools/identities/the-house-of-spiders-the-thumb-nursefather-rodion",
+    "reference": "10916",
+    "userWeaponCorrection": "可延长剑刃的剑，非左轮枪刃。"
+  }
+]

@@ -792,5 +792,1297 @@
     ],
     "status": "burn",
     "knockdown": true
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "qcf",
+    "id": "ryoshu-lccb-qcf",
+    "name": "贴身破阵弹",
+    "source": "LCCB 助理",
+    "appearance": "ryoshu-lccb",
+    "visualKey": "ryoshu-lccb",
+    "visualRow": 0,
+    "effect": "bullets",
+    "action": "special",
+    "level": 3,
+    "startup": 10,
+    "active": 8,
+    "recovery": 23,
+    "damage": 78,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 14,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 160,
+      "h": 130
+    },
+    "cancel": [
+      11,
+      32
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#e2b861",
+    "projectile": {
+      "frames": [
+        0
+      ],
+      "speed": 15,
+      "width": 54,
+      "height": 55,
+      "life": 36
+    },
+    "description": "霰弹向前扩散，近中距离封路；远距离不追踪。",
+    "label": "LCCB"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "qcb",
+    "id": "ryoshu-yuro-qcb",
+    "name": "齿轮重落",
+    "source": "二十区 · 圣愚会",
+    "appearance": "ryoshu-yuro",
+    "visualKey": "ryoshu-yuro",
+    "visualRow": 0,
+    "effect": "hammer",
+    "action": "special",
+    "level": 3,
+    "startup": 18,
+    "active": 8,
+    "recovery": 23,
+    "damage": 132,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 20,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 190,
+      "h": 130
+    },
+    "cancel": [
+      19,
+      40
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d0b57a",
+    "guardDamage": 1.8,
+    "knockdown": true,
+    "description": "机械长柄重砸，破防强、空挥收招长。",
+    "label": "圣愚"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "dp",
+    "id": "ryoshu-edgar-dp",
+    "name": "迎宾·清扫",
+    "source": "埃德加家族 · 首席管家",
+    "appearance": "ryoshu-edgar",
+    "visualKey": "ryoshu-edgar",
+    "visualRow": 0,
+    "effect": "iaido",
+    "action": "special",
+    "level": 3,
+    "startup": 9,
+    "active": 16,
+    "recovery": 23,
+    "damage": 48,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 18,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 175,
+      "h": 130
+    },
+    "cancel": [
+      10,
+      31
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#b6e8d4",
+    "teleport": 45,
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 3,
+        "scale": 1
+      },
+      {
+        "frame": 6,
+        "duration": 3,
+        "scale": 1
+      },
+      {
+        "frame": 12,
+        "duration": 3,
+        "scale": 1
+      }
+    ],
+    "description": "踏步后三段短刀连击，适合命中确认。",
+    "label": "女仆"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "ddj",
+    "id": "ryoshu-n-ddj",
+    "name": "蔑视的延刃",
+    "source": "N 公司 E.G.O. · 蔑视，敬畏",
+    "appearance": "ryoshu-n",
+    "visualKey": "ryoshu-n",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 21,
+    "active": 8,
+    "recovery": 31,
+    "damage": 165,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 26,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 255,
+      "h": 130
+    },
+    "cancel": [
+      22,
+      43
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#ffd05b",
+    "guardDamage": 1.5,
+    "description": "金色节刃延伸，长距离重斩；前摇明显。",
+    "label": "N EGO"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "qcfk",
+    "id": "ryoshu-hongyuan-qcfk",
+    "name": "鸿园·追刺",
+    "source": "鸿园 · 流浪武者",
+    "appearance": "ryoshu-hongyuan",
+    "visualKey": "ryoshu-hongyuan",
+    "visualRow": 0,
+    "effect": "thrust",
+    "action": "special",
+    "level": 3,
+    "startup": 11,
+    "active": 15,
+    "recovery": 23,
+    "damage": 57,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 18,
+    "cooldown": 90,
+    "lunge": 3,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 210,
+      "h": 130
+    },
+    "cancel": [
+      12,
+      33
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#b0c3eb",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 4,
+        "scale": 1
+      }
+    ],
+    "description": "两次长枪追刺，推进与确认兼用。",
+    "label": "鸿园"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "qcbl",
+    "id": "ryoshu-couture-qcbl",
+    "name": "鞋履馆·踏碎",
+    "source": "西西弗百货 · 黑派鞋履馆",
+    "appearance": "ryoshu-couture",
+    "visualKey": "ryoshu-couture",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 16,
+    "active": 8,
+    "recovery": 23,
+    "damage": 126,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 22,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 155,
+      "h": 130
+    },
+    "cancel": [
+      17,
+      38
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d3ad59",
+    "hitLevel": "low",
+    "armorUntil": 10,
+    "description": "强化鞋履滑踏，低段并在前摇短暂承受攻击。",
+    "label": "黑派"
+  },
+  {
+    "sinner": "ryoshu",
+    "slot": "dpj",
+    "id": "ryoshu-lcb-dpj",
+    "name": "鞘锋·升击",
+    "source": "LCB · 罪人",
+    "appearance": "lcb",
+    "visualKey": null,
+    "visualRow": 2,
+    "effect": "uppercut",
+    "action": "special",
+    "level": 3,
+    "startup": 8,
+    "active": 8,
+    "recovery": 23,
+    "damage": 91,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 11,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 14,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 130,
+      "h": 130
+    },
+    "cancel": [
+      9,
+      30
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d36c67",
+    "description": "带鞘长刀向上截击，覆盖近身对空。",
+    "label": "LCB"
+  },
+  {
+    "sinner": "meur",
+    "slot": "qcf",
+    "id": "meur-liu-qcf",
+    "name": "铁拳·寸焰",
+    "source": "六协会 · 南部六科",
+    "appearance": "meur-liu",
+    "visualKey": "meur-liu",
+    "visualRow": 0,
+    "effect": "fist",
+    "action": "special",
+    "level": 3,
+    "startup": 11,
+    "active": 8,
+    "recovery": 23,
+    "damage": 110,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 16,
+    "cooldown": 90,
+    "lunge": 2,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 140,
+      "h": 130
+    },
+    "cancel": [
+      12,
+      33
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#f18a46",
+    "status": "burn",
+    "description": "六协会拳套前击并附灼烧。",
+    "label": "六协"
+  },
+  {
+    "sinner": "meur",
+    "slot": "qcb",
+    "id": "meur-blade-qcb",
+    "name": "剑契·导师斩",
+    "source": "剑契 · 导师",
+    "appearance": "meur-blade",
+    "visualKey": "meur-blade",
+    "visualRow": 0,
+    "effect": "iaido",
+    "action": "special",
+    "level": 3,
+    "startup": 13,
+    "active": 16,
+    "recovery": 23,
+    "damage": 60,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 20,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 200,
+      "h": 130
+    },
+    "cancel": [
+      14,
+      35
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#dae2ed",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 4,
+        "scale": 1
+      }
+    ],
+    "description": "双刀两次交错斩击，稳定衔接连段。",
+    "label": "剑契"
+  },
+  {
+    "sinner": "meur",
+    "slot": "dp",
+    "id": "meur-cinq-dp",
+    "name": "决斗·截空",
+    "source": "Cinq 协会 · 西部三科",
+    "appearance": "meur-cinq",
+    "visualKey": "meur-cinq",
+    "visualRow": 0,
+    "effect": "uppercut",
+    "action": "special",
+    "level": 3,
+    "startup": 10,
+    "active": 8,
+    "recovery": 23,
+    "damage": 110,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 12,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 18,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 155,
+      "h": 130
+    },
+    "cancel": [
+      11,
+      32
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#b2dbff",
+    "description": "西部三科刺剑上挑，覆盖近身对空。",
+    "label": "Cinq"
+  },
+  {
+    "sinner": "meur",
+    "slot": "ddj",
+    "id": "meur-thumb-ddj",
+    "name": "炮刃·轰断",
+    "source": "拇指 · 东部四级指挥官",
+    "appearance": "meur-thumb",
+    "visualKey": "meur-thumb",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 23,
+    "active": 8,
+    "recovery": 23,
+    "damage": 175,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 26,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 220,
+      "h": 130
+    },
+    "cancel": [
+      24,
+      45
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#f0b26c",
+    "armorUntil": 15,
+    "knockdown": true,
+    "guardDamage": 1.7,
+    "description": "火力强化巨剑，有前摇霸体和长收招。",
+    "label": "拇指"
+  },
+  {
+    "sinner": "meur",
+    "slot": "qcfk",
+    "id": "meur-prince-qcfk",
+    "name": "王子·血缚投",
+    "source": "拉曼却领 · 王子",
+    "appearance": "meur-prince",
+    "visualKey": "meur-prince",
+    "visualRow": 0,
+    "effect": "thrust",
+    "action": "special",
+    "level": 3,
+    "startup": 8,
+    "active": 8,
+    "recovery": 23,
+    "damage": 180,
+    "hitstun": 40,
+    "knockback": 9,
+    "launch": 7,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 24,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 100,
+      "h": 130
+    },
+    "cancel": [
+      9,
+      30
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#e74766",
+    "throwRange": 100,
+    "knockdown": true,
+    "description": "血棘拘束的近身指令投，不能抓空中或命中硬直。",
+    "label": "王子"
+  },
+  {
+    "sinner": "meur",
+    "slot": "qcbl",
+    "id": "meur-hornet-qcbl",
+    "name": "黄蜂·独头弹",
+    "source": "脑叶 E.G.O. · 黄蜂〔改造〕",
+    "appearance": "meur-hornet",
+    "visualKey": "meur-hornet",
+    "visualRow": 0,
+    "effect": "slug",
+    "action": "special",
+    "level": 3,
+    "startup": 17,
+    "active": 8,
+    "recovery": 23,
+    "damage": 135,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 22,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 160,
+      "h": 130
+    },
+    "cancel": [
+      18,
+      39
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d7b86b",
+    "projectile": {
+      "frames": [
+        0
+      ],
+      "speed": 22,
+      "width": 24,
+      "height": 14,
+      "life": 65
+    },
+    "description": "肩抵鸟枪，射出一枚高速独头弹；射击后有明显后坐与收枪空档。",
+    "label": "黄蜂"
+  },
+  {
+    "sinner": "meur",
+    "slot": "dpj",
+    "id": "meur-lcb-dpj",
+    "name": "拳套·固守反击",
+    "source": "LCB · 罪人",
+    "appearance": "lcb",
+    "visualKey": null,
+    "visualRow": 2,
+    "effect": "fist",
+    "action": "special",
+    "level": 3,
+    "startup": 18,
+    "active": 8,
+    "recovery": 23,
+    "damage": 115,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 16,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 135,
+      "h": 130
+    },
+    "cancel": [
+      19,
+      40
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#9bb8d3",
+    "counter": [
+      2,
+      13
+    ],
+    "description": "站稳后等待来袭，识破后拳套反击。",
+    "label": "LCB"
+  },
+  {
+    "sinner": "ish",
+    "slot": "qcf",
+    "id": "ish-shi-qcf",
+    "name": "四协·断流",
+    "source": "四协会 · 南部五科",
+    "appearance": "ish-shi",
+    "visualKey": "ish-shi",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 10,
+    "active": 8,
+    "recovery": 23,
+    "damage": 95,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 15,
+    "cooldown": 90,
+    "lunge": 2,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 170,
+      "h": 130
+    },
+    "cancel": [
+      11,
+      32
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#ee697c",
+    "description": "快速直线刀斩，适合盾反后抢回节奏。",
+    "label": "四协"
+  },
+  {
+    "sinner": "ish",
+    "slot": "qcb",
+    "id": "ish-r-qcb",
+    "name": "心灵·震荡",
+    "source": "R 公司 · 驯鹿队",
+    "appearance": "ish-r",
+    "visualKey": "ish-r",
+    "visualRow": 0,
+    "effect": "hammer",
+    "action": "special",
+    "level": 3,
+    "startup": 19,
+    "active": 8,
+    "recovery": 23,
+    "damage": 142,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 8,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 24,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 215,
+      "h": 130
+    },
+    "cancel": [
+      20,
+      41
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#ffd47a",
+    "guardDamage": 1.5,
+    "description": "驯鹿神经电击锤扫，重击并浮空。",
+    "label": "驯鹿"
+  },
+  {
+    "sinner": "ish",
+    "slot": "dp",
+    "id": "ish-pequod-dp",
+    "name": "船长·刺鲸",
+    "source": "裴廓德号 · 船长",
+    "appearance": "ish-pequod",
+    "visualKey": "ish-pequod",
+    "visualRow": 0,
+    "effect": "thrust",
+    "action": "special",
+    "level": 3,
+    "startup": 12,
+    "active": 16,
+    "recovery": 23,
+    "damage": 72,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 20,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 245,
+      "h": 130
+    },
+    "cancel": [
+      13,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#8ce4d9",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 9,
+        "duration": 4,
+        "scale": 1
+      }
+    ],
+    "description": "两次长鱼叉，第二击延迟，用于距离控制。",
+    "label": "裴廓德"
+  },
+  {
+    "sinner": "ish",
+    "slot": "ddj",
+    "id": "ish-zwei-ddj",
+    "name": "二协·迎击",
+    "source": "二协会 · 西部三科",
+    "appearance": "ish-zwei",
+    "visualKey": "ish-zwei",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 20,
+    "active": 8,
+    "recovery": 23,
+    "damage": 125,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 20,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 180,
+      "h": 130
+    },
+    "cancel": [
+      21,
+      42
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#b8d5ee",
+    "counter": [
+      2,
+      14
+    ],
+    "guardDamage": 1.2,
+    "description": "西部二协会重剑架势，接住攻击后反斩。",
+    "label": "二协"
+  },
+  {
+    "sinner": "ish",
+    "slot": "qcfk",
+    "id": "ish-hierarch-qcfk",
+    "name": "惜春·展扇拂袖",
+    "source": "H 公司 · 家主候选人",
+    "appearance": "ish-hierarch",
+    "visualKey": "ish-hierarch",
+    "visualRow": 0,
+    "effect": "fan",
+    "action": "special",
+    "level": 3,
+    "startup": 12,
+    "active": 15,
+    "recovery": 23,
+    "damage": 64,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 18,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 185,
+      "h": 130
+    },
+    "cancel": [
+      13,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#e3ad61",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 4,
+        "scale": 1
+      }
+    ],
+    "description": "展开折扇掩身，接低身横扫；两次扇击覆盖近中距离，末段为下段。",
+    "hitLevel": "low",
+    "label": "家主"
+  },
+  {
+    "sinner": "ish",
+    "slot": "qcbl",
+    "id": "ish-lcd-qcbl",
+    "name": "OSIR·鬼火拔刀",
+    "source": "LCD · OSIR 小队",
+    "appearance": "ish-lcd",
+    "visualKey": "ish-lcd",
+    "visualRow": 0,
+    "effect": "iaido",
+    "action": "special",
+    "level": 3,
+    "startup": 14,
+    "active": 8,
+    "recovery": 23,
+    "damage": 138,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 23,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 230,
+      "h": 130
+    },
+    "cancel": [
+      15,
+      36
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#83e3e7",
+    "teleport": 58,
+    "status": "rupture",
+    "description": "义肢驱动拔刀穿刺，命中留下破裂。",
+    "label": "LCD"
+  },
+  {
+    "sinner": "ish",
+    "slot": "dpj",
+    "id": "ish-lcb-dpj",
+    "name": "盾锤·截浪",
+    "source": "LCB · 罪人",
+    "appearance": "lcb",
+    "visualKey": null,
+    "visualRow": 2,
+    "effect": "uppercut",
+    "action": "special",
+    "level": 3,
+    "startup": 9,
+    "active": 8,
+    "recovery": 23,
+    "damage": 92,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 11,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 14,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 145,
+      "h": 130
+    },
+    "cancel": [
+      10,
+      31
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#e7a65d",
+    "description": "盾与钉头锤共同上挑，防守后的对空追击。",
+    "label": "LCB"
+  },
+  {
+    "sinner": "rod",
+    "slot": "qcf",
+    "id": "rod-n-qcf",
+    "name": "钉锤·罪痕",
+    "source": "N 公司 · 中锤",
+    "appearance": "rod-n",
+    "visualKey": "rod-n",
+    "visualRow": 0,
+    "effect": "hammer",
+    "action": "special",
+    "level": 3,
+    "startup": 15,
+    "active": 8,
+    "recovery": 23,
+    "damage": 115,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 18,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 165,
+      "h": 130
+    },
+    "cancel": [
+      16,
+      37
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#ed9369",
+    "status": "rupture",
+    "guardDamage": 1.5,
+    "description": "N 公司重锤命中留破裂，压制架势。",
+    "label": "N 公司"
+  },
+  {
+    "sinner": "rod",
+    "slot": "qcb",
+    "id": "rod-dieci-qcb",
+    "name": "十协·破书拳",
+    "source": "十协会 · 南部四科",
+    "appearance": "rod-dieci",
+    "visualKey": "rod-dieci",
+    "visualRow": 0,
+    "effect": "fist",
+    "action": "special",
+    "level": 3,
+    "startup": 12,
+    "active": 8,
+    "recovery": 23,
+    "damage": 108,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 17,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 145,
+      "h": 130
+    },
+    "cancel": [
+      13,
+      34
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#f6d77f",
+    "armorUntil": 8,
+    "description": "拳套短冲，前摇短暂承受攻击。",
+    "label": "十协"
+  },
+  {
+    "sinner": "rod",
+    "slot": "dp",
+    "id": "rod-princess-dp",
+    "name": "公主·紫伞轮舞",
+    "source": "拉曼却领 · 公主",
+    "appearance": "rod-princess",
+    "visualKey": "rod-princess",
+    "visualRow": 0,
+    "effect": "parasol",
+    "action": "special",
+    "level": 3,
+    "startup": 17,
+    "active": 8,
+    "recovery": 23,
+    "damage": 145,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 8,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 24,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 235,
+      "h": 130
+    },
+    "cancel": [
+      18,
+      39
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#ac7ee2",
+    "description": "紫伞开合与旋身伞击，伞面掩身后收伞挑起对手。",
+    "label": "公主"
+  },
+  {
+    "sinner": "rod",
+    "slot": "ddj",
+    "id": "rod-heishou-ddj",
+    "name": "黑兽·蛇行三叠斩",
+    "source": "黑兽 · 巳",
+    "appearance": "rod-heishou",
+    "visualKey": "rod-heishou",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 13,
+    "active": 18,
+    "recovery": 23,
+    "damage": 55,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 20,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 235,
+      "h": 130
+    },
+    "cancel": [
+      14,
+      35
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#b6a0ef",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 3,
+        "scale": 1
+      },
+      {
+        "frame": 7,
+        "duration": 3,
+        "scale": 1
+      },
+      {
+        "frame": 14,
+        "duration": 3,
+        "scale": 1
+      }
+    ],
+    "description": "关刀连续三段蛇形斩击，依次确认。",
+    "label": "黑兽巳"
+  },
+  {
+    "sinner": "rod",
+    "slot": "qcfk",
+    "id": "rod-ring-qcfk",
+    "name": "环指·兽爪涂抹",
+    "source": "环指 · 野兽派讲师",
+    "appearance": "rod-ring",
+    "visualKey": "rod-ring",
+    "visualRow": 0,
+    "effect": "cleave",
+    "action": "special",
+    "level": 3,
+    "startup": 18,
+    "active": 15,
+    "recovery": 23,
+    "damage": 68,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 21,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 205,
+      "h": 130
+    },
+    "cancel": [
+      19,
+      40
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#fa91ab",
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 4,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 4,
+        "scale": 1
+      }
+    ],
+    "description": "拼接兽爪交错两击，压制中距离对手。",
+    "label": "环指"
+  },
+  {
+    "sinner": "rod",
+    "slot": "qcbl",
+    "id": "rod-thumb-qcbl",
+    "name": "拇指·延刃断击",
+    "source": "蜘蛛巢 · 拇指教父",
+    "appearance": "rod-thumb",
+    "visualKey": "rod-thumb",
+    "visualRow": 0,
+    "effect": "extend",
+    "action": "special",
+    "level": 3,
+    "startup": 24,
+    "active": 12,
+    "recovery": 34,
+    "damage": 170,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 0,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 26,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -110,
+      "w": 430,
+      "h": 92
+    },
+    "cancel": [
+      25,
+      46
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d7dbe4",
+    "description": "将剑刃逐节延长刺向远处，再收回剑身；近段先有效，远端需等待延刃到位。",
+    "label": "拇指",
+    "extend": [
+      140,
+      430
+    ]
+  },
+  {
+    "sinner": "rod",
+    "slot": "dpj",
+    "id": "rod-lcb-dpj",
+    "name": "大斧·迎面挑",
+    "source": "LCB · 罪人",
+    "appearance": "lcb",
+    "visualKey": null,
+    "visualRow": 2,
+    "effect": "uppercut",
+    "action": "special",
+    "level": 3,
+    "startup": 11,
+    "active": 8,
+    "recovery": 23,
+    "damage": 110,
+    "hitstun": 40,
+    "knockback": 2,
+    "launch": 12,
+    "hitstop": 5,
+    "power": 11,
+    "cost": 15,
+    "cooldown": 90,
+    "lunge": 0,
+    "box": {
+      "x": 0,
+      "y": -135,
+      "w": 155,
+      "h": 130
+    },
+    "cancel": [
+      12,
+      33
+    ],
+    "into": [
+      "ego"
+    ],
+    "color": "#d293a9",
+    "description": "重斧上挑，对空与连段终结。",
+    "label": "LCB"
   }
 ]

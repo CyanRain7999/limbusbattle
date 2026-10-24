@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { AssetManager } from '../assets/AssetManager';
 import { Match } from '../combat/Match';
 import { AIController } from '../ai/Controller';
-import { getIdentity } from '../characters/registry';
+import { playableSinners } from '../characters/registry';
 import { clamp, neutral, type CombatEvent, type MatchOptions } from '../core/types';
 import type { InputController } from '../input/InputController';
 import type { Synth } from '../audio/Synth';
@@ -16,7 +16,7 @@ export class ArenaScene extends Phaser.Scene {
   private background!:Phaser.GameObjects.Image;private fx!:Phaser.GameObjects.Graphics;private shadows!:Phaser.GameObjects.Graphics;
   private combatFX!:CombatFX;private demo=0;private labels:Phaser.GameObjects.Text[]=[];private egoUntil=0;private stepSerial=0;private hitFlashUntil=[0,0];
   constructor(private controls:InputController,private audio:Synth){super('Arena');}
-  preload(){for(const sinner of ['don','heath']){this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});this.load.spritesheet(`${sinner}-normals`,`./characters/${sinner}/normals/pixel.png`,{frameWidth:224,frameHeight:128});}for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:224,frameHeight:128});}
+  preload(){for(const sinner of playableSinners){this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});this.load.spritesheet(`${sinner}-normals`,`./characters/${sinner}/normals/pixel.png`,{frameWidth:224,frameHeight:128});}for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:224,frameHeight:128});}
   create(){
     AssetManager.generate(this);this.background=this.add.image(0,0,'depot').setOrigin(0).setScale(2).setDepth(0);
     this.shadows=this.add.graphics().setDepth(2);
@@ -66,6 +66,8 @@ export class ArenaScene extends Phaser.Scene {
         const personaKey=f.attack?.visualKey;
         let texture=personaKey&&this.textures.exists(personaKey)?personaKey:`${f.identity.sinner}-premium`;
         if(texture===personaKey)frame%=6;
+        // Keep the horizontal sword pose while its extra sections retract.
+        if(f.attack?.extend&&f.attackAge>=f.attack.startup+f.attack.active&&f.attackAge<f.attack.startup+f.attack.active+8)frame=3;
         const normal=f.attack?.normal;
         if(normal){
           const m=f.attack!;
@@ -89,6 +91,7 @@ export class ArenaScene extends Phaser.Scene {
       this.cameras.main.shake(e.type==='ego'?180:heavy?105:55,e.type==='ego'?.005:heavy?.0024:.0008);
     }
     if(e.type==='ego'){this.egoUntil=this.time.now+900;this.floatLabel(e.x,e.y-100,`E.G.O.\n${e.text}`,e.color??'#edc16c',28,1100);}
+    if(e.type==='trait')this.floatLabel(e.x,e.y-18,e.text??'',e.color??'#ecd69f',15,450);
     if(e.type==='skill')this.floatLabel(e.x,e.y-35,e.text??'',e.color??'#cbdac1',14,650);
     if(e.type==='clash')this.floatLabel(e.x,e.y-45,`拼 点\n${e.text}`,'#ffe2a0',24,600);
     if(e.type==='throwtech')this.floatLabel(e.x,e.y-40,'拆投','#a8e4dd',20,450);

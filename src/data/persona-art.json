@@ -1,15 +1,262 @@
 [
- {"key":"don-w","sinner":"don","persona":"w","reference":"10302","name":"W 公司 · 清理人员"},
- {"key":"don-n","sinner":"don","persona":"n","reference":"10304","name":"N 公司 · 中锤"},
- {"key":"don-blade","sinner":"don","persona":"blade","reference":"10308","name":"剑契 · 杀手"},
- {"key":"don-cinq","sinner":"don","persona":"cinq","reference":"10305","name":"Cinq 协会 · 南部五科科长"},
- {"key":"don-t","sinner":"don","persona":"t","reference":"10309","name":"T 公司 · 三级征收员工"},
- {"key":"don-queen","sinner":"don","persona":"queen","reference":"10312","name":"脑叶本部 · 憎恶女王"},
- {"key":"heath-seven","sinner":"heath","persona":"seven","reference":"10706","name":"七协会 · 南部四科"},
- {"key":"heath-sunshower","sinner":"heath","persona":"sunshower","reference":"10705","name":"脑叶 E.G.O. · 伞夫"},
- {"key":"heath-fullstop","sinner":"heath","persona":"fullstop","reference":"10711","name":"句点事务所 · 收尾人"},
- {"key":"heath-kurokumo","sinner":"heath","persona":"kurokumo","reference":"10712","name":"黑云会 · 若众"},
- {"key":"heath-middle","sinner":"heath","persona":"middle","reference":"10715","name":"中指 · 大哥"},
- {"key":"heath-wild","sinner":"heath","persona":"wild","reference":"10710","name":"荒猎 · 希斯克利夫"},
- {"key":"heath-r","sinner":"heath","persona":"r","reference":"10703","name":"R 公司 · 兔子队"}
+  {
+    "key": "don-w",
+    "sinner": "don",
+    "persona": "w",
+    "reference": "10302",
+    "name": "W 公司 · 清理人员"
+  },
+  {
+    "key": "don-n",
+    "sinner": "don",
+    "persona": "n",
+    "reference": "10304",
+    "name": "N 公司 · 中锤"
+  },
+  {
+    "key": "don-blade",
+    "sinner": "don",
+    "persona": "blade",
+    "reference": "10308",
+    "name": "剑契 · 杀手"
+  },
+  {
+    "key": "don-cinq",
+    "sinner": "don",
+    "persona": "cinq",
+    "reference": "10305",
+    "name": "Cinq 协会 · 南部五科科长"
+  },
+  {
+    "key": "don-t",
+    "sinner": "don",
+    "persona": "t",
+    "reference": "10309",
+    "name": "T 公司 · 三级征收员工"
+  },
+  {
+    "key": "don-queen",
+    "sinner": "don",
+    "persona": "queen",
+    "reference": "10312",
+    "name": "脑叶本部 · 憎恶女王"
+  },
+  {
+    "key": "heath-seven",
+    "sinner": "heath",
+    "persona": "seven",
+    "reference": "10706",
+    "name": "七协会 · 南部四科"
+  },
+  {
+    "key": "heath-sunshower",
+    "sinner": "heath",
+    "persona": "sunshower",
+    "reference": "10705",
+    "name": "脑叶 E.G.O. · 伞夫"
+  },
+  {
+    "key": "heath-fullstop",
+    "sinner": "heath",
+    "persona": "fullstop",
+    "reference": "10711",
+    "name": "句点事务所 · 收尾人"
+  },
+  {
+    "key": "heath-kurokumo",
+    "sinner": "heath",
+    "persona": "kurokumo",
+    "reference": "10712",
+    "name": "黑云会 · 若众"
+  },
+  {
+    "key": "heath-middle",
+    "sinner": "heath",
+    "persona": "middle",
+    "reference": "10715",
+    "name": "中指 · 大哥"
+  },
+  {
+    "key": "heath-wild",
+    "sinner": "heath",
+    "persona": "wild",
+    "reference": "10710",
+    "name": "荒猎 · 希斯克利夫"
+  },
+  {
+    "key": "heath-r",
+    "sinner": "heath",
+    "persona": "r",
+    "reference": "10703",
+    "name": "R 公司 · 兔子队"
+  },
+  {
+    "key": "ryoshu-lccb",
+    "sinner": "ryoshu",
+    "persona": "lccb",
+    "reference": "10406",
+    "name": "LCCB 助理"
+  },
+  {
+    "key": "ryoshu-yuro",
+    "sinner": "ryoshu",
+    "persona": "yuro",
+    "reference": "10409",
+    "name": "二十区 · 圣愚会"
+  },
+  {
+    "key": "ryoshu-edgar",
+    "sinner": "ryoshu",
+    "persona": "edgar",
+    "reference": "10408",
+    "name": "埃德加家族 · 首席管家"
+  },
+  {
+    "key": "ryoshu-n",
+    "sinner": "ryoshu",
+    "persona": "n",
+    "reference": "10412",
+    "name": "N 公司 E.G.O. · 蔑视，敬畏"
+  },
+  {
+    "key": "ryoshu-hongyuan",
+    "sinner": "ryoshu",
+    "persona": "hongyuan",
+    "reference": "10413",
+    "name": "鸿园 · 流浪武者"
+  },
+  {
+    "key": "ryoshu-couture",
+    "sinner": "ryoshu",
+    "persona": "couture",
+    "reference": "10416",
+    "name": "西西弗百货 · 黑派鞋履馆"
+  },
+  {
+    "key": "meur-liu",
+    "sinner": "meur",
+    "persona": "liu",
+    "reference": "10502",
+    "name": "六协会 · 南部六科"
+  },
+  {
+    "key": "meur-blade",
+    "sinner": "meur",
+    "persona": "blade",
+    "reference": "10508",
+    "name": "剑契 · 导师"
+  },
+  {
+    "key": "meur-cinq",
+    "sinner": "meur",
+    "persona": "cinq",
+    "reference": "10511",
+    "name": "Cinq 协会 · 西部三科"
+  },
+  {
+    "key": "meur-thumb",
+    "sinner": "meur",
+    "persona": "thumb",
+    "reference": "10512",
+    "name": "拇指 · 东部四级指挥官"
+  },
+  {
+    "key": "meur-prince",
+    "sinner": "meur",
+    "persona": "prince",
+    "reference": "10513",
+    "name": "拉曼却领 · 王子"
+  },
+  {
+    "key": "meur-hornet",
+    "sinner": "meur",
+    "persona": "hornet",
+    "reference": "10514",
+    "name": "脑叶 E.G.O. · 黄蜂〔改造〕"
+  },
+  {
+    "key": "ish-shi",
+    "sinner": "ish",
+    "persona": "shi",
+    "reference": "10803",
+    "name": "四协会 · 南部五科",
+    "sourceColumns": 2
+  },
+  {
+    "key": "ish-r",
+    "sinner": "ish",
+    "persona": "r",
+    "reference": "10802",
+    "name": "R 公司 · 驯鹿队"
+  },
+  {
+    "key": "ish-pequod",
+    "sinner": "ish",
+    "persona": "pequod",
+    "reference": "10808",
+    "name": "裴廓德号 · 船长"
+  },
+  {
+    "key": "ish-zwei",
+    "sinner": "ish",
+    "persona": "zwei",
+    "reference": "10810",
+    "name": "二协会 · 西部三科"
+  },
+  {
+    "key": "ish-hierarch",
+    "sinner": "ish",
+    "persona": "hierarch",
+    "reference": "10812",
+    "name": "H 公司 · 家主候选人"
+  },
+  {
+    "key": "ish-lcd",
+    "sinner": "ish",
+    "persona": "lcd",
+    "reference": "10815",
+    "name": "LCD · OSIR 小队"
+  },
+  {
+    "key": "rod-n",
+    "sinner": "rod",
+    "persona": "n",
+    "reference": "10904",
+    "name": "N 公司 · 中锤"
+  },
+  {
+    "key": "rod-dieci",
+    "sinner": "rod",
+    "persona": "dieci",
+    "reference": "10907",
+    "name": "十协会 · 南部四科"
+  },
+  {
+    "key": "rod-princess",
+    "sinner": "rod",
+    "persona": "princess",
+    "reference": "10911",
+    "name": "拉曼却领 · 公主"
+  },
+  {
+    "key": "rod-heishou",
+    "sinner": "rod",
+    "persona": "heishou",
+    "reference": "10912",
+    "name": "黑兽 · 巳"
+  },
+  {
+    "key": "rod-ring",
+    "sinner": "rod",
+    "persona": "ring",
+    "reference": "10915",
+    "name": "环指 · 野兽派讲师"
+  },
+  {
+    "key": "rod-thumb",
+    "sinner": "rod",
+    "persona": "thumb",
+    "reference": "10916",
+    "name": "蜘蛛巢 · 拇指教父"
+  }
 ]

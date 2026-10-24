@@ -1,4 +1,5 @@
 import { Fighter } from './Fighter';
+import {traitContact,traitHit} from './Traits';
 import { clamp, intersects, neutral, type CombatEvent, type InputFrame, type MatchOptions, type Move } from '../core/types';
 export interface Projectile {id:number;source:number;x:number;y:number;vx:number;vy:number;width:number;height:number;life:number;move:Move}
 
@@ -31,6 +32,7 @@ export class Match {
     for (let i = 0; i < 2; i++) this.fighters[i].step(inputs[i], this.fighters[1 - i]);
     for (let i = 0; i < 2; i++) {
       const f = this.fighters[i];
+      if(f.traitFlash)this.emit({type:'trait',source:i,x:f.x,y:f.y-95,text:f.traitFlash,color:f.identity.color});
       if(f.attackSerial!==previous[i].serial&&f.attack?.source)this.emit({type:'skill',x:f.x,y:f.y-120,source:i,text:`${f.attack.source}\n${f.attack.name}`,color:f.attack.color??f.identity.color});
       if (f.attackSerial !== previous[i].serial && f.attack?.action === 'ego') { this.hitstop = 16; this.emit({ type: 'ego', x: f.x, y: f.y - 65, source: i, text: f.attack.name, color: f.identity.color }); }
       if (f.dashTimer > previous[i].dash) this.emit({ type: 'dash', x: f.x, y: f.y, source: i });
@@ -77,7 +79,8 @@ export class Match {
     }
     for (const {a,b,move,key} of hits) {a.hitTargets.add(key);this.hit(a,b,move);}
   }
-  private hit(a: Fighter, b: Fighter, move: Move) {
+  private hit(a: Fighter, b: Fighter, original: Move) {
+    let move=original;
     if(a.attack?.id===move.id)a.connected = true;
     const defending=b.attack;
     if(defending?.counter&&b.attackAge>=defending.counter[0]&&b.attackAge<=defending.counter[1]){
@@ -88,6 +91,8 @@ export class Match {
     const defendingBack=!!b.held[back]&&!b.held[back==='left'?'right':'left'];
     const guardLevel=move.hitLevel??'mid';
     const blocking = !move.throwRange&&!b.attack&&b.grounded&&defendingBack&&(!b.stun||b.state==='block')&&!['down','rise','thrown'].includes(b.state)&&(guardLevel==='low'?b.lowGuard:guardLevel==='overhead'?!b.lowGuard:true);
+    move=traitContact(a,b,move,blocking);
+    if(a.traitFlash)this.emit({type:'trait',source:a.index,x:a.x,y:a.y-95,text:a.traitFlash,color:a.identity.color});
     if (blocking) {
       a.combo=0;a.comboDamage=0;b.facing=a.x>b.x?1:-1;
       b.guardMeter -= move.damage * .34*(move.guardDamage??1);
@@ -103,7 +108,7 @@ export class Match {
     const rupture = b.statuses.rupture > 0 ? 16 : 0;
     const damage = Math.round((move.damage * scaling + rupture) * b.identity.defense);
     b.hp = Math.max(0,b.hp-damage); b.statuses.rupture = 0;
-    a.combo++; a.comboTimer = move.hitstun + 42; a.comboDamage += damage; a.totalDamage += damage; a.totalHits++;
+    a.combo++;traitHit(a,move); a.comboTimer = move.hitstun + 42; a.comboDamage += damage; a.totalDamage += damage; a.totalHits++;
     this.totals[a.index].damage+=damage;this.totals[a.index].hits++;this.totals[a.index].maxCombo=Math.max(this.totals[a.index].maxCombo,a.combo);
     a.sp = clamp(a.sp+3,-45,45); b.sp = clamp(b.sp-2,-45,45);
     a.ego = clamp(a.ego+8+damage*.035,0,100); b.ego = clamp(b.ego+5+damage*.025,0,100);
