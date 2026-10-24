@@ -35,7 +35,7 @@ export class ArenaScene extends Phaser.Scene {
       while(this.accumulator>=1000/60){
         this.accumulator-=1000/60;
         if(!m.paused){
-          const p1=m.hitstop?neutral():this.controls.sample(0);const p2=m.hitstop?neutral():m.options.mode==='local'?this.controls.sample(1):m.options.mode==='training'?neutral():this.ai.sample(m.fighters[1],m.fighters[0]);
+          const p1=this.controls.sample(0);const p2=m.options.mode==='local'?this.controls.sample(1):m.hitstop||m.options.mode==='training'?neutral():this.ai.sample(m.fighters[1],m.fighters[0]);
           m.step([p1,p2]);this.stepSerial++;for(const e of m.events)this.effect(e);
         }
       }
@@ -91,12 +91,13 @@ export class ArenaScene extends Phaser.Scene {
     });
   }
   private effect(e:CombatEvent){
-    if(e.type==='hit'&&e.target!==undefined)this.hitFlashUntil[e.target]=this.time.now+65;
+    if(e.type==='hit'&&e.target!==undefined)this.hitFlashUntil[e.target]=this.time.now+(this.match?.fighters[e.source].attack?.normal?.strength===1?30:50);
     this.audio.play(e.type,e.type==='status'?.4:1);
     if(this.match)this.combatFX.event(e,this.match);
     if(this.effectsEnabled&&['hit','clash','ego','guardbreak'].includes(e.type)){
+      const tier=e.type==='hit'?this.match?.fighters[e.source].attack?.normal?.strength:undefined;
       const heavy=(e.value??0)>110;
-      this.cameras.main.shake(e.type==='ego'?180:heavy?105:55,e.type==='ego'?.005:heavy?.0024:.0008);
+      if(tier!==1)this.cameras.main.shake(e.type==='ego'?180:tier===2?30:heavy?75:45,e.type==='ego'?.005:tier===2?.0004:heavy?.0016:.0007);
     }
     if(e.type==='ego'){this.egoUntil=this.time.now+900;this.floatLabel(e.x,e.y-100,`E.G.O.\n${e.text}`,e.color??'#edc16c',28,1100);}
     if(e.type==='trait')this.floatLabel(e.x,e.y-18,e.text??'',e.color??'#ecd69f',15,450);

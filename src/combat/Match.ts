@@ -20,7 +20,10 @@ export class Match {
     this.events = [];
     if (this.paused || this.phase === 'finished') return;
     this.frame++;
-    if (this.hitstop > 0) { this.hitstop--; return; }
+    if (this.hitstop > 0) {
+      if(this.phase==='fight')for(let i=0;i<2;i++)this.fighters[i].receiveInput(inputs[i]);
+      this.hitstop--; return;
+    }
     if (this.phase === 'intro') { if (--this.phaseTimer <= 0) { this.phase = 'fight'; this.emit({ type: 'round', x: 880, y: 330, source: 0, text: '交锋开始' }); } return; }
     if (this.phase === 'roundover') {
       for (const f of this.fighters) { if (f.hp <= 0) { f.vx *= .9; f.physics(); } else f.setState('win'); f.age++; }
@@ -77,7 +80,7 @@ export class Match {
     if (this.clashPairs.has(key)) return false;
     this.clashPairs.add(key); this.clashes++;
     const scores = [a.attack.power + Math.floor(a.sp / 15) + Math.floor(this.random()*5), b.attack.power + Math.floor(b.sp/15) + Math.floor(this.random()*5)];
-    this.hitstop = 6;
+    this.hitstop = 4;
     this.emit({ type:'clash', x:(a.x+b.x)/2, y:Math.min(a.y,b.y)-85, source:scores[0] >= scores[1] ? 0 : 1, text:`${scores[0]} : ${scores[1]}` });
     if (scores[0] === scores[1]) { for (const f of this.fighters) { f.interrupt(13); f.vx = -f.facing * 4; } }
     else { const win = scores[0] > scores[1] ? a : b, lose = win === a ? b : a; lose.interrupt(17); lose.vx = -lose.facing * 3; win.sp = clamp(win.sp + 4,-45,45); lose.sp = clamp(lose.sp - 3,-45,45); }
@@ -110,7 +113,7 @@ export class Match {
       b.guardMeter -= move.damage * .34*(move.guardDamage??1);
       b.hp = Math.max(1, b.hp - Math.round(move.damage*.06));
       b.vx = direction * move.knockback * .45; b.stun = 12; b.setState('block'); a.ego = clamp(a.ego+4,0,100);
-      this.hitstop = 3;
+      this.hitstop = 2;
       if (b.guardMeter <= 0) { b.guardMeter = 40; b.interrupt(48); this.emit({type:'guardbreak',x:b.x,y:b.y-75,source:a.index,text:'防御崩解'}); }
       else this.emit({type:'block',x:b.x-b.facing*25,y:b.y-80,source:a.index,target:b.index});
       return;
@@ -128,7 +131,11 @@ export class Match {
     const armored=defending?.armorUntil&&b.attackAge<=defending.armorUntil;
     if(!armored){b.interrupt(move.hitstun);b.vx=direction*move.knockback;b.airVelocity=b.vx;if(move.launch>0)b.vy=-move.launch;b.knockdown=!!move.knockdown||move.launch>=13;}
     if (move.status) b.statuses[move.status] = move.status === 'burn' ? 240 : 300;
-    this.hitstop = Math.max(this.hitstop,move.hitstop);
+    // Fast contacts stay crisp; only the final strike of a multi-hit gets emphasis.
+    const hitCount=move.hits?.length??1;
+    const lastHit=move.projectile?false:a.hitIndex>=hitCount-1;
+    const stop=move.normal?move.normal.strength+1:hitCount>1&&!lastHit?1:Math.min(6,Math.max(2,Math.ceil(move.hitstop*.65)));
+    this.hitstop = Math.max(this.hitstop,stop);
     this.emit({type:'hit',x:b.x,y:b.y-70,source:a.index,target:b.index,value:damage,color:move.color??a.identity.color,text:move.name});
   }
   private endRound() {

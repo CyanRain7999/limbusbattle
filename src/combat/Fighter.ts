@@ -10,7 +10,8 @@ export class Fighter {
   connected=false;hitConfirmed=false;stun=0;invuln=0;combo=0;comboDamage=0;comboTimer=0;
   cooldowns:Record<string,number>={};statuses={burn:0,rupture:0};
   dashTimer=0;dashDirection:1|-1=1;backDash=false;airVelocity=0;knockdown=false;
-  buffer:{action:AttackAction;command?:MotionId;ttl:number}|null=null;motion=new MotionBuffer();
+  buffer:{action:AttackAction;command?:MotionId;ttl:number;held?:InputFrame['held']}|null=null;motion=new MotionBuffer();
+  private movementBuffer:{action:'jump'|'dash';ttl:number}|null=null;
   backHeld=false;lowGuard=false;held:InputFrame['held']={};landingLag=0;
   throwLock=0;throwTechTimer=0;throwInvuln=0;airSpecialUsed=false;private airNormals=new Set<string>();
   traitCount=0;traitTimer=0;traitFlash='';traitUsed=new Set<string>();
@@ -63,24 +64,33 @@ export class Fighter {
     this.ego=clamp(this.ego-move.cost,0,100);if(move.ammoCost)this.ammo-=move.ammoCost;this.limbCharge=0;this.attack=move;this.attackAge=0;this.attackSerial++;this.hitTargets.clear();this.connected=false;this.hitConfirmed=false;
     this.cooldowns[move.id]=move.cooldown;this.dashTimer=0;this.buffer=null;this.lastMove=move.name;this.setState('attack');return true;
   }
-  interrupt(frames:number){this.attack=null;this.hitConfirmed=false;this.dashTimer=0;this.buffer=null;this.stun=frames;this.setState('hit');}
-  private takeoff(direction:number){this.airVelocity=direction*this.identity.speed*.95;this.vx=this.airVelocity;this.vy=-this.identity.jump;this.dashTimer=0;this.setState('jump');}
+  interrupt(frames:number){this.attack=null;this.hitConfirmed=false;this.dashTimer=0;this.buffer=null;this.movementBuffer=null;this.stun=frames;this.setState('hit');}
+  private takeoff(direction:number){this.movementBuffer=null;this.airVelocity=direction*this.identity.speed*.95;this.vx=this.airVelocity;this.vy=-this.identity.jump;this.dashTimer=0;this.setState('jump');}
+  /** Hitstop freezes combat time, but directions and button edges still arrive. */
+  receiveInput(input:InputFrame){
+    this.held=input.held;
+    const directions=input.directionChanges??[];this.motion.record(directions[0]??input.held,this.facing);for(const held of directions.slice(1))this.motion.record(held,this.facing,false);if(directions.length)this.motion.record(input.held,this.facing,false);
+    let command=input.command??this.motion.recognize(input.pressed);
+    if(command&&!this.grounded&&!this.identity.airCommandMoves?.[command])command=undefined;
+    if(command){this.buffer={action:'special',command,ttl:18};this.motion.clear();}
+    else for(const action of ['throw','ego','heavyAlt','special','mediumAlt','heavy','lightAlt','light'] as const)if(input.pressed[action]){this.buffer={action,ttl:10,held:{...input.held}};break;}
+    if(input.pressed.jump)this.movementBuffer={action:'jump',ttl:8};
+    else if(input.pressed.dash)this.movementBuffer={action:'dash',ttl:8};
+    if(input.pressed.throw)this.throwTechTimer=7;
+  }
   step(input:InputFrame,enemy:Fighter){
-    this.age++;this.held=input.held;this.traitFlash='';if(this.traitTimer>0){this.traitTimer--;if(!this.traitTimer&&this.identity.sinner==='heath')this.traitCount=0;}
+    this.age++;this.traitFlash='';if(this.traitTimer>0){this.traitTimer--;if(!this.traitTimer&&this.identity.sinner==='heath')this.traitCount=0;}
     if(this.mirror&&--this.mirror.life<=0)this.mirror=null;
     if(this.grounded&&!this.attack&&!this.throwLock&&(!this.stun||this.state==='block')&&!this.dashTimer&&Math.abs(enemy.x-this.x)>6)this.facing=enemy.x>this.x?1:-1;
     this.backHeld=!!input.held[this.facing===1?'left':'right']&&!input.held[this.facing===1?'right':'left'];this.lowGuard=!!input.held.crouch;
-    const directions=input.directionChanges??[];this.motion.record(directions[0]??input.held,this.facing);for(const held of directions.slice(1))this.motion.record(held,this.facing,false);if(directions.length)this.motion.record(input.held,this.facing,false);
+    this.receiveInput(input);
     for(const key in this.cooldowns)this.cooldowns[key]=Math.max(0,this.cooldowns[key]-1);
     this.invuln=Math.max(0,this.invuln-1);this.throwInvuln=Math.max(0,this.throwInvuln-1);this.throwTechTimer=Math.max(0,this.throwTechTimer-1);if(input.pressed.throw)this.throwTechTimer=7;
     if(this.comboTimer>0)this.comboTimer--;else{this.combo=0;this.comboDamage=0;}
     this.guardMeter=Math.min(100,this.guardMeter+.13);this.ego=Math.min(100,this.ego+.018);
     if(this.hp<=0){this.setState('ko');this.attack=null;this.mirror=null;this.vx*=.9;this.physics();return;}
-    let command=input.command??this.motion.recognize(input.pressed);
-    if(command&&!this.grounded&&!this.identity.airCommandMoves?.[command])command=undefined;
-    if(command){this.buffer={action:'special',command,ttl:12};this.motion.clear();}
-    else for(const action of ['throw','ego','heavyAlt','special','mediumAlt','heavy','lightAlt','light'] as const)if(input.pressed[action]){this.buffer={action,ttl:12};break;}
     if(this.buffer&&--this.buffer.ttl<0)this.buffer=null;
+    if(this.movementBuffer&&--this.movementBuffer.ttl<0)this.movementBuffer=null;
     if(this.throwLock>0){this.throwLock--;return;}
     if(this.stun>0){this.stun--;this.vx*=.92;this.airVelocity=this.vx;this.physics();if(!this.stun&&this.grounded&&this.knockdown){this.setState('down');this.knockdown=false;}return;}
     if(this.knockdown&&!this.grounded){this.vx*=.98;this.airVelocity=this.vx;this.physics();if(this.grounded){this.setState('down');this.knockdown=false;}return;}
@@ -88,17 +98,19 @@ export class Fighter {
     if(this.state==='rise'){if(this.age>=18)this.setState('idle');return;}
     if(this.landingLag>0){this.landingLag--;this.physics();return;}
     const direction=Number(!!input.held.right)-Number(!!input.held.left);
-    if(this.grounded&&this.attack&&input.pressed.dash){
+    if(this.grounded&&this.attack&&this.movementBuffer?.action==='dash'){
       const normal=this.attack.normal;
       if(this.identity.sinner==='faust'&&normal?.strength===3&&this.attackAge>=2&&this.attackAge<this.attack.startup-1&&this.backHeld&&this.ego>=12&&this.traitTimer<=0){
-        this.ego-=12;this.traitTimer=90;this.traitFlash='虚实取消';this.attack=null;this.buffer=null;this.dashDirection=this.facing===1?-1:1;this.backDash=true;this.dashTimer=7;this.vx=this.dashDirection*8;this.setState('dash');this.physics();return;
+        this.ego-=12;this.traitTimer=90;this.traitFlash='虚实取消';this.attack=null;this.buffer=null;this.movementBuffer=null;this.dashDirection=this.facing===1?-1:1;this.backDash=true;this.dashTimer=7;this.vx=this.dashDirection*8;this.setState('dash');this.physics();return;
       }
       if(this.identity.sinner==='hong'&&normal&&this.hitConfirmed&&this.traitTimer>0&&!this.traitUsed.has('flow')&&direction===this.facing&&this.ego>=8){
-        this.ego-=8;this.traitTimer=0;this.traitUsed.add('flow');this.traitFlash='游龙 · 滑步';this.attack=null;this.buffer=null;this.dashDirection=this.facing;this.backDash=false;this.dashTimer=5;this.vx=this.facing*13;this.setState('dash');this.physics();return;
+        this.ego-=8;this.traitTimer=0;this.traitUsed.add('flow');this.traitFlash='游龙 · 滑步';this.attack=null;this.buffer=null;this.movementBuffer=null;this.dashDirection=this.facing;this.backDash=false;this.dashTimer=5;this.vx=this.facing*13;this.setState('dash');this.physics();return;
       }
     }
-    if(this.attack&&input.pressed.jump&&this.connected&&this.attack.normal?.launcher&&this.grounded&&this.attackAge<=this.attack.cancel[1]){this.attack=null;this.takeoff(direction||this.facing);this.physics();return;}
-    if(this.buffer)this.beginAttack(this.buffer.action,input,this.buffer.command);
+    if(this.attack&&this.movementBuffer?.action==='jump'&&this.connected&&this.attack.normal?.launcher&&this.grounded&&this.attackAge<=this.attack.cancel[1]){this.attack=null;this.takeoff(direction||this.facing);this.physics();return;}
+    // Consume a buffered follow-up on the first actionable frame, with no idle tick.
+    if(this.attack&&this.attackAge>=this.attack.startup+this.attack.active+this.attack.recovery-1){this.attack=null;this.setState(this.grounded?'idle':'fall');}
+    if(this.buffer)this.beginAttack(this.buffer.action,{...input,held:this.buffer.held??input.held},this.buffer.command);
     if(this.attack){
       if(this.grounded&&this.attack.limb&&this.attack.normal&&this.attackAge===this.attack.startup-1&&this.limbCharge<this.attack.limb.charge&&input.held[this.attack.normal.button]){this.limbCharge++;this.vx=0;this.physics();return;}
       this.attackAge++;
@@ -112,12 +124,11 @@ export class Fighter {
       if(this.attackAge>=this.attack.startup+this.attack.active+this.attack.recovery){this.attack=null;this.setState(this.grounded?'idle':'fall');}
       this.physics();return;
     }
-    if(input.pressed.jump&&this.grounded){this.takeoff(direction);this.physics();return;}
+    if(this.movementBuffer?.action==='jump'&&this.grounded){this.takeoff(direction);this.physics();return;}
     if(!this.grounded){this.vx=this.airVelocity;this.setState(this.vy<0?'jump':'fall');this.physics();return;}
-    if(input.pressed.dash&&!this.dashTimer){this.dashDirection=(direction||this.facing) as 1|-1;this.backDash=this.dashDirection!==this.facing;this.dashTimer=this.backDash?8:12;}
+    if(this.movementBuffer?.action==='dash'&&!this.dashTimer){this.movementBuffer=null;this.dashDirection=(direction||this.facing) as 1|-1;this.backDash=this.dashDirection!==this.facing;this.dashTimer=this.backDash?8:12;}
     if(this.dashTimer>0){this.dashTimer--;this.vx=this.dashDirection*(this.backDash?8:13);this.setState('dash');}
     else if(input.held.crouch){this.vx=0;this.setState('crouch');}
-    else if(this.backHeld&&enemy.attack&&Math.abs(enemy.x-this.x)<(enemy.attack.projectile?750:enemy.attack.box.w+90)){this.vx=0;this.setState('guard');}
     else{this.vx=direction*this.identity.speed*(this.backHeld?.65:1);this.setState(direction?'run':'idle');}
     this.physics();
   }
