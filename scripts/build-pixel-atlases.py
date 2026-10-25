@@ -25,13 +25,14 @@ for meta_path in (ROOT/'public/characters').rglob('frames.json'):
     anchor=meta.get('anchor',[208,264]) if base else meta['anchor']
     scale=meta['scaleTo64']
     source=Image.open(folder/'fighter.png').convert('RGBA')
-    atlas=Image.new('RGBA',(224*6,128*((count+5)//6)))
+    runtime_width=meta.get('runtimeFrameWidth',224)
+    atlas=Image.new('RGBA',(runtime_width*6,128*((count+5)//6)))
     for i in range(count):
         pose=source.crop((i%cols*fw,i//cols*fh,(i%cols+1)*fw,(i//cols+1)*fh))
         pose=pose.resize((round(fw*scale),round(fh*scale)),Image.Resampling.NEAREST)
-        frame=Image.new('RGBA',(224,128))
-        frame.alpha_composite(pose,(112-round(anchor[0]*scale),116-round(anchor[1]*scale)))
-        atlas.alpha_composite(frame,(i%6*224,i//6*128))
+        frame=Image.new('RGBA',(runtime_width,128))
+        frame.alpha_composite(pose,(runtime_width//2-round(anchor[0]*scale),116-round(anchor[1]*scale)))
+        atlas.alpha_composite(frame,(i%6*runtime_width,i//6*128))
     dest=runtime/folder.relative_to(ROOT/'public')
     dest.mkdir(parents=True,exist_ok=True)
     atlas.save(dest/'pixel.png',optimize=True)

@@ -25,7 +25,9 @@
     "sinner": "don",
     "persona": "cinq",
     "reference": "10305",
-    "name": "Cinq 协会 · 南部五科科长"
+    "name": "Cinq 协会 · 南部五科科长",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "don-t",
@@ -88,7 +90,9 @@
     "sinner": "heath",
     "persona": "r",
     "reference": "10703",
-    "name": "R 公司 · 兔子队"
+    "name": "R 公司 · 兔子队",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 80
   },
   {
     "key": "ryoshu-lccb",
@@ -144,14 +148,18 @@
     "sinner": "meur",
     "persona": "blade",
     "reference": "10508",
-    "name": "剑契 · 导师"
+    "name": "剑契 · 导师",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 70
   },
   {
     "key": "meur-cinq",
     "sinner": "meur",
     "persona": "cinq",
     "reference": "10511",
-    "name": "Cinq 协会 · 西部三科"
+    "name": "Cinq 协会 · 西部三科",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 76
   },
   {
     "key": "meur-thumb",
@@ -172,7 +180,9 @@
     "sinner": "meur",
     "persona": "hornet",
     "reference": "10514",
-    "name": "脑叶 E.G.O. · 黄蜂〔改造〕"
+    "name": "脑叶 E.G.O. · 黄蜂〔改造〕",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "ish-shi",
@@ -194,7 +204,9 @@
     "sinner": "ish",
     "persona": "pequod",
     "reference": "10808",
-    "name": "裴廓德号 · 船长"
+    "name": "裴廓德号 · 船长",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 70
   },
   {
     "key": "ish-zwei",
@@ -243,7 +255,9 @@
     "sinner": "rod",
     "persona": "heishou",
     "reference": "10912",
-    "name": "黑兽 · 巳"
+    "name": "黑兽 · 巳",
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "rod-ring",
@@ -265,7 +279,9 @@
     "persona": "spicebush",
     "reference": "10104",
     "name": "东柏 · 香辛料",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "yi-solemn",
@@ -273,7 +289,9 @@
     "persona": "solemn",
     "reference": "10110",
     "name": "脑叶 E.G.O. · 庄严哀悼",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "yi-ring",
@@ -281,7 +299,9 @@
     "persona": "ring",
     "reference": "10109",
     "name": "环指 · 点彩派学生",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 68
   },
   {
     "key": "yi-w",
@@ -289,7 +309,9 @@
     "persona": "w",
     "reference": "10106",
     "name": "W 公司 · 三级清理人员",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 68
   },
   {
     "key": "yi-wu",
@@ -297,7 +319,10 @@
     "persona": "wu",
     "reference": "10114",
     "name": "黑兽 · 午支部精锐",
-    "sourceColumns": 2
+    "sourceColumns": 2,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72,
+    "runtimeFrameWidth": 320
   },
   {
     "key": "yi-dimension",
@@ -305,7 +330,9 @@
     "persona": "dimension",
     "reference": "10116",
     "name": "LCE E.G.O. · 裂维者",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "outis-magic",
@@ -313,7 +340,9 @@
     "persona": "magic",
     "reference": "11107",
     "name": "脑叶 E.G.O. · 魔弹",
-    "sourceColumns": 2
+    "sourceColumns": 2,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "outis-w",
@@ -321,7 +350,9 @@
     "persona": "w",
     "reference": "11110",
     "name": "W 公司 · 三级清理组长",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 68
   },
   {
     "key": "outis-seven",
@@ -329,7 +360,9 @@
     "persona": "seven",
     "reference": "11104",
     "name": "七协会 · 南部六科科长",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "outis-middle",
@@ -337,7 +370,9 @@
     "persona": "middle",
     "reference": "11115",
     "name": "蜘蛛巢 · 中指养父",
-    "sourceColumns": 2
+    "sourceColumns": 2,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "outis-barber",
@@ -345,7 +380,9 @@
     "persona": "barber",
     "reference": "11111",
     "name": "拉曼却领 · 理发师",
-    "sourceColumns": 2
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "outis-t",
@@ -353,7 +390,9 @@
     "persona": "t",
     "reference": "11113",
     "name": "T 公司 · 三级 VDCU 职员",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "greg-g",
@@ -361,7 +400,9 @@
     "persona": "g",
     "reference": "11203",
     "name": "G 公司 · 经理级代理",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "greg-firefist",
@@ -369,7 +410,9 @@
     "persona": "firefist",
     "reference": "11211",
     "name": "炎拳事务所 · 幸存者",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "greg-pirate",
@@ -377,7 +420,9 @@
     "persona": "pirate",
     "reference": "11207",
     "name": "双钩海盗团 · 大副",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "greg-edgar",
@@ -385,7 +430,9 @@
     "persona": "edgar",
     "reference": "11209",
     "name": "埃德加家族 · 继承人",
-    "sourceColumns": 2
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "greg-priest",
@@ -393,7 +440,10 @@
     "persona": "priest",
     "reference": "11210",
     "name": "拉曼却领 · 神父",
-    "sourceColumns": 2
+    "sourceColumns": 2,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64,
+    "runtimeFrameWidth": 320
   },
   {
     "key": "greg-aedd",
@@ -401,7 +451,9 @@
     "persona": "aedd",
     "reference": "11215",
     "name": "LCE E.G.O. · AEDD",
-    "sourceColumns": 2
+    "sourceColumns": 2,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 64
   },
   {
     "key": "faust-remnant",
@@ -497,7 +549,9 @@
     "persona": "cinq",
     "reference": "10616",
     "name": "Cinq 协会 · 东部三科",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 70
   },
   {
     "key": "sin-mariachi",
@@ -505,7 +559,9 @@
     "persona": "mariachi",
     "reference": "11004",
     "name": "流浪乐队 · 首领",
-    "sourceColumns": 3
+    "sourceColumns": 3,
+    "anchorMode": "body-column-v1",
+    "targetPixelHeight": 72
   },
   {
     "key": "sin-redsheet",

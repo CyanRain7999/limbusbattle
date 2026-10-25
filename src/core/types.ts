@@ -24,6 +24,17 @@ export interface Move {
   counter?:[number,number];armorUntil?:number;teleport?:number;guardDamage?:number;
   hits?: {frame:number;duration:number;scale:number}[];
   projectile?: {frames:number[];speed:number;vy?:number;width:number;height:number;life:number};
+  /** Ground travel in world units per combat frame, relative to facing. */
+  travel?:{startup?:number;active?:number;recovery?:number};
+  minRange?:number;lowProfileUntil?:number;feint?:boolean;
+  guardPoint?:[number,number];reflect?:[number,number];
+  charge?:{frames:number;damage:number;push:number};
+  wallBounce?:boolean;lifeCost?:number;heal?:number;
+  seal?:'apply'|'consume';slow?:{frames:number;scale:number};
+  field?:{trigger:'cast'|'hit';kind:'snare'|'aftershock';delay:number;life:number;width:number;height:number;offset:number;scale:number};
+  hitLevels?:('mid'|'low'|'overhead')[];
+  hitBoxes?:Box[];jumpCancel?:boolean;
+  purpose?:string;
 }
 export interface Identity {
   id: string; sinner: string; number: string; name: string; english: string;

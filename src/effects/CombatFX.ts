@@ -60,6 +60,7 @@ export class CombatFX {
     if(e.type==='clash'){this.burst(e.x,e.y,{...p,edge:0xffd078,core:0xfff5d9},'clash',122,400);this.scatter(e.x,e.y,p,27,0,11);}
     if(e.type==='block'){this.burst(e.x,e.y,p,e.text?'parry':'block',e.text?89:53,290);this.scatter(e.x,e.y,{...p,edge:0x9de9f0},9,-direction,5);}
     if(e.type==='guardbreak'){this.burst(e.x,e.y,p,'break',118,440);this.scatter(e.x,e.y,p,27,0,9);}
+    if(e.type==='trait'&&e.text==='撞墙反弹'){this.burst(e.x,e.y,p,'ground',70,250);this.scatter(e.x,e.y,p,12,-direction,7);}
   }
   private palette(f:Fighter){const base=palettes[f.appearance]??(f.attack?.color?{edge:parseInt(f.attack.color.slice(1),16),accent:parseInt(f.identity.color.slice(1),16),core:0xfff2d5,ink:0x1c2330}:palettes.lcb);return f.attack?.action==='ego'?{...base,edge:parseInt(f.identity.color.slice(1),16),accent:0xc65b78}:base;}
 
@@ -96,10 +97,28 @@ export class CombatFX {
         this.ghostStamp[f.index]=this.clock;const s=sprites[f.index];const image=this.scene.add.image(s.x,s.y,s.texture.key,s.frame.name).setOrigin(s.originX,s.originY).setScale(s.scaleX,s.scaleY).setFlipX(s.flipX).setTint(p.edge).setAlpha(.25).setDepth(4);this.ghosts.push({image,age:0,life:155});if(this.ghosts.length>(this.mobile?8:14))this.ghosts.shift()!.image.destroy();
       }
       if(move)this.drawMove(f,p);
+      if(move?.guardPoint&&f.attackAge>=move.guardPoint[0]&&f.attackAge<=move.guardPoint[1]){
+        const x=f.x+f.facing*23,y=f.y-72;this.front.lineStyle(4,p.ink,.9);this.front.strokeEllipse(x,y,25,60);this.light.lineStyle(2,p.edge,.85);this.light.strokeEllipse(x,y,20,54);
+      }
+      if(move?.reflect&&f.attackAge>=move.reflect[0]&&f.attackAge<=move.reflect[1]){
+        const x=f.x+f.facing*26,y=f.y-70;this.ring(this.light,x,y,45,0xa5e9e6,.7,2,24);this.star(this.light,x,y,12,0xe8ffff,.8,Math.PI/4);
+      }
+      if(move?.charge&&f.moveCharge){const q=f.moveCharge/move.charge.frames;this.ring(this.rear,f.x,f.y-61,27+q*25,p.edge,.35+q*.4,2,24,this.clock*.004);this.star(this.light,f.x+f.facing*20,f.y-80,8+q*12,p.core,.5+q*.4);}
       if(f.mirror)this.mirror(f.mirror.x,f.mirror.y-60,Math.min(1,f.mirror.life/30),false);
+      const seals=f.seals[0]+f.seals[1];for(let n=0;n<seals;n++){const x=f.x+(n-(seals-1)/2)*12,y=f.y-132;this.front.fillStyle(0xe9d8a6,.95);this.front.fillRect(x-3,y-7,6,14);this.front.lineStyle(1,0xb5473d,1);this.front.lineBetween(x-2,y-4,x+2,y+4);this.front.lineBetween(x+2,y-4,x-2,y+4);}
       if(f.state==='guard'||f.state==='block'){const x=f.x+f.facing*25,y=f.y-64;this.front.lineStyle(2,0x9ce1e4,.6);this.front.beginPath();this.front.arc(x,y,63,f.facing===1?-1.15:1.99,f.facing===1?1.15:4.29);this.front.strokePath();}
     }
-    for(const strike of match.delayedStrikes)this.mirror(strike.x,strike.y-60,1-strike.delay/20,strike.delay===0);
+    for(const strike of match.delayedStrikes){
+      if(!strike.kind)this.mirror(strike.x,strike.y-60,1-strike.delay/20,strike.delay===0);
+      else{
+        const x=strike.x,y=strike.y-3,r=strike.move.box.w/2,armed=strike.delay===0,c=strike.kind==='snare'?0xe8b85f:0xe77854;
+        this.rear.lineStyle(2,c,armed?.8:.35);this.rear.strokeEllipse(x,y,r*2,17);
+        if(strike.kind==='snare'){
+          for(let n=0;n<8;n++){const xx=x-r+n*r*2/7;this.rear.lineBetween(xx,y-7,xx,y+4);}
+          this.clockFace(x,y-10,21,this.clock*.002,{edge:c,accent:0xf3d08b,core:0xffedc1,ink:0x402a21},armed?.8:.3);
+        }else for(let n=0;n<5;n++){const xx=x-r+n*r/2;this.light.lineStyle(2,c,armed?.9:.4);this.light.lineBetween(xx,y,xx+7,y-10-(n%2)*8);}
+      }
+    }
     this.drawBursts(dt);this.drawParticles(dt);
     for(const projectile of match.projectiles){
       const f=match.fighters[projectile.source],color=projectile.move.color,p=palettes[projectile.move.appearance??'r']??(color?{...palettes.lcb,edge:parseInt(color.slice(1),16)}:this.palette(f));

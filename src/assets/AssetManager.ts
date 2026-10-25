@@ -26,12 +26,13 @@ export class AssetManager {
     for(const persona of personaArt){
       const meta=scene.cache.json.get(`${persona.key}-frames`);if(!meta||!scene.textures.exists(`${persona.key}-source`))continue;
       const source=scene.textures.get(`${persona.key}-source`).getSourceImage() as CanvasImageSource;
-      const canvas=document.createElement('canvas');canvas.width=224*6;canvas.height=128;const c=canvas.getContext('2d')!;c.imageSmoothingEnabled=false;
+      const frameWidth=meta.runtimeFrameWidth??224;
+      const canvas=document.createElement('canvas');canvas.width=frameWidth*6;canvas.height=128;const c=canvas.getContext('2d')!;c.imageSmoothingEnabled=false;
       for(let i=0;i<6;i++){
-        c.save();c.translate(i*224+112,116);c.scale(meta.scaleTo64,meta.scaleTo64);
+        c.save();c.translate(i*frameWidth+frameWidth/2,116);c.scale(meta.scaleTo64,meta.scaleTo64);
         c.drawImage(source,i%meta.columns*meta.frameWidth,Math.floor(i/meta.columns)*meta.frameHeight,meta.frameWidth,meta.frameHeight,-meta.anchor[0],-meta.anchor[1],meta.frameWidth,meta.frameHeight);c.restore();
       }
-      const texture=scene.textures.addCanvas(persona.key,canvas)!;scene.textures.addSpriteSheet('',texture,{frameWidth:224,frameHeight:128});
+      const texture=scene.textures.addCanvas(persona.key,canvas)!;scene.textures.addSpriteSheet('',texture,{frameWidth,frameHeight:128});
       scene.textures.remove(`${persona.key}-source`);
     }
   }

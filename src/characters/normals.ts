@@ -22,6 +22,24 @@ export function addNormals(identity:Identity):Identity {
       normal:{button,strength,stance,pose:(stance==='stand'?0:stance==='crouch'?6:12)+i,launcher},airOnly:air,hitLevel:air?'overhead':low?'low':'mid',
       effect:i===0||i===1&&!['greatsword','guandao','halberd'].includes(identity.sprite)?'thrust':i===2?'uppercut':'cleave',knockdown:i===5
     };
+    if(!air){
+      const m=moves[key];
+      if(!launcher){
+        m.box.y=low?-49:stance==='crouch'?-82:i===5?-145:i===0?-100:i===1?-118:-100;
+        m.box.h=low?47:stance==='crouch'?67:i===5?138:i===0?55:i===1?93:85;
+      }
+      if(identity.sinner==='don'&&i<2){m.box.y=-102;m.box.h=i===0?48:60;}
+      if(identity.sinner==='heath'&&i===5){m.wallBounce=true;m.knockback=11;m.launch=5;}
+      if(identity.sinner==='ryoshu'&&i===3)m.travel={recovery:-1.3};
+      if(identity.sinner==='meur'&&i===3)m.guardPoint=[2,Math.max(2,m.startup-1)];
+      if(identity.sinner==='ish'&&i===3)m.reflect=[2,Math.max(2,m.startup-1)];
+      if(identity.sinner==='rod'&&i===5){m.wallBounce=true;m.knockback=12;m.launch=6;if(stance==='stand')m.hitLevel='overhead';}
+      if(identity.sinner==='yi'&&i===3)m.travel={recovery:-1};
+      if(identity.sinner==='outis'&&i===4)m.travel={recovery:-1.1};
+      if(identity.sinner==='faust'&&i===5&&stance==='stand'){m.hitLevel='overhead';m.minRange=35;}
+      if(identity.sinner==='hong'&&i===4){m.knockback=-1.8;m.launch=0;}
+      if(identity.sinner==='sin'&&i===5)m.seal='consume';
+    }
     if(launcher)moves[key].into=[...normalButtons,'special','ego'];
     if(identity.sinner==='greg'&&strength===3&&!air)moves[key].limb={charge:18,reach:65};
   });

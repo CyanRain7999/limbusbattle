@@ -55,7 +55,11 @@
     "status": "rupture",
     "visualKey": "don-w",
     "color": "#78e1fa",
-    "description": "前冲三段空间斩，可命中取消 E.G.O."
+    "description": "前冲三段空间斩，贴近后连续确认；无法像光束一样远程封线。",
+    "travel": {
+      "active": 7
+    },
+    "purpose": "突入连斩"
   },
   {
     "sinner": "don",
@@ -73,7 +77,7 @@
     "recovery": 27,
     "damage": 175,
     "hitstun": 38,
-    "knockback": 9,
+    "knockback": 10,
     "launch": 6,
     "hitstop": 8,
     "power": 14,
@@ -82,9 +86,9 @@
     "lunge": 1.5,
     "box": {
       "x": -5,
-      "y": -145,
+      "y": -155,
       "w": 145,
-      "h": 137
+      "h": 145
     },
     "cancel": [
       14,
@@ -97,7 +101,10 @@
     "guardDamage": 2.2,
     "color": "#d79678",
     "knockdown": true,
-    "description": "重锤砸击，造成双倍架势伤害。"
+    "description": "头顶落锤必须站防；大击退可制造一次撞墙反弹，空挥后摇长。",
+    "hitLevel": "overhead",
+    "wallBounce": true,
+    "purpose": "中段破防 / 撞墙"
   },
   {
     "sinner": "don",
@@ -116,7 +123,7 @@
     "damage": 130,
     "hitstun": 31,
     "knockback": 4,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 8,
     "power": 11,
     "cost": 16,
@@ -124,9 +131,9 @@
     "lunge": 8.5,
     "box": {
       "x": 10,
-      "y": -112,
+      "y": -100,
       "w": 198,
-      "h": 75
+      "h": 42
     },
     "cancel": [
       14,
@@ -137,7 +144,14 @@
     ],
     "visualKey": "don-cinq",
     "color": "#92b9ed",
-    "description": "快前摇细剑突进，适合差合与追击。"
+    "description": "细剑只刺胸口窄线，前冲后小幅退回；不能像升枪一样覆盖头顶。",
+    "minRange": 12,
+    "travel": {
+      "startup": 0,
+      "active": 8.5,
+      "recovery": -1.2
+    },
+    "purpose": "直线差合 / 撤回"
   },
   {
     "sinner": "don",
@@ -164,9 +178,9 @@
     "lunge": 0,
     "box": {
       "x": -35,
-      "y": -143,
+      "y": -125,
       "w": 220,
-      "h": 138
+      "h": 118
     },
     "cancel": [
       14,
@@ -177,7 +191,12 @@
     ],
     "visualKey": "don-t",
     "color": "#d8b56c",
-    "description": "齿轮武器压制，命中造成长时间停滞。"
+    "description": "命中后暂时降低对手步行与冲刺速度；原地压制，不替代突进技能。",
+    "slow": {
+      "frames": 90,
+      "scale": 0.58
+    },
+    "purpose": "夺时控速"
   },
   {
     "sinner": "don",
@@ -204,9 +223,9 @@
     "lunge": 2,
     "box": {
       "x": -35,
-      "y": -138,
+      "y": -112,
       "w": 210,
-      "h": 128
+      "h": 90
     },
     "cancel": [
       14,
@@ -219,7 +238,11 @@
     "teleport": 78,
     "status": "rupture",
     "color": "#e0d6b9",
-    "description": "短距踏步拔刀，附加破裂。"
+    "description": "一次踏步拔刀，打击范围集中在腰身；可惩罚远处空挥。",
+    "travel": {
+      "recovery": -0.5
+    },
+    "purpose": "踏步确反"
   },
   {
     "sinner": "don",
@@ -237,7 +260,7 @@
     "recovery": 35,
     "damage": 62,
     "hitstun": 24,
-    "knockback": 3,
+    "knockback": 2,
     "launch": 0,
     "hitstop": 8,
     "power": 13,
@@ -246,9 +269,9 @@
     "lunge": 0,
     "box": {
       "x": 15,
-      "y": -120,
+      "y": -105,
       "w": 650,
-      "h": 80
+      "h": 54
     },
     "cancel": [
       14,
@@ -276,7 +299,8 @@
       }
     ],
     "color": "#f4a1d9",
-    "description": "蓄力后射出三段爱心光束，射程长、收招长。"
+    "description": "长前摇三段光束，原地远射；对手可跳过光束，不提供近身霸体。",
+    "purpose": "远程封线"
   },
   {
     "sinner": "don",
@@ -303,9 +327,9 @@
     "lunge": 1.5,
     "box": {
       "x": -12,
-      "y": -205,
-      "w": 130,
-      "h": 185
+      "y": -215,
+      "w": 112,
+      "h": 205
     },
     "cancel": [
       14,
@@ -315,7 +339,9 @@
       "ego"
     ],
     "knockdown": true,
-    "description": "LCB 长枪对空击飞，可跳跃取消追击。"
+    "description": "长枪沿纵向升起，命中后可跳跃取消追击，地面横向射程较短。",
+    "jumpCancel": true,
+    "purpose": "升枪 / 空中追击"
   },
   {
     "sinner": "heath",
@@ -358,13 +384,17 @@
       "frames": [
         0
       ],
-      "speed": 28,
+      "speed": 32,
       "width": 42,
       "height": 18,
       "life": 45
     },
     "color": "#a3c3b6",
-    "description": "远距离蓄力狙击，单发高伤害。"
+    "description": "单发高速狙击，命中大幅推远；射后退步收枪，贴身空枪会被确反。",
+    "travel": {
+      "recovery": -1.3
+    },
+    "purpose": "单发狙击"
   },
   {
     "sinner": "heath",
@@ -382,8 +412,8 @@
     "recovery": 31,
     "damage": 230,
     "hitstun": 47,
-    "knockback": 12,
-    "launch": 10,
+    "knockback": 13,
+    "launch": 7,
     "hitstop": 11,
     "power": 16,
     "cost": 26,
@@ -406,7 +436,9 @@
     "knockdown": true,
     "visualKey": "heath-wild",
     "color": "#bb5063",
-    "description": "红色荆棘刀大范围横斩、强击退。"
+    "description": "荆棘重刀大幅击退，墙边可撞墙反弹；慢前摇不能当作快速突进。",
+    "wallBounce": true,
+    "purpose": "重刀终结 / 撞墙"
   },
   {
     "sinner": "heath",
@@ -433,9 +465,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -134,
+      "y": -115,
       "w": 158,
-      "h": 112
+      "h": 88
     },
     "cancel": [
       17,
@@ -450,7 +482,12 @@
       13
     ],
     "color": "#89bc8e",
-    "description": "起手可格挡反击，随后精确刺击。"
+    "description": "先读近身来袭再反刺；窄线刺击不覆盖整个屏幕，也不能凭空反弹道。",
+    "travel": {
+      "active": 3,
+      "recovery": 0
+    },
+    "purpose": "近身识破"
   },
   {
     "sinner": "heath",
@@ -469,7 +506,7 @@
     "damage": 220,
     "hitstun": 44,
     "knockback": 14,
-    "launch": 10,
+    "launch": 7,
     "hitstop": 9,
     "power": 16,
     "cost": 27,
@@ -477,9 +514,9 @@
     "lunge": 4,
     "box": {
       "x": 0,
-      "y": -132,
-      "w": 148,
-      "h": 125
+      "y": -128,
+      "w": 130,
+      "h": 120
     },
     "cancel": [
       17,
@@ -492,7 +529,13 @@
     "armorUntil": 24,
     "knockdown": true,
     "color": "#d198ec",
-    "description": "蓄力期间霸体，金链拳套强力击飞。"
+    "description": "搓招后可按住 J 蓄势，松开出拳；蓄满增加伤害与推力，半蓄以上可撞墙，仍会被投。",
+    "charge": {
+      "frames": 24,
+      "damage": 0.6,
+      "push": 8
+    },
+    "purpose": "蓄力霸体 / 破角"
   },
   {
     "sinner": "heath",
@@ -511,7 +554,7 @@
     "damage": 78,
     "hitstun": 31,
     "knockback": 3,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 9,
     "power": 12,
     "cost": 20,
@@ -545,7 +588,26 @@
     ],
     "status": "rupture",
     "color": "#c6d0d8",
-    "description": "带黑云纹样的曲刀二连斩，附加破裂。"
+    "description": "第一刀扫下盘需蹲防，第二刀由上方落下需站防；两刀判定位置不同。",
+    "hitLevels": [
+      "low",
+      "overhead"
+    ],
+    "hitBoxes": [
+      {
+        "x": -10,
+        "y": -48,
+        "w": 190,
+        "h": 46
+      },
+      {
+        "x": -10,
+        "y": -153,
+        "w": 205,
+        "h": 140
+      }
+    ],
+    "purpose": "下段 → 中段"
   },
   {
     "sinner": "heath",
@@ -572,9 +634,9 @@
     "lunge": 1,
     "box": {
       "x": -15,
-      "y": -151,
+      "y": -115,
       "w": 192,
-      "h": 142
+      "h": 70
     },
     "cancel": [
       17,
@@ -589,7 +651,13 @@
       21
     ],
     "color": "#86b2bb",
-    "description": "以破伞抵挡攻击，触发后快速刺出伞尖。"
+    "description": "起手小幅退身等待反击，长伞刺出；空等时收招明显，不是前冲压制。",
+    "travel": {
+      "startup": -0.45,
+      "active": 1,
+      "recovery": 0
+    },
+    "purpose": "后撤读招"
   },
   {
     "sinner": "heath",
@@ -639,8 +707,9 @@
       "life": 48
     },
     "visualKey": "heath-r",
-    "description": "兔子队三连射，与句点的单发狙击独立。",
-    "color": "#eba05a"
+    "description": "三枚独立子弹封住中线，推力小于句点狙击，适合迫使对手跳入。",
+    "color": "#eba05a",
+    "purpose": "三发压制"
   },
   {
     "sinner": "don",
@@ -677,7 +746,12 @@
     ],
     "into": [
       "ego"
-    ]
+    ],
+    "purpose": "LCB贯穿突进",
+    "travel": {
+      "active": 10
+    },
+    "description": "LCB长枪快速贯穿，以直线突进为主；不带W三段空间斩。"
   },
   {
     "sinner": "don",
@@ -704,9 +778,9 @@
     "lunge": 0,
     "box": {
       "x": -45,
-      "y": -79,
+      "y": -59,
       "w": 205,
-      "h": 75
+      "h": 57
     },
     "cancel": [
       16,
@@ -715,7 +789,10 @@
     "into": [
       "ego"
     ],
-    "knockdown": true
+    "knockdown": true,
+    "purpose": "LCB下段扫枪",
+    "hitLevel": "low",
+    "description": "原地回身扫下盘，需蹲防；没有突进与光束远程封线。"
   },
   {
     "sinner": "heath",
@@ -752,7 +829,14 @@
     ],
     "into": [
       "ego"
-    ]
+    ],
+    "purpose": "LCB球棒近身突袭",
+    "travel": {
+      "startup": 0.6,
+      "active": 6,
+      "recovery": 0
+    },
+    "description": "球棒短促前冲，近身夺距；不能当句点狙击或蓄力清算使用。"
   },
   {
     "sinner": "heath",
@@ -791,7 +875,11 @@
       "ego"
     ],
     "status": "burn",
-    "knockdown": true
+    "knockdown": true,
+    "purpose": "LCB砸地送墙",
+    "hitLevel": "overhead",
+    "wallBounce": true,
+    "description": "球棒从头顶重砸，需站防并能送墙反弹；空挥长收招。"
   },
   {
     "sinner": "ryoshu",
@@ -810,7 +898,7 @@
     "recovery": 23,
     "damage": 78,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 6,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -819,9 +907,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -108,
       "w": 160,
-      "h": 130
+      "h": 70
     },
     "cancel": [
       11,
@@ -838,10 +926,14 @@
       "speed": 15,
       "width": 54,
       "height": 55,
-      "life": 36
+      "life": 12
     },
-    "description": "霰弹向前扩散，近中距离封路；远距离不追踪。",
-    "label": "LCCB"
+    "description": "短程霰弹最多飞行约180坐标，不能当狙击用；射后后撤留出刀鞘距离。",
+    "label": "LCCB",
+    "travel": {
+      "recovery": -0.8
+    },
+    "purpose": "近距截击"
   },
   {
     "sinner": "ryoshu",
@@ -860,7 +952,7 @@
     "recovery": 23,
     "damage": 132,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 1,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -869,9 +961,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -150,
       "w": 190,
-      "h": 130
+      "h": 145
     },
     "cancel": [
       19,
@@ -883,8 +975,20 @@
     "color": "#d0b57a",
     "guardDamage": 1.8,
     "knockdown": true,
-    "description": "机械长柄重砸，破防强、空挥收招长。",
-    "label": "圣愚"
+    "description": "机械重器由上砸下，需站防；命中后脚下延迟余震，不会跟随逃走的目标。",
+    "label": "圣愚",
+    "hitLevel": "overhead",
+    "field": {
+      "trigger": "hit",
+      "kind": "aftershock",
+      "delay": 12,
+      "life": 5,
+      "width": 100,
+      "height": 28,
+      "offset": 0,
+      "scale": 0.3
+    },
+    "purpose": "砸地 / 二次余震"
   },
   {
     "sinner": "ryoshu",
@@ -902,7 +1006,7 @@
     "active": 16,
     "recovery": 23,
     "damage": 48,
-    "hitstun": 40,
+    "hitstun": 29,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -912,9 +1016,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 175,
-      "h": 130
+      "y": -110,
+      "w": 125,
+      "h": 90
     },
     "cancel": [
       10,
@@ -942,8 +1046,14 @@
         "scale": 1
       }
     ],
-    "description": "踏步后三段短刀连击，适合命中确认。",
-    "label": "女仆"
+    "description": "短刀近身三连，向前快步切入、收刀后撤；射程短但出手快。",
+    "label": "女仆",
+    "travel": {
+      "startup": 1,
+      "active": 5,
+      "recovery": -0.9
+    },
+    "purpose": "快步清扫"
   },
   {
     "sinner": "ryoshu",
@@ -962,7 +1072,7 @@
     "recovery": 31,
     "damage": 165,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 8,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -971,9 +1081,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 255,
-      "h": 130
+      "y": -112,
+      "w": 280,
+      "h": 75
     },
     "cancel": [
       22,
@@ -983,9 +1093,11 @@
       "ego"
     ],
     "color": "#ffd05b",
-    "guardDamage": 1.5,
-    "description": "金色节刃延伸，长距离重斩；前摇明显。",
-    "label": "N EGO"
+    "guardDamage": 1.8,
+    "description": "节刃在中远距离横断，身体附近存在空隙；应退到刀刃外缘使用。",
+    "label": "N EGO",
+    "minRange": 95,
+    "purpose": "远端延刃"
   },
   {
     "sinner": "ryoshu",
@@ -1013,9 +1125,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -102,
       "w": 210,
-      "h": 130
+      "h": 52
     },
     "cancel": [
       12,
@@ -1037,8 +1149,14 @@
         "scale": 1
       }
     ],
-    "description": "两次长枪追刺，推进与确认兼用。",
-    "label": "鸿园"
+    "description": "两次窄线长枪追刺，起手前移、收招退回；对空覆盖弱于鞘锋。",
+    "label": "鸿园",
+    "travel": {
+      "startup": 1,
+      "active": 4,
+      "recovery": -1
+    },
+    "purpose": "追刺 / 保持间距"
   },
   {
     "sinner": "ryoshu",
@@ -1066,9 +1184,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 155,
-      "h": 130
+      "y": -49,
+      "w": 145,
+      "h": 47
     },
     "cancel": [
       17,
@@ -1080,8 +1198,15 @@
     "color": "#d3ad59",
     "hitLevel": "low",
     "armorUntil": 10,
-    "description": "强化鞋履滑踏，低段并在前摇短暂承受攻击。",
-    "label": "黑派"
+    "description": "低身滑踏可避开胸口高度的攻击，并以脚下判定扫腿；会被下段或投抓住。",
+    "label": "黑派",
+    "lowProfileUntil": 23,
+    "travel": {
+      "startup": 0,
+      "active": 7,
+      "recovery": 0
+    },
+    "purpose": "低身滑入"
   },
   {
     "sinner": "ryoshu",
@@ -1090,7 +1215,6 @@
     "name": "鞘锋·升击",
     "source": "LCB · 罪人",
     "appearance": "lcb",
-    "visualKey": null,
     "visualRow": 2,
     "effect": "uppercut",
     "action": "special",
@@ -1109,9 +1233,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 130,
-      "h": 130
+      "y": -194,
+      "w": 115,
+      "h": 190
     },
     "cancel": [
       9,
@@ -1121,8 +1245,10 @@
       "ego"
     ],
     "color": "#d36c67",
-    "description": "带鞘长刀向上截击，覆盖近身对空。",
-    "label": "LCB"
+    "description": "带鞘刀向头顶截击，适合拦跳；命中后可跳跃追击。",
+    "label": "LCB",
+    "jumpCancel": true,
+    "purpose": "刀鞘截空"
   },
   {
     "sinner": "meur",
@@ -1150,9 +1276,9 @@
     "lunge": 2,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 140,
-      "h": 130
+      "y": -108,
+      "w": 108,
+      "h": 96
     },
     "cancel": [
       12,
@@ -1163,8 +1289,18 @@
     ],
     "color": "#f18a46",
     "status": "burn",
-    "description": "六协会拳套前击并附灼烧。",
-    "label": "六协"
+    "description": "前摇架拳可接住正面的中上段近身打击，消耗架势并积稳固；下段、投与弹道可突破。",
+    "label": "六协",
+    "guardPoint": [
+      3,
+      9
+    ],
+    "travel": {
+      "startup": 0.6,
+      "active": 1.4,
+      "recovery": 0
+    },
+    "purpose": "架拳近打"
   },
   {
     "sinner": "meur",
@@ -1182,7 +1318,7 @@
     "active": 16,
     "recovery": 23,
     "damage": 60,
-    "hitstun": 40,
+    "hitstun": 33,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -1216,8 +1352,30 @@
         "scale": 1
       }
     ],
-    "description": "双刀两次交错斩击，稳定衔接连段。",
-    "label": "剑契"
+    "description": "近身双刀先横切再扫腿；第二刀为下段，不能用站防一次应付两刀。",
+    "label": "剑契",
+    "hitLevels": [
+      "mid",
+      "low"
+    ],
+    "hitBoxes": [
+      {
+        "x": 0,
+        "y": -120,
+        "w": 176,
+        "h": 104
+      },
+      {
+        "x": 0,
+        "y": -49,
+        "w": 200,
+        "h": 47
+      }
+    ],
+    "travel": {
+      "active": 0.6
+    },
+    "purpose": "双刀压低段"
   },
   {
     "sinner": "meur",
@@ -1245,9 +1403,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 155,
-      "h": 130
+      "y": -195,
+      "w": 122,
+      "h": 185
     },
     "cancel": [
       11,
@@ -1257,8 +1415,12 @@
       "ego"
     ],
     "color": "#b2dbff",
-    "description": "西部三科刺剑上挑，覆盖近身对空。",
-    "label": "Cinq"
+    "description": "刺剑主要覆盖斜上方，横向只有近距；地面对手可后退避开，跳入会被挑起。",
+    "label": "Cinq",
+    "travel": {
+      "active": 0.5
+    },
+    "purpose": "短程刺剑截空"
   },
   {
     "sinner": "meur",
@@ -1277,8 +1439,8 @@
     "recovery": 23,
     "damage": 175,
     "hitstun": 40,
-    "knockback": 2,
-    "launch": 0,
+    "knockback": 14,
+    "launch": 6,
     "hitstop": 5,
     "power": 11,
     "cost": 26,
@@ -1286,9 +1448,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -145,
       "w": 220,
-      "h": 130
+      "h": 133
     },
     "cancel": [
       24,
@@ -1301,8 +1463,15 @@
     "armorUntil": 15,
     "knockdown": true,
     "guardDamage": 1.7,
-    "description": "火力强化巨剑，有前摇霸体和长收招。",
-    "label": "拇指"
+    "description": "慢步顶进后挥动炮刃，命中把对手送向墙边反弹；蓄势期间可被投。",
+    "label": "拇指",
+    "wallBounce": true,
+    "travel": {
+      "startup": 0.45,
+      "active": 1,
+      "recovery": 0
+    },
+    "purpose": "霸体炮刃 / 送墙"
   },
   {
     "sinner": "meur",
@@ -1316,7 +1485,7 @@
     "effect": "thrust",
     "action": "special",
     "level": 3,
-    "startup": 8,
+    "startup": 5,
     "active": 8,
     "recovery": 23,
     "damage": 180,
@@ -1344,8 +1513,9 @@
     "color": "#e74766",
     "throwRange": 100,
     "knockdown": true,
-    "description": "血棘拘束的近身指令投，不能抓空中或命中硬直。",
-    "label": "王子"
+    "description": "快速血棘指令投抓住站防或蹲防；不能抓空中、受击硬直或起身保护。稳固提高投伤。",
+    "label": "王子",
+    "purpose": "近身指令投"
   },
   {
     "sinner": "meur",
@@ -1394,8 +1564,12 @@
       "height": 14,
       "life": 65
     },
-    "description": "肩抵鸟枪，射出一枚高速独头弹；射击后有明显后坐与收枪空档。",
-    "label": "黄蜂"
+    "description": "鸟枪仅一发独头弹，出枪后后坐退步；用于拦接近而非原地多段连射。",
+    "label": "黄蜂",
+    "travel": {
+      "recovery": -1.2
+    },
+    "purpose": "独头弹 / 后坐"
   },
   {
     "sinner": "meur",
@@ -1404,7 +1578,6 @@
     "name": "拳套·固守反击",
     "source": "LCB · 罪人",
     "appearance": "lcb",
-    "visualKey": null,
     "visualRow": 2,
     "effect": "fist",
     "action": "special",
@@ -1423,9 +1596,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 135,
-      "h": 130
+      "y": -120,
+      "w": 120,
+      "h": 110
     },
     "cancel": [
       19,
@@ -1435,12 +1608,16 @@
       "ego"
     ],
     "color": "#9bb8d3",
-    "counter": [
+    "description": "拳甲架拳后短距离反击，可接正面近身中上段；不是自动反弹道或防下段。",
+    "label": "LCB",
+    "guardPoint": [
       2,
-      13
+      14
     ],
-    "description": "站稳后等待来袭，识破后拳套反击。",
-    "label": "LCB"
+    "travel": {
+      "active": 1
+    },
+    "purpose": "固守架拳"
   },
   {
     "sinner": "ish",
@@ -1459,7 +1636,7 @@
     "recovery": 23,
     "damage": 95,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 3,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -1468,9 +1645,9 @@
     "lunge": 2,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -118,
       "w": 170,
-      "h": 130
+      "h": 98
     },
     "cancel": [
       11,
@@ -1480,8 +1657,13 @@
       "ego"
     ],
     "color": "#ee697c",
-    "description": "快速直线刀斩，适合盾反后抢回节奏。",
-    "label": "四协"
+    "description": "短促直线斩击，盾反强化后抢回回合；收刀不继续向前滑动。",
+    "label": "四协",
+    "travel": {
+      "active": 3,
+      "recovery": 0
+    },
+    "purpose": "盾反快刀"
   },
   {
     "sinner": "ish",
@@ -1499,19 +1681,19 @@
     "active": 8,
     "recovery": 23,
     "damage": 142,
-    "hitstun": 40,
+    "hitstun": 44,
     "knockback": 2,
-    "launch": 8,
+    "launch": 0,
     "hitstop": 5,
     "power": 11,
     "cost": 24,
     "cooldown": 90,
-    "lunge": 0,
+    "lunge": 0.5,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 215,
-      "h": 130
+      "y": -130,
+      "w": 200,
+      "h": 124
     },
     "cancel": [
       20,
@@ -1522,8 +1704,13 @@
     ],
     "color": "#ffd47a",
     "guardDamage": 1.5,
-    "description": "驯鹿神经电击锤扫，重击并浮空。",
-    "label": "驯鹿"
+    "description": "地面电锤造成长硬直并短暂减速，维持地面压制；不再用通用浮空替代震荡。",
+    "label": "驯鹿",
+    "slow": {
+      "frames": 70,
+      "scale": 0.75
+    },
+    "purpose": "神经震荡"
   },
   {
     "sinner": "ish",
@@ -1541,8 +1728,8 @@
     "active": 16,
     "recovery": 23,
     "damage": 72,
-    "hitstun": 40,
-    "knockback": 2,
+    "hitstun": 32,
+    "knockback": -3,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -1551,9 +1738,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 245,
-      "h": 130
+      "y": -105,
+      "w": 270,
+      "h": 55
     },
     "cancel": [
       13,
@@ -1575,8 +1762,12 @@
         "scale": 1
       }
     ],
-    "description": "两次长鱼叉，第二击延迟，用于距离控制。",
-    "label": "裴廓德"
+    "description": "两次窄线鱼叉命中会把对手拉近，为盾锤和投制造距离；跳过鱼叉可避开。",
+    "label": "裴廓德",
+    "travel": {
+      "active": 0
+    },
+    "purpose": "鱼叉拉近"
   },
   {
     "sinner": "ish",
@@ -1604,8 +1795,8 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 180,
+      "y": -140,
+      "w": 185,
       "h": 130
     },
     "cancel": [
@@ -1621,8 +1812,18 @@
       14
     ],
     "guardDamage": 1.2,
-    "description": "西部二协会重剑架势，接住攻击后反斩。",
-    "label": "二协"
+    "description": "架势期间接近身攻击反斩；若正面弹道到达则将其返还，过早或过晚出招都会挨打。",
+    "label": "二协",
+    "reflect": [
+      2,
+      16
+    ],
+    "travel": {
+      "startup": 0,
+      "active": 1,
+      "recovery": 0
+    },
+    "purpose": "读近身 / 返弹道"
   },
   {
     "sinner": "ish",
@@ -1674,9 +1875,31 @@
         "scale": 1
       }
     ],
-    "description": "展开折扇掩身，接低身横扫；两次扇击覆盖近中距离，末段为下段。",
+    "description": "扇子先掩身横击，再低扫脚下；第二击真实使用下段判定，收招后退。",
     "hitLevel": "low",
-    "label": "家主"
+    "label": "家主",
+    "hitLevels": [
+      "mid",
+      "low"
+    ],
+    "hitBoxes": [
+      {
+        "x": 0,
+        "y": -130,
+        "w": 185,
+        "h": 108
+      },
+      {
+        "x": 0,
+        "y": -46,
+        "w": 175,
+        "h": 44
+      }
+    ],
+    "travel": {
+      "recovery": -1
+    },
+    "purpose": "扇掩身 / 扫下盘"
   },
   {
     "sinner": "ish",
@@ -1704,9 +1927,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -110,
       "w": 230,
-      "h": 130
+      "h": 64
     },
     "cancel": [
       15,
@@ -1718,8 +1941,14 @@
     "color": "#83e3e7",
     "teleport": 58,
     "status": "rupture",
-    "description": "义肢驱动拔刀穿刺，命中留下破裂。",
-    "label": "LCD"
+    "description": "起手短撤再义肢驱动拔刀，适合抓空挥；窄线穿刺不等于全身范围斩。",
+    "label": "LCD",
+    "travel": {
+      "startup": -0.5,
+      "active": 4,
+      "recovery": 0
+    },
+    "purpose": "撤步拔刀"
   },
   {
     "sinner": "ish",
@@ -1728,7 +1957,6 @@
     "name": "盾锤·截浪",
     "source": "LCB · 罪人",
     "appearance": "lcb",
-    "visualKey": null,
     "visualRow": 2,
     "effect": "uppercut",
     "action": "special",
@@ -1747,9 +1975,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 145,
-      "h": 130
+      "y": -190,
+      "w": 125,
+      "h": 180
     },
     "cancel": [
       10,
@@ -1759,8 +1987,14 @@
       "ego"
     ],
     "color": "#e7a65d",
-    "description": "盾与钉头锤共同上挑，防守后的对空追击。",
-    "label": "LCB"
+    "description": "起手6帧内可返正面弹道，随后盾锤截空；需要预判，空挥有收招。",
+    "label": "LCB",
+    "reflect": [
+      1,
+      6
+    ],
+    "jumpCancel": true,
+    "purpose": "盾迎弹 / 截空"
   },
   {
     "sinner": "rod",
@@ -1788,9 +2022,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -148,
       "w": 165,
-      "h": 130
+      "h": 142
     },
     "cancel": [
       16,
@@ -1801,9 +2035,21 @@
     ],
     "color": "#ed9369",
     "status": "rupture",
-    "guardDamage": 1.5,
-    "description": "N 公司重锤命中留破裂，压制架势。",
-    "label": "N 公司"
+    "guardDamage": 1.7,
+    "description": "重锤从头顶压落，命中后原地留下短余震；长前摇需先确认或逼对手防守。",
+    "label": "N 公司",
+    "hitLevel": "overhead",
+    "field": {
+      "trigger": "hit",
+      "kind": "aftershock",
+      "delay": 15,
+      "life": 6,
+      "width": 125,
+      "height": 32,
+      "offset": 0,
+      "scale": 0.28
+    },
+    "purpose": "落锤破防 / 余震"
   },
   {
     "sinner": "rod",
@@ -1822,7 +2068,7 @@
     "recovery": 23,
     "damage": 108,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 0.6,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -1831,9 +2077,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 145,
-      "h": 130
+      "y": -115,
+      "w": 125,
+      "h": 100
     },
     "cancel": [
       13,
@@ -1844,8 +2090,14 @@
     ],
     "color": "#f6d77f",
     "armorUntil": 8,
-    "description": "拳套短冲，前摇短暂承受攻击。",
-    "label": "十协"
+    "description": "短拳套以短暂承伤顶入，打中后把对手留在近处；距离短，空挥容易被反击。",
+    "label": "十协",
+    "travel": {
+      "startup": 0.4,
+      "active": 4,
+      "recovery": 0
+    },
+    "purpose": "贴身顶入"
   },
   {
     "sinner": "rod",
@@ -1864,8 +2116,8 @@
     "recovery": 23,
     "damage": 145,
     "hitstun": 40,
-    "knockback": 2,
-    "launch": 8,
+    "knockback": -3,
+    "launch": 0,
     "hitstop": 5,
     "power": 11,
     "cost": 24,
@@ -1873,7 +2125,7 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -140,
       "w": 235,
       "h": 130
     },
@@ -1885,8 +2137,13 @@
       "ego"
     ],
     "color": "#ac7ee2",
-    "description": "紫伞开合与旋身伞击，伞面掩身后收伞挑起对手。",
-    "label": "公主"
+    "description": "紫伞拉近目标，实际命中一次恢复最多75体力；被防或空挥不回血。",
+    "label": "公主",
+    "heal": 75,
+    "travel": {
+      "active": 0
+    },
+    "purpose": "紫伞汲血"
   },
   {
     "sinner": "rod",
@@ -1943,8 +2200,37 @@
         "scale": 1
       }
     ],
-    "description": "关刀连续三段蛇形斩击，依次确认。",
-    "label": "黑兽巳"
+    "description": "关刀三连由脚下、腰部到上方，末段需站防；适合积累后的破阵而非单发对空。",
+    "label": "黑兽巳",
+    "hitLevels": [
+      "low",
+      "mid",
+      "overhead"
+    ],
+    "hitBoxes": [
+      {
+        "x": 0,
+        "y": -48,
+        "w": 235,
+        "h": 46
+      },
+      {
+        "x": 0,
+        "y": -115,
+        "w": 220,
+        "h": 95
+      },
+      {
+        "x": 0,
+        "y": -155,
+        "w": 235,
+        "h": 145
+      }
+    ],
+    "travel": {
+      "active": 2
+    },
+    "purpose": "蛇行三段压制"
   },
   {
     "sinner": "rod",
@@ -1962,8 +2248,8 @@
     "active": 15,
     "recovery": 23,
     "damage": 68,
-    "hitstun": 40,
-    "knockback": 2,
+    "hitstun": 36,
+    "knockback": -2.6,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -1972,9 +2258,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
+      "y": -122,
       "w": 205,
-      "h": 130
+      "h": 112
     },
     "cancel": [
       19,
@@ -1996,8 +2282,12 @@
         "scale": 1
       }
     ],
-    "description": "拼接兽爪交错两击，压制中距离对手。",
-    "label": "环指"
+    "description": "两次兽爪把目标拖回中近距离，为投或下一次压制准备；不再把对手浮空送远。",
+    "label": "环指",
+    "travel": {
+      "active": 0
+    },
+    "purpose": "兽爪拖回"
   },
   {
     "sinner": "rod",
@@ -2016,7 +2306,7 @@
     "recovery": 34,
     "damage": 170,
     "hitstun": 40,
-    "knockback": 2,
+    "knockback": 7,
     "launch": 0,
     "hitstop": 5,
     "power": 11,
@@ -2037,12 +2327,13 @@
       "ego"
     ],
     "color": "#d7dbe4",
-    "description": "将剑刃逐节延长刺向远处，再收回剑身；近段先有效，远端需等待延刃到位。",
+    "description": "剑刃逐节伸展，远端需要等延刃到达；原地长射程，收回剑身时可被打。",
     "label": "拇指",
     "extend": [
       140,
       430
-    ]
+    ],
+    "purpose": "远端延刃"
   },
   {
     "sinner": "rod",
@@ -2051,7 +2342,6 @@
     "name": "大斧·迎面挑",
     "source": "LCB · 罪人",
     "appearance": "lcb",
-    "visualKey": null,
     "visualRow": 2,
     "effect": "uppercut",
     "action": "special",
@@ -2070,9 +2360,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -135,
-      "w": 155,
-      "h": 130
+      "y": -200,
+      "w": 130,
+      "h": 193
     },
     "cancel": [
       12,
@@ -2082,8 +2372,10 @@
       "ego"
     ],
     "color": "#d293a9",
-    "description": "重斧上挑，对空与连段终结。",
-    "label": "LCB"
+    "description": "重斧纵向挑空，横向较短；可跳跃追击，和延刃的横向控制分工。",
+    "label": "LCB",
+    "jumpCancel": true,
+    "purpose": "大斧迎空"
   },
   {
     "sinner": "yi",
@@ -2101,8 +2393,8 @@
     "recovery": 21,
     "damage": 72,
     "hitstun": 36,
-    "knockback": 1.5,
-    "launch": 3,
+    "knockback": 2,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 18,
@@ -2110,9 +2402,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -130,
       "w": 170,
-      "h": 145
+      "h": 115
     },
     "cancel": [
       11,
@@ -2122,7 +2414,7 @@
       "ego"
     ],
     "color": "#e9cf57",
-    "description": "合扇起手、展扇两段花风，前方短距离控场。",
+    "description": "展扇时小退步，两段花风守住镜痕附近；不承担远距离突入。",
     "visualKey": "yi-spicebush",
     "hits": [
       {
@@ -2135,7 +2427,12 @@
         "duration": 4,
         "scale": 1
       }
-    ]
+    ],
+    "travel": {
+      "active": -0.6,
+      "recovery": 0
+    },
+    "purpose": "扇风退守"
   },
   {
     "sinner": "yi",
@@ -2154,7 +2451,7 @@
     "damage": 78,
     "hitstun": 36,
     "knockback": 3,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 22,
@@ -2174,7 +2471,7 @@
       "ego"
     ],
     "color": "#cbd5bf",
-    "description": "黑白双枪交替射击，背棺不参与炮击。",
+    "description": "双枪两次独立射击，掩护布置镜痕；弹道集中中线，可跳过。",
     "visualKey": "yi-solemn",
     "projectile": {
       "frames": [
@@ -2186,7 +2483,11 @@
       "width": 22,
       "height": 12,
       "life": 65
-    }
+    },
+    "travel": {
+      "recovery": -0.7
+    },
+    "purpose": "双枪封线"
   },
   {
     "sinner": "yi",
@@ -2205,7 +2506,7 @@
     "damage": 133,
     "hitstun": 36,
     "knockback": 3,
-    "launch": 8,
+    "launch": 11,
     "hitstop": 5,
     "power": 12,
     "cost": 17,
@@ -2214,7 +2515,7 @@
     "box": {
       "x": 0,
       "y": -210,
-      "w": 172,
+      "w": 132,
       "h": 205
     },
     "cancel": [
@@ -2225,8 +2526,10 @@
       "ego"
     ],
     "color": "#e57267",
-    "description": "以长画笔向上挑刺，对空并触发已布置的镜痕。",
-    "visualKey": "yi-ring"
+    "description": "画笔短距离挑向上方，命中可跳跃追击；触发镜痕时仍从固定镜位追击。",
+    "visualKey": "yi-ring",
+    "jumpCancel": true,
+    "purpose": "画笔截空"
   },
   {
     "sinner": "yi",
@@ -2245,7 +2548,7 @@
     "damage": 69,
     "hitstun": 36,
     "knockback": 1.3,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 21,
@@ -2253,9 +2556,9 @@
     "lunge": 5.5,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -118,
       "w": 155,
-      "h": 145
+      "h": 100
     },
     "cancel": [
       12,
@@ -2265,7 +2568,7 @@
       "ego"
     ],
     "color": "#70d9fa",
-    "description": "单柄曲刃的两段突进，不使用长剑。",
+    "description": "短刀两段快速前移切入，用于追上离开镜位的对手；不同于原地花扇退守。",
     "visualKey": "yi-w",
     "hits": [
       {
@@ -2278,7 +2581,13 @@
         "duration": 4,
         "scale": 1
       }
-    ]
+    ],
+    "travel": {
+      "startup": 1.2,
+      "active": 5.5,
+      "recovery": 0
+    },
+    "purpose": "短刃切入"
   },
   {
     "sinner": "yi",
@@ -2296,8 +2605,8 @@
     "recovery": 29,
     "damage": 180,
     "hitstun": 36,
-    "knockback": 6,
-    "launch": 3,
+    "knockback": 10,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 26,
@@ -2305,9 +2614,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -150,
-      "w": 268,
-      "h": 145
+      "y": -115,
+      "w": 285,
+      "h": 85
     },
     "cancel": [
       19,
@@ -2317,9 +2626,11 @@
       "ego"
     ],
     "color": "#abb9bd",
-    "description": "黑兽长柄关刀横断，削减架势，空挥后摇较长。",
+    "description": "关刀只在中远段有完整判定，命中大幅推开；近身可钻入柄部空隙。",
     "visualKey": "yi-wu",
-    "guardDamage": 1.65
+    "guardDamage": 1.65,
+    "minRange": 95,
+    "purpose": "关刀远端清场"
   },
   {
     "sinner": "yi",
@@ -2338,7 +2649,7 @@
     "damage": 60,
     "hitstun": 36,
     "knockback": 1.2,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 27,
@@ -2346,9 +2657,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -122,
       "w": 205,
-      "h": 145
+      "h": 106
     },
     "cancel": [
       14,
@@ -2358,7 +2669,7 @@
       "ego"
     ],
     "color": "#d38aff",
-    "description": "双腕晶刃三段交叉撕裂空间。",
+    "description": "双腕晶刃三段留在地面，收招退回镜痕侧；不是通用升空连斩。",
     "visualKey": "yi-dimension",
     "hits": [
       {
@@ -2377,7 +2688,13 @@
         "scale": 1
       }
     ],
-    "status": "rupture"
+    "status": "rupture",
+    "travel": {
+      "startup": -0.35,
+      "active": 1.2,
+      "recovery": -0.8
+    },
+    "purpose": "裂维留场"
   },
   {
     "sinner": "yi",
@@ -2414,8 +2731,9 @@
     ],
     "into": [],
     "color": "#c4d4d3",
-    "description": "前方留下 3.5 秒镜痕；下次地面人格有效帧触发固定位置延迟追击。",
-    "setup": true
+    "description": "不直接攻击，前方放置一个3.5秒镜痕；下一地面人格触发原位追击，布置过程可被抢。",
+    "setup": true,
+    "purpose": "定点布置"
   },
   {
     "sinner": "outis",
@@ -2434,7 +2752,7 @@
     "damage": 137,
     "hitstun": 36,
     "knockback": 3,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 18,
@@ -2454,7 +2772,7 @@
       "ego"
     ],
     "color": "#70b6ed",
-    "description": "长步枪发射一发魔弹。三发共用弹药；空仓则改为可被打断的装填。",
+    "description": "魔弹耗一发，后撤收枪；空仓改为可打断的装填，不能无成本连射。",
     "visualKey": "outis-magic",
     "ammoCost": 1,
     "projectile": {
@@ -2466,7 +2784,11 @@
       "width": 22,
       "height": 12,
       "life": 65
-    }
+    },
+    "travel": {
+      "recovery": -1
+    },
+    "purpose": "耗弹封线 / 装填"
   },
   {
     "sinner": "outis",
@@ -2493,9 +2815,9 @@
     "lunge": 5,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -123,
       "w": 172,
-      "h": 145
+      "h": 112
     },
     "cancel": [
       11,
@@ -2505,7 +2827,7 @@
       "ego"
     ],
     "color": "#76d8ff",
-    "description": "装甲手套投射能量腕刃，突进两段清扫。",
+    "description": "双刃两段向前突入，作为远程角色被贴身后的反攻选择；不能替代远程魔弹。",
     "visualKey": "outis-w",
     "hits": [
       {
@@ -2518,7 +2840,12 @@
         "duration": 4,
         "scale": 1
       }
-    ]
+    ],
+    "travel": {
+      "active": 5,
+      "recovery": 0
+    },
+    "purpose": "近身突围"
   },
   {
     "sinner": "outis",
@@ -2537,7 +2864,7 @@
     "damage": 151,
     "hitstun": 36,
     "knockback": 5,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 18,
@@ -2545,9 +2872,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -110,
       "w": 205,
-      "h": 145
+      "h": 70
     },
     "cancel": [
       17,
@@ -2557,12 +2884,16 @@
       "ego"
     ],
     "color": "#87c58c",
-    "description": "细直剑与剑鞘架势；前 3 至 14 帧识破后以直刺反击。",
+    "description": "先等待近身进攻再细剑反刺，刺击集中胸口窄线；空等时会被投或确反。",
     "visualKey": "outis-seven",
     "counter": [
       3,
       14
-    ]
+    ],
+    "travel": {
+      "active": 1
+    },
+    "purpose": "读招反刺"
   },
   {
     "sinner": "outis",
@@ -2580,8 +2911,8 @@
     "recovery": 32,
     "damage": 192,
     "hitstun": 36,
-    "knockback": 7,
-    "launch": 3,
+    "knockback": 12,
+    "launch": 6,
     "hitstop": 5,
     "power": 12,
     "cost": 28,
@@ -2589,9 +2920,9 @@
     "lunge": 2,
     "box": {
       "x": 0,
-      "y": -150,
-      "w": 240,
-      "h": 145
+      "y": -135,
+      "w": 190,
+      "h": 125
     },
     "cancel": [
       23,
@@ -2601,11 +2932,13 @@
       "ego"
     ],
     "color": "#d49be9",
-    "description": "解开封链的长剑重斩，紫色纹身与炽焰随刀势展开。",
+    "description": "慢起手重击有短暂承伤，近身命中将对手推向墙角反弹；没有希斯克利夫的蓄力分支。",
     "visualKey": "outis-middle",
-    "armorUntil": 22,
+    "armorUntil": 18,
     "status": "burn",
-    "guardDamage": 1.5
+    "guardDamage": 1.5,
+    "wallBounce": true,
+    "purpose": "近身破角"
   },
   {
     "sinner": "outis",
@@ -2623,18 +2956,18 @@
     "recovery": 26,
     "damage": 83,
     "hitstun": 36,
-    "knockback": 2,
-    "launch": 3,
+    "knockback": -2.5,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 24,
     "cooldown": 95,
-    "lunge": 1,
+    "lunge": 0,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -130,
       "w": 225,
-      "h": 145
+      "h": 118
     },
     "cancel": [
       15,
@@ -2644,7 +2977,7 @@
       "ego"
     ],
     "color": "#db687b",
-    "description": "巨型剪刀张开再合拢，两次接触后击倒。",
+    "description": "剪刃在中距离交错夹击并拉回目标，身边有短空隙；贴身需改用曲刀。",
     "visualKey": "outis-barber",
     "hits": [
       {
@@ -2658,7 +2991,9 @@
         "scale": 1
       }
     ],
-    "knockdown": true
+    "knockdown": true,
+    "minRange": 95,
+    "purpose": "剪刃夹回"
   },
   {
     "sinner": "outis",
@@ -2673,16 +3008,16 @@
     "level": 3,
     "startup": 18,
     "active": 8,
-    "recovery": 27,
+    "recovery": 18,
     "damage": 158,
-    "hitstun": 44,
+    "hitstun": 22,
     "knockback": 3,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 24,
     "cooldown": 95,
-    "lunge": 3,
+    "lunge": 0,
     "box": {
       "x": 0,
       "y": -150,
@@ -2697,8 +3032,23 @@
       "ego"
     ],
     "color": "#e5ba65",
-    "description": "钟表手杖踏步刺击，命中造成更长硬直。",
-    "visualKey": "outis-t"
+    "description": "前方190处布置时间封锁，18帧后激活并停留2.5秒；只扫地面，命中减速，跳跃可越过。",
+    "visualKey": "outis-t",
+    "field": {
+      "trigger": "cast",
+      "kind": "snare",
+      "delay": 18,
+      "life": 150,
+      "width": 150,
+      "height": 32,
+      "offset": 190,
+      "scale": 0.6
+    },
+    "slow": {
+      "frames": 100,
+      "scale": 0.5
+    },
+    "purpose": "定点封地"
   },
   {
     "sinner": "outis",
@@ -2717,7 +3067,7 @@
     "damage": 130,
     "hitstun": 36,
     "knockback": 3,
-    "launch": 10,
+    "launch": 13,
     "hitstop": 5,
     "power": 12,
     "cost": 16,
@@ -2726,8 +3076,8 @@
     "box": {
       "x": 0,
       "y": -205,
-      "w": 145,
-      "h": 200
+      "w": 125,
+      "h": 195
     },
     "cancel": [
       10,
@@ -2737,7 +3087,9 @@
       "ego"
     ],
     "color": "#c4b374",
-    "description": "LCB 曲刀对空；不消耗魔弹。"
+    "description": "曲刀向上截住跳入，近身纵向覆盖强，横向短于魔弹。",
+    "jumpCancel": true,
+    "purpose": "曲刀守空"
   },
   {
     "sinner": "greg",
@@ -2755,8 +3107,8 @@
     "recovery": 24,
     "damage": 78,
     "hitstun": 36,
-    "knockback": 1.5,
-    "launch": 3,
+    "knockback": -1.8,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 20,
@@ -2764,9 +3116,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -122,
       "w": 173,
-      "h": 145
+      "h": 110
     },
     "cancel": [
       12,
@@ -2776,7 +3128,7 @@
       "ego"
     ],
     "color": "#aab89c",
-    "description": "G 公司双镰虫臂连切，背部甲翼展开。",
+    "description": "两段虫刃拉近对手，为近距追击留下距离；延伸手臂普通技仍可被打手。",
     "visualKey": "greg-g",
     "hits": [
       {
@@ -2789,7 +3141,11 @@
         "duration": 4,
         "scale": 1
       }
-    ]
+    ],
+    "travel": {
+      "active": 2
+    },
+    "purpose": "虫刃拖入"
   },
   {
     "sinner": "greg",
@@ -2806,9 +3162,9 @@
     "active": 20,
     "recovery": 27,
     "damage": 54,
-    "hitstun": 36,
+    "hitstun": 32,
     "knockback": 1.1,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 23,
@@ -2816,9 +3172,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -110,
       "w": 190,
-      "h": 145
+      "h": 105
     },
     "cancel": [
       13,
@@ -2828,7 +3184,7 @@
       "ego"
     ],
     "color": "#efa953",
-    "description": "背部燃料罐经软管供给机械炎拳，短程三段喷焰。",
+    "description": "原地三段炎拳持续压地并附灼烧；没有前冲，收招需注意跳入。",
     "visualKey": "greg-firefist",
     "hits": [
       {
@@ -2847,7 +3203,8 @@
         "scale": 1
       }
     ],
-    "status": "burn"
+    "status": "burn",
+    "purpose": "地面燃烧压制"
   },
   {
     "sinner": "greg",
@@ -2874,9 +3231,9 @@
     "lunge": 1.5,
     "box": {
       "x": 0,
-      "y": -205,
-      "w": 154,
-      "h": 200
+      "y": -202,
+      "w": 122,
+      "h": 190
     },
     "cancel": [
       11,
@@ -2886,8 +3243,10 @@
       "ego"
     ],
     "color": "#e2ba73",
-    "description": "用假肢弯钩挑起，另一只手保留燧发枪。",
-    "visualKey": "greg-pirate"
+    "description": "弯钩沿斜上方勾起，地面射程短；手枪仅在对应空中技能使用。",
+    "visualKey": "greg-pirate",
+    "jumpCancel": true,
+    "purpose": "弯钩挑空"
   },
   {
     "sinner": "greg",
@@ -2906,7 +3265,7 @@
     "damage": 82,
     "hitstun": 36,
     "knockback": 1.5,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 22,
@@ -2914,9 +3273,9 @@
     "lunge": 4,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -110,
       "w": 210,
-      "h": 145
+      "h": 68
     },
     "cancel": [
       12,
@@ -2926,7 +3285,7 @@
       "ego"
     ],
     "color": "#a1c3cd",
-    "description": "篮形护手细剑两段踏步贯刺。",
+    "description": "起手后撤诱空，两次长刺探回；适合与虫臂伸长交替控距，不会持续前冲。",
     "visualKey": "greg-edgar",
     "hits": [
       {
@@ -2939,7 +3298,13 @@
         "duration": 4,
         "scale": 1
       }
-    ]
+    ],
+    "travel": {
+      "startup": -1.2,
+      "active": 3,
+      "recovery": -0.5
+    },
+    "purpose": "退身长刺"
   },
   {
     "sinner": "greg",
@@ -2958,7 +3323,7 @@
     "damage": 170,
     "hitstun": 36,
     "knockback": 5,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 25,
@@ -2966,9 +3331,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -143,
       "w": 280,
-      "h": 145
+      "h": 126
     },
     "cancel": [
       18,
@@ -2978,10 +3343,14 @@
       "ego"
     ],
     "color": "#b7566e",
-    "description": "带长柄的荆棘血鞭横扫远处，收招无法立即追击。",
+    "description": "发动支付70体力，实际命中恢复最多115体力；空挥或被防损失血量，不能在体力不足时发动。",
     "visualKey": "greg-priest",
     "status": "rupture",
-    "guardDamage": 1.4
+    "guardDamage": 1.4,
+    "lifeCost": 70,
+    "heal": 115,
+    "minRange": 25,
+    "purpose": "以血换汲取"
   },
   {
     "sinner": "greg",
@@ -3000,7 +3369,7 @@
     "damage": 186,
     "hitstun": 36,
     "knockback": 6,
-    "launch": 3,
+    "launch": 0,
     "hitstop": 5,
     "power": 12,
     "cost": 27,
@@ -3008,9 +3377,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
+      "y": -115,
       "w": 225,
-      "h": 145
+      "h": 90
     },
     "cancel": [
       20,
@@ -3020,10 +3389,15 @@
       "ego"
     ],
     "color": "#8bdaef",
-    "description": "双手电极长柄斧头向前贯击，在接触处放电。",
+    "description": "长电极重击削架势并暂时减慢走冲，适合阻止对手追赶收臂；不自动浮空。",
     "visualKey": "greg-aedd",
     "armorUntil": 19,
-    "guardDamage": 1.5
+    "guardDamage": 1.8,
+    "slow": {
+      "frames": 75,
+      "scale": 0.7
+    },
+    "purpose": "电极截路"
   },
   {
     "sinner": "greg",
@@ -3050,9 +3424,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -150,
-      "w": 172,
-      "h": 145
+      "y": -125,
+      "w": 150,
+      "h": 115
     },
     "cancel": [
       18,
@@ -3062,11 +3436,12 @@
       "ego"
     ],
     "color": "#ba8b5f",
-    "description": "以附着虫臂承接近身攻击，再突刺反击。",
+    "description": "虫甲等待近身来袭，识破后回击；空等与被投仍有风险。",
     "counter": [
       3,
       15
-    ]
+    ],
+    "purpose": "虫甲读招"
   },
   {
     "sinner": "faust",
@@ -3084,7 +3459,7 @@
     "recovery": 21,
     "damage": 106,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": 4,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3093,9 +3468,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -126,
       "w": 155,
-      "h": 120
+      "h": 114
     },
     "cancel": [
       10,
@@ -3106,7 +3481,13 @@
     ],
     "color": "#da5d65",
     "visualKey": "faust-remnant",
-    "description": "红刃踏入横斩，适合普通技确认；够不到远处。"
+    "description": "向前踏入的一次重剑斩击；收招小退，作为慢重招确认后的稳定收尾。",
+    "travel": {
+      "startup": 0.3,
+      "active": 3,
+      "recovery": -0.5
+    },
+    "purpose": "重剑确认"
   },
   {
     "sinner": "faust",
@@ -3133,9 +3514,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -128,
-      "w": 95,
-      "h": 120
+      "y": -106,
+      "w": 100,
+      "h": 90
     },
     "cancel": [
       17,
@@ -3150,7 +3531,13 @@
       3,
       14
     ],
-    "description": "臂巾架住近身来招，再用白手套反击；投技可破。"
+    "description": "小幅撤身等对手来袭，再以白手套近打；距离很短，空等会暴露收招。",
+    "travel": {
+      "startup": -0.35,
+      "active": 3,
+      "recovery": 0
+    },
+    "purpose": "撤身反击"
   },
   {
     "sinner": "faust",
@@ -3177,9 +3564,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -202,
-      "w": 114,
-      "h": 192
+      "y": -200,
+      "w": 105,
+      "h": 190
     },
     "cancel": [
       9,
@@ -3190,7 +3577,9 @@
     ],
     "color": "#efc77b",
     "visualKey": "faust-n",
-    "description": "铁钉与电击手甲向上截击；无全身无敌，空挥收招长。"
+    "description": "铁钉与电臂集中纵向，命中可跳跃追击；不是长距离平推技能。",
+    "jumpCancel": true,
+    "purpose": "铁钉截空"
   },
   {
     "sinner": "faust",
@@ -3219,7 +3608,7 @@
       "x": 0,
       "y": -128,
       "w": 195,
-      "h": 120
+      "h": 114
     },
     "cancel": [
       15,
@@ -3247,7 +3636,14 @@
         "scale": 1
       }
     ],
-    "description": "两条义肢大剑交替切割；四臂展开时可被跳入。"
+    "description": "多臂三段压制守地面，前摇可后+冲刺诈势撤回；有效帧后不能反悔。",
+    "feint": true,
+    "guardDamage": 1.35,
+    "travel": {
+      "active": 0.8,
+      "recovery": 0
+    },
+    "purpose": "多臂压制 / 可诈势"
   },
   {
     "sinner": "faust",
@@ -3263,8 +3659,8 @@
     "startup": 18,
     "active": 13,
     "recovery": 30,
-    "damage": 150,
-    "hitstun": 34,
+    "damage": 86,
+    "hitstun": 30,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -3288,7 +3684,40 @@
     "color": "#e2cf58",
     "visualKey": "faust-heishou",
     "guardDamage": 1.5,
-    "description": "双柄宽剑远距封线；启动慢，贴身有被抢招的风险。"
+    "description": "双刀中远段两次落击，第二刀需站防；柄侧有空隙，前摇可诈势后撤。",
+    "feint": true,
+    "minRange": 95,
+    "hits": [
+      {
+        "frame": 0,
+        "duration": 5,
+        "scale": 1
+      },
+      {
+        "frame": 8,
+        "duration": 5,
+        "scale": 1.1
+      }
+    ],
+    "hitLevels": [
+      "mid",
+      "overhead"
+    ],
+    "hitBoxes": [
+      {
+        "x": 0,
+        "y": -124,
+        "w": 240,
+        "h": 110
+      },
+      {
+        "x": 0,
+        "y": -160,
+        "w": 240,
+        "h": 150
+      }
+    ],
+    "purpose": "远刃二择 / 可诈势"
   },
   {
     "sinner": "faust",
@@ -3306,7 +3735,7 @@
     "recovery": 38,
     "damage": 181,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": 9,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3315,9 +3744,9 @@
     "lunge": 0,
     "box": {
       "x": 0,
-      "y": -128,
-      "w": 265,
-      "h": 120
+      "y": -160,
+      "w": 300,
+      "h": 150
     },
     "cancel": [
       25,
@@ -3329,9 +3758,17 @@
     "color": "#e4d5a1",
     "visualKey": "faust-ring",
     "hitLevel": "overhead",
-    "guardDamage": 1.6,
+    "guardDamage": 2.1,
     "knockdown": true,
-    "description": "白金巨刃缓慢落裁，可破蹲防；明显前摇与长收招。"
+    "description": "巨大弧刃从头顶落下，需站防；100坐标内侧为空隙，先控距或诈势再出手。",
+    "feint": true,
+    "minRange": 100,
+    "travel": {
+      "startup": -0.5,
+      "active": 0,
+      "recovery": 0
+    },
+    "purpose": "远端重劈 / 可诈势"
   },
   {
     "sinner": "faust",
@@ -3358,9 +3795,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -203,
-      "w": 143,
-      "h": 193
+      "y": -205,
+      "w": 125,
+      "h": 195
     },
     "cancel": [
       13,
@@ -3370,7 +3807,9 @@
       "ego"
     ],
     "color": "#bfd9d1",
-    "description": "LCB 重剑上挑截空，不带无敌；不触发人格换装。"
+    "description": "大剑纵向上挑，命中可跳跃追击；前摇较慢，需要预判跳入。",
+    "jumpCancel": true,
+    "purpose": "重剑守空"
   },
   {
     "sinner": "hong",
@@ -3387,7 +3826,7 @@
     "active": 9,
     "recovery": 18,
     "damage": 85,
-    "hitstun": 34,
+    "hitstun": 28,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -3397,9 +3836,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -113,
       "w": 105,
-      "h": 120
+      "h": 98
     },
     "cancel": [
       8,
@@ -3411,7 +3850,12 @@
     "color": "#e58d47",
     "visualKey": "hong-liu",
     "status": "burn",
-    "description": "近身火掌快出手，可接滑步逼近后的短打。"
+    "description": "短程火掌出手快，向前小推后停住；适合滑步贴近后确认，远处会落空。",
+    "travel": {
+      "active": 3,
+      "recovery": 0
+    },
+    "purpose": "贴身掌火"
   },
   {
     "sinner": "hong",
@@ -3429,7 +3873,7 @@
     "recovery": 27,
     "damage": 60,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": -1.8,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3438,9 +3882,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -125,
       "w": 195,
-      "h": 120
+      "h": 110
     },
     "cancel": [
       16,
@@ -3464,7 +3908,12 @@
       }
     ],
     "armorUntil": 17,
-    "description": "荧绿双端摘除棍回旋，前段抗打；仍会受伤且会被投。"
+    "description": "双端杖两次截击拉近目标，首次实际命中恢复最多65体力；被防和空挥不修复。",
+    "heal": 65,
+    "travel": {
+      "active": 0
+    },
+    "purpose": "双端拉回 / 修复"
   },
   {
     "sinner": "hong",
@@ -3513,7 +3962,11 @@
       "height": 12,
       "life": 35
     },
-    "description": "刺刀手枪平射牵制地面；跳跃能越过弹道。"
+    "description": "弹道中线射击掩护接近，后撤收枪；与贴身火掌分工，不能覆盖头顶。",
+    "travel": {
+      "recovery": -0.8
+    },
+    "purpose": "刺刀枪封线"
   },
   {
     "sinner": "hong",
@@ -3531,7 +3984,7 @@
     "recovery": 31,
     "damage": 153,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": 8,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3540,9 +3993,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -128,
-      "w": 265,
-      "h": 120
+      "y": -125,
+      "w": 285,
+      "h": 92
     },
     "cancel": [
       20,
@@ -3554,7 +4007,12 @@
     "color": "#c35968",
     "visualKey": "hong-h",
     "guardDamage": 1.45,
-    "description": "红黑长袍下的银刃长兵大回扫，截住中远距离。"
+    "description": "叉形长柄只在中远段完整横扫，身边存在柄部空隙；应保持距离使用。",
+    "minRange": 95,
+    "travel": {
+      "active": 0.6
+    },
+    "purpose": "长柄外缘"
   },
   {
     "sinner": "hong",
@@ -3572,7 +4030,7 @@
     "recovery": 28,
     "damage": 127,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": -4.5,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3581,9 +4039,9 @@
     "lunge": 2,
     "box": {
       "x": 0,
-      "y": -128,
-      "w": 220,
-      "h": 120
+      "y": -117,
+      "w": 240,
+      "h": 90
     },
     "cancel": [
       17,
@@ -3595,7 +4053,13 @@
     "color": "#b47b64",
     "visualKey": "hong-s",
     "status": "rupture",
-    "description": "先牵橙绳再用宽刃追斩，施加破裂；不把绳索当子弹。"
+    "description": "长刀与橙绳将目标牵回近处；可接滑步后的投择，但不会自动抓空中或穿过防御。",
+    "travel": {
+      "startup": 0.4,
+      "active": 0,
+      "recovery": -0.4
+    },
+    "purpose": "绳刃牵引"
   },
   {
     "sinner": "hong",
@@ -3613,7 +4077,7 @@
     "recovery": 24,
     "damage": 113,
     "hitstun": 34,
-    "knockback": 2,
+    "knockback": 11,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3622,9 +4086,9 @@
     "lunge": 4,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -123,
       "w": 142,
-      "h": 120
+      "h": 113
     },
     "cancel": [
       11,
@@ -3635,7 +4099,12 @@
     ],
     "color": "#6fddd2",
     "visualKey": "hong-cinq",
-    "description": "东部三科转身出掌，贴身推进；使用掌法而非细剑。"
+    "description": "东部掌法将对手推远，自己小退回安全距离；与火掌贴近完全相反。",
+    "travel": {
+      "active": 2,
+      "recovery": -1.3
+    },
+    "purpose": "推掌脱离"
   },
   {
     "sinner": "hong",
@@ -3662,9 +4131,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -208,
-      "w": 156,
-      "h": 198
+      "y": -205,
+      "w": 135,
+      "h": 195
     },
     "cancel": [
       11,
@@ -3674,7 +4143,9 @@
       "ego"
     ],
     "color": "#a1d8d4",
-    "description": "关刀上挑对空，失手后可被确反。"
+    "description": "长柄向斜上方挑起，命中可跳跃追击；横向短于鸿园外缘扫。",
+    "jumpCancel": true,
+    "purpose": "长柄截空"
   },
   {
     "sinner": "sin",
@@ -3701,9 +4172,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -110,
       "w": 108,
-      "h": 120
+      "h": 95
     },
     "cancel": [
       10,
@@ -3718,7 +4189,14 @@
       2,
       8
     ],
-    "description": "舞步引出两枚红沙锤近击；短暂架招可被投克制。"
+    "description": "低身退步闪开胸口高度的打击，再用沙锤短打；下段、投和追击仍能打中。",
+    "lowProfileUntil": 10,
+    "travel": {
+      "startup": -0.45,
+      "active": 1,
+      "recovery": 0
+    },
+    "purpose": "低身退步反打"
   },
   {
     "sinner": "sin",
@@ -3736,7 +4214,7 @@
     "recovery": 22,
     "damage": 103,
     "hitstun": 38,
-    "knockback": 2,
+    "knockback": 0.8,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -3745,9 +4223,9 @@
     "lunge": 2,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -120,
       "w": 172,
-      "h": 120
+      "h": 108
     },
     "cancel": [
       9,
@@ -3759,7 +4237,9 @@
     "color": "#d4a949",
     "visualKey": "sin-redsheet",
     "status": "rupture",
-    "description": "贴符长棍横扫，破裂利于命中确认后的续势。"
+    "description": "长杖实际命中贴2枚朱符，最多5枚；符不会立刻增加伤害，由指定后续招式引爆。",
+    "seal": "apply",
+    "purpose": "贴符铺垫"
   },
   {
     "sinner": "sin",
@@ -3778,7 +4258,7 @@
     "damage": 128,
     "hitstun": 34,
     "knockback": 2,
-    "launch": 0,
+    "launch": 6,
     "hitstop": 5,
     "power": 12,
     "cost": 20,
@@ -3786,9 +4266,9 @@
     "lunge": 5,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -118,
       "w": 190,
-      "h": 120
+      "h": 85
     },
     "cancel": [
       10,
@@ -3799,7 +4279,13 @@
     ],
     "color": "#9ac9ef",
     "visualKey": "sin-cinq",
-    "description": "南部四科科长细剑长刺；前冲后无法立刻防守。"
+    "description": "快突细剑命中引爆朱符，每枚增加14基础伤害；可用血续势从朱符人格接入。",
+    "seal": "consume",
+    "travel": {
+      "active": 5,
+      "recovery": 0
+    },
+    "purpose": "细剑引符"
   },
   {
     "sinner": "sin",
@@ -3817,8 +4303,8 @@
     "recovery": 34,
     "damage": 159,
     "hitstun": 34,
-    "knockback": 2,
-    "launch": 0,
+    "knockback": 14,
+    "launch": 6,
     "hitstop": 5,
     "power": 12,
     "cost": 24,
@@ -3826,9 +4312,9 @@
     "lunge": 4,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -145,
       "w": 151,
-      "h": 120
+      "h": 135
     },
     "cancel": [
       19,
@@ -3839,10 +4325,17 @@
     ],
     "color": "#6dd4bb",
     "visualKey": "sin-devyat",
-    "armorUntil": 20,
+    "armorUntil": 12,
     "guardDamage": 1.6,
     "knockdown": true,
-    "description": "青绿货箱展开撞锤，抗打破阵；收招长，易被绕开。"
+    "description": "快递箱锤顶进，可短暂承伤；命中大推力撞墙反弹，前摇可被投。",
+    "wallBounce": true,
+    "travel": {
+      "startup": 0.4,
+      "active": 4,
+      "recovery": 0
+    },
+    "purpose": "箱锤承伤 / 撞墙"
   },
   {
     "sinner": "sin",
@@ -3869,9 +4362,9 @@
     "lunge": 3,
     "box": {
       "x": 0,
-      "y": -128,
+      "y": -125,
       "w": 205,
-      "h": 120
+      "h": 110
     },
     "cancel": [
       14,
@@ -3894,7 +4387,13 @@
         "scale": 1
       }
     ],
-    "description": "弧形长刀连续拔斩，命中后可选择以血续势。"
+    "description": "曲刀二连快速追近并引爆朱符；持续向前，空挥后不会自动退回安全距离。",
+    "seal": "consume",
+    "travel": {
+      "active": 5.5,
+      "recovery": 0
+    },
+    "purpose": "追斩引符"
   },
   {
     "sinner": "sin",
@@ -3910,10 +4409,10 @@
     "startup": 23,
     "active": 21,
     "recovery": 39,
-    "damage": 78,
-    "hitstun": 34,
+    "damage": 90,
+    "hitstun": 26,
     "knockback": 2,
-    "launch": 0,
+    "launch": 4,
     "hitstop": 5,
     "power": 12,
     "cost": 31,
@@ -3952,7 +4451,35 @@
       }
     ],
     "guardDamage": 1.7,
-    "description": "变身以节状骨剑横扫、巨爪穿出；代价高且空挥破绽最大。"
+    "description": "发动支付80体力，骨剑与爪臂三击引爆朱符，末段需站防；空挥长后摇，血续势另付60体力。",
+    "lifeCost": 80,
+    "seal": "consume",
+    "hitLevels": [
+      "mid",
+      "mid",
+      "overhead"
+    ],
+    "hitBoxes": [
+      {
+        "x": 0,
+        "y": -130,
+        "w": 260,
+        "h": 120
+      },
+      {
+        "x": 0,
+        "y": -140,
+        "w": 280,
+        "h": 130
+      },
+      {
+        "x": 0,
+        "y": -175,
+        "w": 280,
+        "h": 165
+      }
+    ],
+    "purpose": "献血终结"
   },
   {
     "sinner": "sin",
@@ -3979,9 +4506,9 @@
     "lunge": 1,
     "box": {
       "x": 0,
-      "y": -210,
-      "w": 148,
-      "h": 200
+      "y": -203,
+      "w": 128,
+      "h": 194
     },
     "cancel": [
       12,
@@ -3991,6 +4518,9 @@
       "ego"
     ],
     "color": "#d7c182",
-    "description": "黑戟向上截击，保留斧刃与枪尖；不带无敌。"
+    "description": "长戟向上挑起并引爆朱符；不消耗生命，适合不愿继续献血时收尾。",
+    "seal": "consume",
+    "jumpCancel": true,
+    "purpose": "戟挑引符"
   }
 ]

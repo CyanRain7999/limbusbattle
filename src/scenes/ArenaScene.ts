@@ -16,7 +16,7 @@ export class ArenaScene extends Phaser.Scene {
   private background!:Phaser.GameObjects.Image;private fx!:Phaser.GameObjects.Graphics;private shadows!:Phaser.GameObjects.Graphics;
   private combatFX!:CombatFX;private demo=0;private labels:Phaser.GameObjects.Text[]=[];private egoUntil=0;private stepSerial=0;private hitFlashUntil=[0,0];
   constructor(private controls:InputController,private audio:Synth){super('Arena');}
-  preload(){for(const sinner of playableSinners){this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});this.load.spritesheet(`${sinner}-normals`,`./characters/${sinner}/normals/pixel.png`,{frameWidth:224,frameHeight:128});}for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:224,frameHeight:128});}
+  preload(){for(const sinner of playableSinners){this.load.spritesheet(`${sinner}-premium`,`./characters/${sinner}/lcb/pixel.png`,{frameWidth:224,frameHeight:128});this.load.spritesheet(`${sinner}-normals`,`./characters/${sinner}/normals/pixel.png`,{frameWidth:224,frameHeight:128});}for(const p of personaArt)this.load.spritesheet(p.key,`./characters/${p.sinner}/${p.persona}/pixel.png`,{frameWidth:p.runtimeFrameWidth??224,frameHeight:128});}
   create(){
     AssetManager.generate(this);this.background=this.add.image(0,0,'depot').setOrigin(0).setScale(2).setDepth(0);
     this.shadows=this.add.graphics().setDepth(2);

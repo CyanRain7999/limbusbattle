@@ -31,6 +31,6 @@ test('archive explains all twelve roles and links to character selection',async(
   await page.locator('[data-open="archives"]').first().click();
   await expect(page.locator('.archive-card.available')).toHaveCount(12);
   await expect(page.locator('.roster-comparison tbody tr')).toHaveCount(12);
-  await expect(page.locator('.roster-comparison')).toContainText('重招诈势');
-  await page.locator('[data-archive="sin"]').click();await expect(page.locator('[data-sinner="sin"]')).toHaveClass(/chosen/);await expect(page.locator('.trait-guide')).toContainText('以血续势');
+  await expect(page.locator('.roster-comparison')).toContainText('前摇诈势');
+  await page.locator('[data-archive="sin"]').click();await expect(page.locator('[data-sinner="sin"]')).toHaveClass(/chosen/);await expect(page.locator('.trait-guide')).toContainText('贴符与献血');
 });

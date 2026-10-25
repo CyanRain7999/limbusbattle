@@ -21,7 +21,8 @@ test('all twelve sinners load every ground/air persona, render all phases, and k
         for(const age of [0,f.attack.startup,f.attack.startup+f.attack.active-1,f.attack.startup+f.attack.active+3]){
           f.attackAge=age;scene.update(performance.now(),0);
           if(scene.sprites[0].texture.key!==key)throw new Error(`Wrong texture for ${f.attack.id}`);
-          const frame=scene.sprites[0].frame;if(frame.width!==224||frame.height!==128)throw new Error(`Missing atlas ${key}`);
+          const frame=scene.sprites[0].frame,texture=scene.textures.get(key);
+          if(frame.width*6!==texture.getSourceImage().width||frame.height!==128)throw new Error(`Missing atlas ${key}`);
         }
         if(f.attack.projectile){f.attackAge=f.attack.startup-1;m.paused=false;m.step();m.paused=true;if(m.projectiles.length!==1)throw new Error(`Wrong projectile count for ${f.attack.id}`);scene.update(performance.now(),0);m.projectiles=[];}
         checked.push(f.attack.id);

@@ -1,91 +1,92 @@
 {
-  "frameWidth": 800,
+  "frameWidth": 1029,
   "frameHeight": 640,
   "columns": 2,
   "count": 6,
   "anchor": [
-    340,
+    370,
     610
   ],
-  "scaleTo64": 0.1855072463768116,
+  "scaleTo64": 0.1807909604519774,
   "anchors": [
     {
       "frame": 0,
       "source_bounds": [
-        249,
-        26,
-        617,
-        375
+        176,
+        29,
+        703,
+        387
       ],
       "source_anchor": [
-        356,
-        373
+        350,
+        370
       ]
     },
     {
       "frame": 1,
       "source_bounds": [
-        878,
-        57,
-        1224,
-        367
+        854,
+        32,
+        1281,
+        372
       ],
       "source_anchor": [
-        1098,
-        365
+        1150,
+        370
       ]
     },
     {
       "frame": 2,
       "source_bounds": [
-        50,
-        420,
-        906,
-        677
+        46,
+        399,
+        912,
+        678
       ],
       "source_anchor": [
-        264,
-        675
+        257,
+        676
       ]
     },
     {
       "frame": 3,
       "source_bounds": [
-        940,
-        422,
-        1510,
-        682
+        925,
+        392,
+        1529,
+        685
       ],
       "source_anchor": [
-        1149,
-        680
+        1166,
+        676
       ]
     },
     {
       "frame": 4,
       "source_bounds": [
-        91,
-        721,
-        705,
-        1006
+        72,
+        703,
+        736,
+        999
       ],
       "source_anchor": [
-        387,
-        1004
+        438,
+        997
       ]
     },
     {
       "frame": 5,
       "source_bounds": [
-        918,
-        721,
-        1480,
-        995
+        893,
+        699,
+        1479,
+        996
       ],
       "source_anchor": [
-        1133,
-        993
+        1168,
+        979
       ]
     }
-  ]
+  ],
+  "runtimeFrameWidth": 320
 }

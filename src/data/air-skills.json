@@ -14,7 +14,7 @@
     "active": 14,
     "recovery": 16,
     "damage": 74,
-    "hitstun": 34,
+    "hitstun": 32,
     "knockback": 1.6,
     "launch": 2,
     "hitstop": 4,
@@ -49,7 +49,8 @@
         "duration": 5,
         "scale": 1
       }
-    ]
+    ],
+    "purpose": "空中折跃追击"
   },
   {
     "sinner": "don",
@@ -66,7 +67,7 @@
     "active": 8,
     "recovery": 20,
     "damage": 55,
-    "hitstun": 34,
+    "hitstun": 32,
     "knockback": 1.6,
     "launch": 2,
     "hitstop": 4,
@@ -100,7 +101,8 @@
       "width": 27,
       "height": 22,
       "life": 46
-    }
+    },
+    "purpose": "斜下星弹封路"
   },
   {
     "sinner": "heath",
@@ -117,7 +119,7 @@
     "active": 13,
     "recovery": 19,
     "damage": 35,
-    "hitstun": 34,
+    "hitstun": 38,
     "knockback": 1.6,
     "launch": 2,
     "hitstop": 4,
@@ -152,7 +154,8 @@
       "width": 27,
       "height": 22,
       "life": 46
-    }
+    },
+    "purpose": "三发空射"
   },
   {
     "sinner": "heath",
@@ -169,8 +172,8 @@
     "active": 10,
     "recovery": 21,
     "damage": 115,
-    "hitstun": 34,
-    "knockback": 1.6,
+    "hitstun": 38,
+    "knockback": 8,
     "launch": 0,
     "hitstop": 4,
     "power": 16,
@@ -193,7 +196,8 @@
     "description": "空中专用，保持起跳水平速度。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": true
+    "knockdown": true,
+    "purpose": "重刀击落"
   },
   {
     "sinner": "ryoshu",
@@ -211,7 +215,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 48,
-    "hitstun": 40,
+    "hitstun": 26,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -249,7 +253,8 @@
     "airOnly": true,
     "hitLevel": "overhead",
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "短刀空连"
   },
   {
     "sinner": "ryoshu",
@@ -267,7 +272,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 57,
-    "hitstun": 40,
+    "hitstun": 26,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -305,7 +310,8 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "窄线长枪截入"
   },
   {
     "sinner": "meur",
@@ -323,7 +329,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 60,
-    "hitstun": 40,
+    "hitstun": 35,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -361,7 +367,8 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "双刀下切"
   },
   {
     "sinner": "meur",
@@ -379,7 +386,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 135,
-    "hitstun": 40,
+    "hitstun": 35,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -415,7 +422,8 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "单发空中独头弹"
   },
   {
     "sinner": "ish",
@@ -433,7 +441,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 95,
-    "hitstun": 40,
+    "hitstun": 30,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -459,7 +467,8 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "短刀跳入"
   },
   {
     "sinner": "ish",
@@ -477,7 +486,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 138,
-    "hitstun": 40,
+    "hitstun": 30,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -504,7 +513,8 @@
     "airOnly": true,
     "hitLevel": "overhead",
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "拔刀落点压制"
   },
   {
     "sinner": "rod",
@@ -522,9 +532,9 @@
     "active": 12,
     "recovery": 18,
     "damage": 145,
-    "hitstun": 40,
-    "knockback": 2,
-    "launch": 2,
+    "hitstun": 37,
+    "knockback": -1,
+    "launch": 0,
     "hitstop": 5,
     "power": 11,
     "cost": 18,
@@ -548,7 +558,9 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "紫伞吸血",
+    "heal": 30
   },
   {
     "sinner": "rod",
@@ -566,7 +578,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 55,
-    "hitstun": 40,
+    "hitstun": 37,
     "knockback": 2,
     "launch": 2,
     "hitstop": 5,
@@ -604,7 +616,8 @@
     "hitLevel": "overhead",
     "teleport": 0,
     "counter": null,
-    "armorUntil": 0
+    "armorUntil": 0,
+    "purpose": "关刀压落"
   },
   {
     "sinner": "yi",
@@ -621,7 +634,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 93,
-    "hitstun": 36,
+    "hitstun": 28,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -644,7 +657,8 @@
     "description": "空中短刃斜下切，保持起跳水平速度。",
     "visualKey": "yi-w",
     "airOnly": true,
-    "hitLevel": "overhead"
+    "hitLevel": "overhead",
+    "purpose": "短刃追位"
   },
   {
     "sinner": "yi",
@@ -661,7 +675,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 68,
-    "hitstun": 36,
+    "hitstun": 28,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -695,7 +709,8 @@
       "width": 20,
       "height": 12,
       "life": 48
-    }
+    },
+    "purpose": "双枪斜射"
   },
   {
     "sinner": "outis",
@@ -712,7 +727,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 116,
-    "hitstun": 36,
+    "hitstun": 29,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -746,7 +761,8 @@
       "width": 22,
       "height": 12,
       "life": 45
-    }
+    },
+    "purpose": "耗弹空射"
   },
   {
     "sinner": "outis",
@@ -763,7 +779,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 98,
-    "hitstun": 36,
+    "hitstun": 29,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -786,7 +802,8 @@
     "description": "投射腕刃向下割入，保持原跳跃轨迹。",
     "visualKey": "outis-w",
     "airOnly": true,
-    "hitLevel": "overhead"
+    "hitLevel": "overhead",
+    "purpose": "双刃追击"
   },
   {
     "sinner": "greg",
@@ -803,7 +820,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 101,
-    "hitstun": 36,
+    "hitstun": 33,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -826,7 +843,8 @@
     "description": "甲翼展开、双虫镰向下切入；不改变空中轨迹。",
     "visualKey": "greg-g",
     "airOnly": true,
-    "hitLevel": "overhead"
+    "hitLevel": "overhead",
+    "purpose": "虫刃拖近"
   },
   {
     "sinner": "greg",
@@ -843,7 +861,7 @@
     "active": 13,
     "recovery": 17,
     "damage": 108,
-    "hitstun": 36,
+    "hitstun": 33,
     "knockback": 3,
     "launch": 3,
     "hitstop": 5,
@@ -876,7 +894,8 @@
       "width": 22,
       "height": 12,
       "life": 45
-    }
+    },
+    "purpose": "弯钩与手枪封路"
   },
   {
     "sinner": "faust",
@@ -893,7 +912,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 93,
-    "hitstun": 34,
+    "hitstun": 36,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -917,7 +936,8 @@
     "description": "红色直刃斜下切入，沿起跳轨迹前进。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "重剑压入"
   },
   {
     "sinner": "faust",
@@ -934,7 +954,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 110,
-    "hitstun": 34,
+    "hitstun": 36,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -958,7 +978,8 @@
     "description": "背部义肢双大剑向下交剪，不改变水平速度。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "多臂空连"
   },
   {
     "sinner": "hong",
@@ -975,7 +996,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 75,
-    "hitstun": 34,
+    "hitstun": 27,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -1009,7 +1030,8 @@
     "description": "刺刀手枪朝斜下单发射击，落地前仅一次空中人格。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "弹道封落点"
   },
   {
     "sinner": "hong",
@@ -1026,8 +1048,8 @@
     "active": 12,
     "recovery": 18,
     "damage": 96,
-    "hitstun": 34,
-    "knockback": 2,
+    "hitstun": 27,
+    "knockback": 9,
     "launch": 0,
     "hitstop": 5,
     "power": 12,
@@ -1050,7 +1072,8 @@
     "description": "东部三科掌法向下截落，不能空中滑步。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "推掌脱离"
   },
   {
     "sinner": "sin",
@@ -1067,7 +1090,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 95,
-    "hitstun": 34,
+    "hitstun": 30,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -1088,10 +1111,12 @@
     "into": [],
     "color": "#9ac9ef",
     "visualKey": "sin-cinq",
-    "description": "细剑斜下跳入，判定下移，不改起跳方向。",
+    "description": "细剑斜下跳入，判定下移，不改起跳方向。 命中可引爆地面已贴朱符。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "细剑引符",
+    "seal": "consume"
   },
   {
     "sinner": "sin",
@@ -1108,7 +1133,7 @@
     "active": 12,
     "recovery": 18,
     "damage": 111,
-    "hitstun": 34,
+    "hitstun": 30,
     "knockback": 2,
     "launch": 0,
     "hitstop": 5,
@@ -1129,9 +1154,11 @@
     "into": [],
     "color": "#c9c6d9",
     "visualKey": "sin-pinky",
-    "description": "弧刃向下划切；空中不能使用破限续势。",
+    "description": "弧刃向下划切；空中不能使用破限续势。 命中可引爆地面已贴朱符。",
     "airOnly": true,
     "hitLevel": "overhead",
-    "knockdown": false
+    "knockdown": false,
+    "purpose": "曲刀引符",
+    "seal": "consume"
   }
 ]
